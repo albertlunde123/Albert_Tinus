@@ -45,7 +45,7 @@ def plot_data(data, ax, labels, title, kali):
 ###
 
 
-    t_fit = np.linspace(-0.4,1.0,1000)
+    t_fit = np.linspace(t[mask][0], t[mask][-1], 1000)
     ax.plot(t_fit, fit(t_fit, *popt), color = 'k', linewidth = 2,
             label = 'fitted function')
 
