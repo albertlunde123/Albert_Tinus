@@ -60,10 +60,10 @@ def plot_data(data, ax, labels, title, kali):
 plot_data("Sol1", ax[0], labels = None, title = 'solid cylinder 1',
           kali = kali)
 
-plot_data("Sol2", ax[1], labels = None, title = 'solid cylinder 1',
+plot_data("Sol2", ax[1], labels = None, title = 'solid cylinder 2',
           kali = kali)
 
-plot_data("Sol3", ax[2], labels = None, title = 'solid cylinder 1',
+plot_data("Sol3", ax[2], labels = None, title = 'solid cylinder 3',
           kali = kali)
 
 plt.show()
