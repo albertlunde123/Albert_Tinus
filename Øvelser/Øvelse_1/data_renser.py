@@ -16,7 +16,6 @@ class Data():
             while self.points[j] < lim[0]:
                 j += 1
             for i in list(range(len(self.points)))[j:]:
-                print(i)
                 if self.points[i] < lim[1]:
                     index.append(i)
         mask = np.full(len(self.points), True, dtype = bool)
