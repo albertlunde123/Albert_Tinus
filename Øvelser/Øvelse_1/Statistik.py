@@ -27,9 +27,9 @@ def propagation_function(x, f, popt, pcov):
     f_error = 0
     err =  list(np.sqrt(np.diagonal(pcov)))
     for i in range(len(err)):
-        print(popt[:i],  [popt[i] + err[i]], popt[i+1:])
+        # print(popt[:i],  [popt[i] + err[i]], popt[i+1:])
         j = popt[:i] + [popt[i] + err[i]] + popt[i+1:]
-        print(j)
+        # print(j)
         f_error += (f(x, *j)-f(x, *popt))**2
     return np.sqrt(f_error)
 

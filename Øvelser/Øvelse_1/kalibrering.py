@@ -25,7 +25,7 @@ def func(x, *p):
     return a*x+b
 
 guess_params = [1,2]
-popt,pcov = scp.curve_fit(func,y,x,guess_params)
+kali, pcov = scp.curve_fit(func,y,x,guess_params)
 
 # x_fit = np.linspace(0,y[-1],100)
 # ax.plot(x_fit, func(x_fit, popt[0], popt[1]), color = 'k', label = 'fit')
