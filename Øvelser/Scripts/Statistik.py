@@ -26,6 +26,7 @@ import scipy.stats as ss
 def propagation_function(x, f, popt, pcov):
     f_error = 0
     err =  list(np.sqrt(np.diagonal(pcov)))
+    print(err)
     for i in range(len(err)):
         # print(popt[:i],  [popt[i] + err[i]], popt[i+1:])
         j = popt[:i] + [popt[i] + err[i]] + popt[i+1:]

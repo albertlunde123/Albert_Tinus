@@ -11,6 +11,7 @@ exec(open('../Scripts/data_renser.py').read())
 grader = 15
 theta = grader*(2*np.pi/360)
 
+
 # Vi har nu adgang til funktion func(U, *popt), som er defineret i
 # kalibrering.py.
 
