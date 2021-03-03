@@ -8,7 +8,6 @@ exec(open('kalibrering.py').read())
 exec(open('Statistik.py').read())
 exec(open('data_renser.py').read())
 
-print(os.getcwd())
 
 # Vi har nu adgang til funktion func(U, *popt), som er defineret i
 # kalibrering.py.
