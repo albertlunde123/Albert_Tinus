@@ -25,13 +25,13 @@ def fit(t,*p):
     c = p[2]
     return np.heaviside(t-t0,1)*(1/2*a*(t-t0)**2)+c
 
-def plot_data(data, ax, labels, title, kali):
+def plot_data(data, rs, ax, labels, title, kali):
+    
 
     sol1 = Data(data)
     x = func(sol1.points, *kali)
     t = sol1.t
     if title == "Radius 7.9cm":
-        print('hej')
         t = t*1000
 
     mask = sol1.rinse([[-1, 0.15], [0.4, 0.3], [0.6, 0.4]])
@@ -42,12 +42,12 @@ def plot_data(data, ax, labels, title, kali):
     guess_params = [1,-0.17,0.05]
 
 ###
-    popt,pcov = scp.curve_fit(fit, t[mask], x[mask],
+    popt,pcov = scp.curve_fit(fit, t[mask][:-1], x[mask][:-1],
                             guess_params, bounds = ((-10, -0.3, -10),(10, -0.1, 10)))
 ###
 
 
-    t_fit = np.linspace(-0.4,1.0,1000)
+    t_fit = np.linspace(t[mask][0],t[mask][-1],1000)
     ax.plot(t_fit, fit(t_fit, *popt), color = 'k', linewidth = 2,
             label = 'fitted function')
 
@@ -63,18 +63,23 @@ def plot_data(data, ax, labels, title, kali):
     ax.set_xlabel('t/s')
     ax.set_title(title)
     ax.legend()
+    rydre = rs[0] 
+    rindre = rs[1]
+    teoA = (np.sin(theta)*9.82)/(1.0+1/2*((rindre**2 + rydre**2)/rydre**2))
 
-    print( "Teoretisk a = {}, ".format(round(np.sin(theta)*9.82*0.66, 3))+
+    print( "Teoretisk a = {}, ".format(teoA)+
           "Eksperimentel a = {} $\pm$ {}".format(eksp_a, var_a))
+#Målte ydre og indre radiusser.
+rydres = [7.9/2,3/2,2.7/2]
+rindres = [(7.9-2*0.45)/2,(3-2*0.3)/2,(2.7-2*0.1)/2]
 
-
-plot_data("Hul1_R79", ax[0], labels = None, title = 'Radius 7.9cm',
+plot_data("Hul1_R79",[rydres[0],rindres[0]], ax[0], labels = None, title = 'Radius 7.9cm',
           kali = kali)
 
-plot_data("Hul3_R3", ax[1], labels = None, title = 'Radius 3.0cm',
+plot_data("Hul3_R3", [rydres[1],rindres[1]],ax[1], labels = None, title = 'Radius 3.0cm',
           kali = kali)
 
-plot_data("Hul2_R27", ax[2], labels = None, title = 'Radius 2.7cm',
+plot_data("Hul2_R27",[rydres[2],rindres[2]], ax[2], labels = None, title = 'Radius 2.7cm',
           kali = kali)
 
 # plot_data("Sol1_19grader", ax[3], labels = None, title = '19 grader',
