@@ -1,9 +1,13 @@
 import matplotlib.pyplot as plt
+# Denne fil kan ikke køres som den står lige nu!
+# Hvis du er interesseret i at køre den, skal du slette 'Kalbrering'
+# i np.loadtxt().
+
 import numpy as np
 import scipy.optimize as scp
 
-#fig, ax = plt.subplots()
 
+# fig, ax = plt.subplots()
 # Plot data
 
 x = []
@@ -28,13 +32,14 @@ guess_params = [1,2]
 kali, pcov = scp.curve_fit(func,y,x,guess_params)
 
 # x_fit = np.linspace(0,y[-1],100)
-# ax.plot(x_fit, func(x_fit, popt[0], popt[1]), color = 'k', label = 'fit')
+# ax.plot(y, x, 'ro', label = 'mean of data-points')
+# ax.plot(x_fit, func(x_fit, kali[0], kali[1]), color = 'k', label = 'fit')
 
 # ax.set_xlabel('U')
 # ax.set_ylabel('x')
-#ax.set_ylim(0,0.8)
+# ax.set_ylim(0,0.8)
 # ax.legend()
 
-#plt.show()
+# plt.show()
 
-#fig.savefig('spænding.png')
+# fig.savefig('../Plots/spænding.png')
