@@ -1,4 +1,6 @@
-# Script for cleaning data
+# Den script loader data, og gemmer dette i et data object.
+# Det definere desuden .rinse() på dette dataobjekt, som gennemsøger
+# dataet for outliers.
 
 import numpy as np
 
@@ -8,6 +10,11 @@ class Data():
         self.path = 'Datas/' + path +'.txt'
         self.points = np.loadtxt(self.path)[:, 1]
         self.t = np.loadtxt(self.path)[:, 0]/1000
+
+# Her defineres .rinse() metoden. Denne tager et data objekt, samt en
+# list med limits. Et limit består af 2 grænser. rinse metoden
+# kigger self.points igennem og noterer første gang den rammer grænse 1.
+# Den noterer alle punkter som ligger under grænse 2 og gemmer deres index.
 
     def rinse(self, limits):
         index = []

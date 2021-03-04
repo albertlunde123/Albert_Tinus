@@ -1,11 +1,10 @@
-import matplotlib.pyplot as plt
 # Denne fil kan ikke køres som den står lige nu!
-# Hvis du er interesseret i at køre den, skal du slette 'Kalbrering'
+# Hvis du er interesseret i at køre den, skal du slette 'Kalibrering'
 # i np.loadtxt().
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as scp
-import os
 
 
 # fig, ax = plt.subplots()
@@ -13,7 +12,11 @@ import os
 x = []
 y = []
 
+# Den fysiske afstand mellem målingerne
+
 del_x = 4.5*10**-2
+
+# Dataet importeres
 
 for i in list(range(12)):
     x = x + [i*del_x]
@@ -21,7 +24,9 @@ for i in list(range(12)):
 
 #ax.scatter(y,x, color = 'r', label = 'data point')
 
-# Plot fit
+# fitte funktionen defineres og dataet fittes efter denne
+# parametrene gemmes i variablen kali, func(x, *kali) kan dermed
+# kaldes senere.
 
 def func(x, *p):
     a=p[0]

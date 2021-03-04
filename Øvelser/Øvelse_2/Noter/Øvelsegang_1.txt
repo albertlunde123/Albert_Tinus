@@ -1,0 +1,15 @@
+--- NOTER FRA ØVELSESGANG 1 ---
+
+Jeg har gjort følgende i dag...
+
+- Oprettet et teori dokument hvor jeg har
+--- Tegnet free-body diagrammer
+--- Skrevet et afsnit omkring bestemmelse af pendulets-midtpunkt
+
+- Kigget på opstillingen
+--- Jeg har fundet ud af hvordan man kalibrerer pendulet ved hjælp af picoscopet.
+--- Sat mig ind i hvordan vi bestemmer massemidtpunktet af pendulet.
+
+... Inden næste øvelsesgang.
+...... Skrive resten af det teoretiske ind.
+...... Lave et kalibreringsscript.
