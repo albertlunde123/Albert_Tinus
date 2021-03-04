@@ -60,8 +60,10 @@ def plot_data(data, ax, labels, title, kali):
     ax.set_xlabel('t/s')
     ax.set_title(title)
     ax.legend()
+    teoA = 9.82*(np.sin(theta)-np.cos(theta)*0.19)
+    mu = (eksp_a/9.82-np.sin(theta))/-np.cos(theta)
 
-    print( "Teoretisk a = {}, ".format(round(np.sin(theta)*9.82*0.66, 3))+
+    print( "Teoretisk a = {}, ".format(teoA)+
           "Eksperimentel a = {} $\pm$ {}".format(eksp_a, var_a))
 
 

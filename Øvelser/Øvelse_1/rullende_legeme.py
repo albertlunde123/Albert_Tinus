@@ -33,7 +33,6 @@ def plot_data(data, ax, labels, title, kali):
     t = sol1.t
 
     mask = sol1.rinse([[-1, 0.1], [0.4, 0.3], [0.6, 0.4]])
-
     ax.scatter(t[~mask], x[~mask], color = 'blue', label = 'outliers')
     ax.scatter(t[mask], x[mask], color = 'red', label = 'data points')
 
