@@ -9,7 +9,6 @@ exec(open('../Scripts/Statistik.py').read())
 exec(open('../Scripts/data_renser.py').read())
 
 grader = 15
-theta = grader*(2*np.pi/360)
 
 # Vi har nu adgang til funktion func(U, *popt), som er defineret i
 # kalibrering.py.
@@ -25,8 +24,9 @@ def fit(t,*p):
     c = p[2]
     return np.heaviside(t-t0,1)*(1/2*a*(t-t0)**2)+c
 
-def plot_data(data, ax, labels, title, kali):
+def plot_data(data, ax, labels, title, kali, grader):
 
+    theta = grader*(2*np.pi/360)
     sol1 = Data(data)
     x = func(sol1.points, *kali)
     t = sol1.t*1000
@@ -50,6 +50,7 @@ def plot_data(data, ax, labels, title, kali):
 
     var_a = round(np.sqrt(np.diag(pcov)[0]), 2)
     eksp_a = round(popt[0], 3)
+    eksp_gnid =  (np.sin(theta) - popt[0]/9.82)/np.cos(theta)
 
     error = propagation_function(t_fit, fit, list(popt), pcov)
     ax.fill_between(t_fit, fit(t_fit, *popt) + error,
@@ -61,21 +62,23 @@ def plot_data(data, ax, labels, title, kali):
     ax.set_title(title)
     ax.legend()
 
-    print( "Teoretisk a = {}, ".format(round(np.sin(theta)*9.82*0.66, 3))+
-          "Eksperimentel a = {} $\pm$ {}".format(eksp_a, var_a))
+    t_a = 9.82*(np.sin(theta) - np.cos(theta)*0.19)
+
+    print( "Teoretisk a = {}, ".format(round(t_a, 3))+
+          "Eksperimentel gnidningskoefficient = {} $\pm$ {}".format(eksp_a, var_a))
 
 
 plot_data("Kobber12", ax[0], labels = None, title = 'Kobber 12grader',
-          kali = kali)
+          kali = kali, grader = 12)
 
 plot_data("Kobber13", ax[1], labels = None, title = 'Kobber 13grader',
-          kali = kali)
+          kali = kali, grader = 13)
 
-plot_data("Kobber", ax[2], labels = None, title = 'Kobber 16grader',
-          kali = kali)
+plot_data("Kobber", ax[2], labels = None, title = 'Kobber 15grader',
+          kali = kali, grader = 15)
 
 plot_data("Kobber19", ax[3], labels = None, title = 'Kobber 19grader',
-          kali = kali)
+          kali = kali, grader = 19)
 
 
 plt.show()
