@@ -1,3 +1,6 @@
+## Se rullende_legeme.py for dokumentation, dette script fungerer på
+## præcis samme måde.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as scp
@@ -7,11 +10,6 @@ import os
 exec(open('Kalibrering/kalibrering.py').read())
 exec(open('../Scripts/Statistik.py').read())
 exec(open('../Scripts/data_renser.py').read())
-
-grader = 15
-
-# Vi har nu adgang til funktion func(U, *popt), som er defineret i
-# kalibrering.py.
 
 fig, ax = plt.subplots(2, 3, figsize = (20, 10))
 
@@ -23,6 +21,8 @@ def fit(t,*p):
     t0 = p[1]
     c = p[2]
     return np.heaviside(t-t0,1)*(1/2*a*(t-t0)**2)+c
+
+## Plot_data tager nu også en vinkel.
 
 def plot_data(data, ax, labels, title, kali, grader):
 

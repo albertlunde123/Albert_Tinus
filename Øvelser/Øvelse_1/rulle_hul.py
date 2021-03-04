@@ -4,6 +4,9 @@ import scipy.optimize as scp
 import scipy.special as ss
 import os
 
+# Vi starter med at importere, de andre scripts som  skal bruge til
+# henholdsvis kalibrering og databehandling
+
 exec(open('Kalibrering/kalibrering.py').read())
 exec(open('../Scripts/Statistik.py').read())
 exec(open('../Scripts/data_renser.py').read())
@@ -17,7 +20,12 @@ theta = grader*(2*np.pi/360)
 fig, ax = plt.subplots(2, 2, figsize = (20, 10))
 
 ax = ax.ravel()
-# Importer data
+
+# Her defineres fitte funktionen. Vi fitter efter en andengradsparabel,
+# t0-parametren giver mulighed for at rykke på parablens toppunkt, mens
+# heaviside-funktionen (indikator-funktion) giver funktionen for at være lig 0
+# i starten. Den tager desuden også en parameter rs, som er den ydre og indre
+# radius
 
 def fit(t,*p):
     a = p[0]
@@ -26,21 +34,32 @@ def fit(t,*p):
     return np.heaviside(t-t0,1)*(1/2*a*(t-t0)**2)+c
 
 def plot_data(data, rs, ax, labels, title, kali):
-    
 
+     # Data() er en class defineret i data_renser.py
+    
     sol1 = Data(data)
+
+# func() er defineret i kalibrering.py
+
     x = func(sol1.points, *kali)
     t = sol1.t
     if title == "Radius 7.9cm":
         t = t*1000
 
+ # .rinse() er en metode defineret i data_renser.py, som leder efter
+ # outliers.
+
     mask = sol1.rinse([[-1, 0.15], [0.4, 0.3], [0.6, 0.4]])
+
+# Outliers markeres med blå, de resterende punkter med rød.
 
     ax.scatter(t[~mask], x[~mask], color = 'blue', label = 'outliers')
     ax.scatter(t[mask], x[mask], color = 'red', label = 'data points')
 
     guess_params = [1,-0.17,0.05]
 
+# Funktionen fittes, estimatet af t0 er lidt følsomt, så der sættes nogle
+# bounds for den.
 ###
     popt,pcov = scp.curve_fit(fit, t[mask][:-1], x[mask][:-1],
                             guess_params, bounds = ((-10, -0.3, -10),(10, -0.1, 10)))
@@ -50,6 +69,9 @@ def plot_data(data, rs, ax, labels, title, kali):
     t_fit = np.linspace(t[mask][0],t[mask][-1],1000)
     ax.plot(t_fit, fit(t_fit, *popt), color = 'k', linewidth = 2,
             label = 'fitted function')
+
+# spredningen på parametrene hives ud covariansmatricen, den målte acceleration
+# gemmes også
 
     var_a = round(np.sqrt(np.diag(pcov)[0]), 2)
     eksp_a = round(popt[0], 3)
@@ -69,7 +91,9 @@ def plot_data(data, rs, ax, labels, title, kali):
 
     print( "Teoretisk a = {}, ".format(teoA)+
           "Eksperimentel a = {} $\pm$ {}".format(eksp_a, var_a))
-#Målte ydre og indre radiusser.
+
+# Målte ydre og indre radiusser.
+
 rydres = [7.9/2,3/2,2.7/2]
 rindres = [(7.9-2*0.45)/2,(3-2*0.3)/2,(2.7-2*0.1)/2]
 
@@ -81,12 +105,6 @@ plot_data("Hul3_R3", [rydres[1],rindres[1]],ax[1], labels = None, title = 'Radiu
 
 plot_data("Hul2_R27",[rydres[2],rindres[2]], ax[2], labels = None, title = 'Radius 2.7cm',
           kali = kali)
-
-# plot_data("Sol1_19grader", ax[3], labels = None, title = '19 grader',
-#           kali = kali)
-
-# plot_data("Sol1_21grader", ax[4], labels = None, title = '21 grader',
-#           kali = kali)
 
 ax[3].remove()
 plt.show()

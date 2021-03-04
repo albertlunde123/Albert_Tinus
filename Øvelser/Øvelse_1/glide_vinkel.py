@@ -1,3 +1,6 @@
+## Se rullende_legeme.py for at få en forståelse af hvordan scriptet
+## virker. Dette script fungere på præcis samme metode.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as scp
@@ -7,11 +10,6 @@ import os
 exec(open('Kalibrering/kalibrering.py').read())
 exec(open('../Scripts/Statistik.py').read())
 exec(open('../Scripts/data_renser.py').read())
-
-grader = 15
-
-# Vi har nu adgang til funktion func(U, *popt), som er defineret i
-# kalibrering.py.
 
 fig, ax = plt.subplots(2, 2, figsize = (20, 10))
 
@@ -64,8 +62,7 @@ def plot_data(data, ax, labels, title, kali, grader):
 
     t_a = 9.82*(np.sin(theta) - np.cos(theta)*0.19)
 
-    print( "Teoretisk a = {}, ".format(round(t_a, 3))+
-          "Eksperimentel gnidningskoefficient = {} $\pm$ {}".format(eksp_a, var_a))
+    print("Eksperimentel gnidningskoefficient = {} $\pm$ {}".format(eksp_a, var_a))
 
 
 plot_data("Kobber12", ax[0], labels = None, title = 'Kobber 12grader',

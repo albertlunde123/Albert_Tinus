@@ -1,6 +1,33 @@
+# Dette script skal med tiden implementere en række statistiske funktioner
+
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as ss
+
+# Denne funktion implementerer den funktionelle metode til at lave 
+# fejlpropagering. Funktionen tager en vilkårlig fitte funktion samt dennes
+# estimerede parametre samt covariansmatrice.
+# Den beregner derefter fejlen for en given x-værdi
+
+def propagation_function(x, f, popt, pcov):
+    f_error = 0
+
+# Standard afvigelser gemmes
+
+    err =  list(np.sqrt(np.diagonal(pcov)))
+    for i in range(len(err)):
+
+# funktionen med standard afvigelsen på den i'te parameter konstrueres
+
+        j = popt[:i] + [popt[i] + err[i]] + popt[i+1:]
+        f_error += (f(x, *j)-f(x, *popt))**2
+    return np.sqrt(f_error)
+
+##################################################
+
+Vær venlig at ignorerer det der står herunder.
+
+###################################################
 
 # f(x) = Ax + B
 # Hvad er fejlen på f(x)?
@@ -22,17 +49,6 @@ import scipy.stats as ss
 #     d = p[3]
 #     return a*x**2+b*x+c+d*np.sqrt(x)
 
-
-def propagation_function(x, f, popt, pcov):
-    f_error = 0
-    err =  list(np.sqrt(np.diagonal(pcov)))
-    print(err)
-    for i in range(len(err)):
-        # print(popt[:i],  [popt[i] + err[i]], popt[i+1:])
-        j = popt[:i] + [popt[i] + err[i]] + popt[i+1:]
-        # print(j)
-        f_error += (f(x, *j)-f(x, *popt))**2
-    return np.sqrt(f_error)
 
 # xs = np.linspace(0, 10, 100)
 
