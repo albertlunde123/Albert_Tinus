@@ -24,9 +24,9 @@ def propagation_function(x, f, popt, pcov):
     return np.sqrt(f_error)
 
 ##################################################
-
-Vær venlig at ignorerer det der står herunder.
-
+#
+#   Vær venlig at ignorerer det der står herunder.
+#
 ###################################################
 
 # f(x) = Ax + B

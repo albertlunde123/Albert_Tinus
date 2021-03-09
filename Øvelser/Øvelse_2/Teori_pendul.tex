@@ -1,0 +1,40 @@
+\input{../preamble.tex}
+\title{\vspace{-1cm}Pendul\vspace{-1cm}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\begin{figure}[ht]
+    \centering
+    \incfig{pendul}
+    \caption{pendul}
+    \label{fig:pendul}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \incfig{pendul2}
+    \caption{pendul2}
+    \label{fig:pendul2}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \incfig{massemidtpunkts_bestemmelse}
+    \caption{Massemidtpunkt}
+    \label{fig:massemidtpunkt}
+\end{figure}
+\newpage
+\begin{subexercise}{Bestemmelse af massemidtpunktet}
+Her følger de teoretiske overvejelse, til bestemmelse af pendulets massemidtpunkt.
+\end{subexercise}\newline
+Se figur 3. Der er 2 krafter på pendulet, en tension fra snoren og tyngdekraften. Tyngdekraften virker i pendulets massemidtpunkt, mens tension virker der hvor snoren sidder fast. Disse giver begge anledning til et kraftmoment, men da pendulet er i hvile vil det samlede kraftmoment være 0.
+\[
+\tau = F_wR_w + F_TR_T
+.\] 
+Nu definerer jeg $R_T = R_0 + \Delta R$
+\begin{align*}
+	\frac{1}{F_T}&= \frac{-\left( R_0+\Delta R \right) }{R_wF_w} \\
+	\frac{1}{F_T}&= \frac{-R_0}{R_wF_w}-\frac{\Delta R}{R_wF_w}
+.\end{align*} 
+\end{document}

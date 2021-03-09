@@ -36,7 +36,7 @@ def fit(t,*p):
 def plot_data(data, rs, ax, labels, title, kali):
 
      # Data() er en class defineret i data_renser.py
-    
+
     sol1 = Data(data)
 
 # func() er defineret i kalibrering.py
@@ -85,7 +85,7 @@ def plot_data(data, rs, ax, labels, title, kali):
     ax.set_xlabel('t/s')
     ax.set_title(title)
     ax.legend()
-    rydre = rs[0] 
+    rydre = rs[0]
     rindre = rs[1]
     teoA = (np.sin(theta)*9.82)/(1.0+1/2*((rindre**2 + rydre**2)/rydre**2))
 

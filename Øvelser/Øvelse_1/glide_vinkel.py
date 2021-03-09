@@ -62,7 +62,7 @@ def plot_data(data, ax, labels, title, kali, grader):
 
     t_a = 9.82*(np.sin(theta) - np.cos(theta)*0.19)
 
-    print("Eksperimentel gnidningskoefficient = {} $\pm$ {}".format(eksp_a, var_a))
+    print("Eksperimentel gnidningskoefficient = {} $\pm$ {}".format(eksp_gnid, var_a))
 
 
 plot_data("Kobber12", ax[0], labels = None, title = 'Kobber 12grader',
