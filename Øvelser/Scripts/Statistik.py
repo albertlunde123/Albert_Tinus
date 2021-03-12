@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as ss
 
-# Denne funktion implementerer den funktionelle metode til at lave 
+# Denne funktion implementerer den funktionelle metode til at lave
 # fejlpropagering. Funktionen tager en vilkårlig fitte funktion samt dennes
 # estimerede parametre samt covariansmatrice.
 # Den beregner derefter fejlen for en given x-værdi
@@ -21,7 +21,13 @@ def propagation_function(x, f, popt, pcov):
 
         j = popt[:i] + [popt[i] + err[i]] + popt[i+1:]
         f_error += (f(x, *j)-f(x, *popt))**2
+    print(np.sqrt(f_error))
     return np.sqrt(f_error)
+
+def plot_propagation(x, f, popt, pcov, ax):
+    error = propagation_function(x, f, list(popt), pcov)
+    ax.fill_between(x, f(x, *popt) + error,
+                    f(x, *popt) - error, alpha = 0.3)
 
 ##################################################
 #

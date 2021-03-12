@@ -7,9 +7,9 @@ import numpy as np
 class Data():
 
     def __init__(self, path):
-        self.path = 'Datas/' + path +'.txt'
-        self.points = np.loadtxt(self.path)[:, 1]
-        self.t = np.loadtxt(self.path)[:, 0]/1000
+        self.path = path + '.txt' #'Datas/' + path +'.txt'
+        self.points = np.loadtxt(self.path, skiprows = 3)[:, 1]
+        self.t = np.loadtxt(self.path, skiprows = 3)[:, 0]/1000
 
 # Her defineres .rinse() metoden. Denne tager et data objekt, samt en
 # list med limits. Et limit består af 2 grænser. rinse metoden
