@@ -1,0 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%
+%% SUPER PREAMBLE %%
+%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Fonts and stuff
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb} % math
+
+\usepackage{fancyhdr} % Header, Footer etc.
+\usepackage{adforn}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{Albert Lunde, John Faxe Jensen}
+\fancyfoot[C]{\adforn{17}\quad\thepage\quad\adforn{45}}
+
+\renewcommand{\headrule}{%
+	\hrulefill
+	 {\quad\adforn{21}\adforn{10}\adforn{49}\quad}%
+	\hrulefill}
+\renewcommand{\footrulewidth}{0pt}
+
+%% Margin Control %%
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% figure support
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikzsymbols} % Symbols
+\usepackage{mdframed} % Boxes around theorem environments
+\usepackage{thmtools}
+
+
+% Exercise environment with surrounding box
+
+\declaretheoremstyle[
+    name=Exercise,
+    mdframed={
+  skipabove=0pt,
+  skipbelow=20pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innerbottommargin=7pt}
+]{thmsty}
+\declaretheorem[style=thmsty,numbered=no]{exercise}
+
+% Solution environment, with coffee cup
+
+\newenvironment{solution}
+ {\renewcommand\qedsymbol{\tikzsymbolsuse{Coffeecup}}\begin{proof}[Solution]}
+ {\end{proof}}
+
+% Subexercise enviroment
+%  \newenvironment{subexercise}[1]
+%  {
+% 	\begin{changemargin}{1.0cm}{1.0cm}
+% 	\textbf{(#1)}\em
+% 	}{
+	% \end{changemargin}
+	% } 
+
+ \newenvironment{subexercise}[1]
+ {\noindent
+	 \textbf{(#1)} \quad \adforn{10} \quad \em
+ }{}
+
+% Mathematical typesetting stuff.
+
+ \newcommand{\dd}{\mathrm{\textbf{d}}}
+
+
