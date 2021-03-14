@@ -18,6 +18,28 @@
     \caption{pendul2}
     \label{fig:pendul2}
 \end{figure}
+Hvis vi antager at friktionskraften er $0$. Vil der kun være én kraft på pendulet,
+ \[
+F = m\cdot g\cdot \sin \theta
+.\]
+Kraftmomentet på pendulet vil være afstanden fra pivot-punktet til center of mass ganget med den vinkelrette komponent af kraften. 
+\[
+	\tau = -(mg)\sin \theta \cdot R_{cm}
+.\] 
+Hvis jeg nu også laver en lille-vinkel antagelse,
+\[
+	\tau = -(mg) \cdot \theta \cdot R_{cm}
+.\]
+Jeg ved desuden at kraftmomentet er,
+\[
+	I \frac{\dd^2 \theta}{\dd t^2} = -(mg)\cdot \theta(t)\cdot  R_{cm}
+.\] 
+ Vi vil gerne finde en funktion $\theta(t)$, som opfylder denne ligning. Jeg betrager funktionen $\theta (t) = \frac{1}{I}\cdot \sin(t\cdot \sqrt{mgR_{cm}}+\lambda )+c$.
+\begin{align*}
+	\frac{\dd \theta^2}{\dd t^2} \theta (t) &= \frac{\dd \theta}{\dd t}\frac{1}{I}\cdot \sqrt{mgR_{cm}}\left( -\cos(t\cdot \sqrt{mgR_{cm}} +\lambda \right)  \\
+						&= \frac{-mgR_{cm}}{I}\sin(t\cdot \sqrt{mgR_{cm}} +\lambda) \\
+.\end{align*}
+Og ser at denne funktion opfylder kriteriet. I en analyse $\sin(t)$ ser jeg at $\sin(t) = t$ approksimationen holder nogenlunde for vinkler mindre end $0.40$ radianer.
 \begin{figure}[ht]
     \centering
     \incfig{massemidtpunkts_bestemmelse}
