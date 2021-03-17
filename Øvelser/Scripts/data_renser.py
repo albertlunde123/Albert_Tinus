@@ -29,8 +29,14 @@ class Data():
         mask[index] = False
         return mask
 
-# def plot_data(data, mask, ax, f):
-#     ax.scatter(data.t[mask],
-#                f(data.points)[mask])
-               # color = col,
-               # label = label)
+    def rinse1(self, k):
+        index = [0]
+        j = 0
+        while self.points[0] - self.points[j] < k:
+            j += 1
+            index.append(j)
+        mask = np.full(len(self.points), True, dtype = bool)
+        mask[index] = False
+        return mask
+
+
