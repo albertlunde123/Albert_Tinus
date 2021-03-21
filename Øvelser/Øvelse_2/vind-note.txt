@@ -1,0 +1,5 @@
+-- Vind --
+
+Den sidder i den nedereste streg.
+x = 
+y = 

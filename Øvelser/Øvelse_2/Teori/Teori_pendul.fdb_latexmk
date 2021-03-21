@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1615561413 "Teori_pendul.tex" "Teori_pendul.pdf" "Teori_pendul" 1615561413
+["pdflatex"] 1615993133 "Teori_pendul.tex" "Teori_pendul.pdf" "Teori_pendul" 1615993134
   "/etc/texmf/web2c/texmf.cnf" 1614156342 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/adforn/OrnementsADF.enc" 1285345476 2001 9a43270062b08428097bbcee56651809 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -194,8 +194,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1614346670 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1614346686 8257438 04c7c2a75a050d8d57dbec69848e99a9 ""
-  "Teori_pendul.aux" 1615561413 511 c873b963b7dbe54578f2681c2bbca624 "pdflatex"
-  "Teori_pendul.tex" 1615561411 2319 ef19de33e000870f4a06ebdfca288976 ""
+  "Teori_pendul.aux" 1615993134 511 de098110015a32e5e72ea71189d730e4 "pdflatex"
+  "Teori_pendul.tex" 1615993133 3456 e50ee09eed2b88b7ce3a28b86629e946 ""
   "figures/massemidtpunkts_bestemmelse.pdf" 1614859303 3961 715defe52922b4094a9175d01b7703fe ""
   "figures/massemidtpunkts_bestemmelse.pdf_tex" 1614859303 3190 c8cac26c47a82af7ab0a3f1b5595782c ""
   "figures/pendul.pdf" 1614854430 3782 1c23f3b10ce4fe8e37699b907acef275 ""
@@ -205,5 +205,5 @@
   "preamble.tex" 1615550183 1928 615f04f366d40fe83f3474ada44b84e5 ""
   (generated)
   "Teori_pendul.pdf"
-  "Teori_pendul.log"
   "Teori_pendul.aux"
+  "Teori_pendul.log"

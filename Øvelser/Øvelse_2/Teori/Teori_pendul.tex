@@ -18,6 +18,10 @@
     \caption{pendul2}
     \label{fig:pendul2}
 \end{figure}
+\begin{subexercise}{Pendul uden friktion, lille vinkel}
+
+\end{subexercise}
+\begin{solution}
 Hvis vi antager at friktionskraften er $0$. Vil der kun være én kraft på pendulet,
  \[
 F = m\cdot g\cdot \sin \theta
@@ -40,6 +44,34 @@ Jeg ved desuden at kraftmomentet er,
 						&= \frac{-mgR_{cm}}{I}\sin(t\cdot \sqrt{mgR_{cm}} +\lambda) \\
 .\end{align*}
 Og ser at denne funktion opfylder kriteriet. I en analyse $\sin(t)$ ser jeg at $\sin(t) = t$ approksimationen holder nogenlunde for vinkler mindre end $0.40$ radianer.
+\end{solution}
+
+\begin{subexercise}{Pendul med friktion, lille vinkel}
+
+\end{subexercise}
+\begin{solution}
+Hvis vi nu antager at der yderligere er en friktionskraft som påvirker pendulet, ændres situation. Det er en rimelig antagelse at denne friktionskraft er proportionel med pendulets hastighed.
+\[
+F_k = -b\cdot v = -b\cdot \omega R_{cm} 
+.\] 
+Kraftmomentet den giver anledning til er så,
+\[
+\tau_k = -b \cdot \omega \cdot R_{cm}^2
+.\]
+Det totale kraftmoment bliver da,
+\[
+	\tau_{res} = I \frac{\dd^2 \theta}{\dd t^2} = -(mg)\cdot \theta (t) \cdot R_{cm} - b\cdot \frac{\dd \theta}{\dd t} \cdot R_{cm}^2
+.\]
+Denne differentialligning løses af funktionen,
+\[
+	\theta (t) = A\cdot \exp\left( \frac{-bR_{cm}^2t}{2I}\right)\cos(\omega t+ \phi)
+.\] 
+Hvor,
+\[
+\omega = \sqrt{\frac{R_{cm}mg}{I}- \left( \frac{bR_{cm}^2}{2I} \right) ^2} 
+.\]
+Vi ser her at friktionskraften, giver anledning til en faldende amplitude, og at vinkelfrekvensen dog stadig konstant, er mindre end den ville have været uden friktionskraften til stede.
+\end{solution}
 \begin{figure}[ht]
     \centering
     \incfig{massemidtpunkts_bestemmelse}

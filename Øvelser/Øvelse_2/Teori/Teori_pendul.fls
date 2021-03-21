@@ -322,8 +322,9 @@ INPUT ./figures/pendul2.pdf
 INPUT figures/pendul2.pdf
 INPUT ./figures/pendul2.pdf
 INPUT ./figures/pendul2.pdf
-INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0700.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0500.tfm
 INPUT figures/massemidtpunkts_bestemmelse.pdf_tex
@@ -340,7 +341,6 @@ INPUT ./figures/massemidtpunkts_bestemmelse.pdf
 INPUT figures/massemidtpunkts_bestemmelse.pdf
 INPUT ./figures/massemidtpunkts_bestemmelse.pdf
 INPUT ./figures/massemidtpunkts_bestemmelse.pdf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm
 INPUT Teori_pendul.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/adforn/OrnementsADF.enc
