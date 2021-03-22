@@ -39,4 +39,26 @@ class Data():
         mask[index] = False
         return mask
 
+    def rinse2(self, k, p):
+        max_value = max(self.points)
+        max_index = list(self.points).index(max_value)
+
+        new_max_index = 0
+
+        for i in range(max_index, max_index + 1000):
+            if self.points[max_index] - self.points[i] < p:
+                new_max_index = i
+
+        index = range(0, new_max_index + 1)
+
+        j = max_index
+        # while self.points[max_index] - self.points[j] < k:
+        #     j += 1
+        #     index.append(j)
+
+        mask = np.full(len(self.points), True, dtype = bool)
+        mask[index] = False
+
+        return mask
+
 

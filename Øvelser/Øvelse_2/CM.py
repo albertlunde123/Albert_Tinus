@@ -12,7 +12,7 @@ tens_1 = 1/tensions
 
 deltaAf = 0.01
 deltas = deltas*deltaAf
-masseP = 0.300
+masseP = 0.581
 
 g = 9.82
 
