@@ -29,7 +29,7 @@ def sinus(t, *p):
     k = p[2]
     b = p[3]
     d = p[4]
-    return (A*np.sin(w*t+k)*np.exp(-b*t**2)+d)
+    return (A*np.cos(w*t+k)*np.exp(-b*t**2)+d)
 
 guess = [1,1,1,1,1]
 
@@ -55,6 +55,7 @@ ax.set_ylabel('vinkel')
 # ax.legend()
 
 print((pcov2))
+
 plt.show()
 
 
