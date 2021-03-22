@@ -5,8 +5,8 @@ import scipy.optimize as scp
 # fig, ax = plt.subplots()
 
 U = []
-for i in [-40, -30, -20, -10, 0, 10, 20, 30, 40]:
-    U = U +  [np.mean(np.loadtxt('Kalibrering/' + str(i) + 'grader.txt', skiprows = 3)[:, 1])]
+for i in [320, 330, 340, 350, 0, 10, 20, 30, 40]:
+    U = U +  [np.mean(np.loadtxt('Kalibrering/' + str(i) + 'kaligrader.txt', skiprows = 3)[:, 1])]
 
 degrees =  np.array([-40, -30, -20, -10, 0, 10, 20, 30, 40])*(2*np.pi/360)
 
