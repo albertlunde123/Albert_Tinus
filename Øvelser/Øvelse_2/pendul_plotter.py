@@ -11,13 +11,15 @@ exec(open('../Scripts/data_renser.py').read())
 
 fig, ax = plt.subplots(figsize = (16,8))
 
-sol1 = Data('Kalibrering/30grader')
+sol1 = Data('Kalibrering/3
+            0grader')
 spænding = sol1.points
 ts = sol1.t*1000
 
 mask = sol1.rinse2(0.15, 0.02)
 
 vink = vinkel(spænding, *kali)*(360/(2*np.pi))
+
 ax.scatter(ts[~mask], vink[~mask], color = 'blue', alpha = 0.2)
 ax.plot(ts[mask], vink[mask], 'ro', alpha = 0.4, markersize = 4)
 
