@@ -252,6 +252,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/thmtools/thm-amsthm.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 INPUT Teori_pendul.aux
 INPUT Teori_pendul.aux
 OUTPUT Teori_pendul.aux
@@ -341,6 +343,15 @@ INPUT ./figures/massemidtpunkts_bestemmelse.pdf
 INPUT figures/massemidtpunkts_bestemmelse.pdf
 INPUT ./figures/massemidtpunkts_bestemmelse.pdf
 INPUT ./figures/massemidtpunkts_bestemmelse.pdf
+INPUT ../toppunkt1.png
+INPUT ../toppunkt1.png
+INPUT ../toppunkt1.png
+INPUT ../toppunkt2.png
+INPUT ../toppunkt2.png
+INPUT ../toppunkt2.png
+INPUT ../toppunkt3.png
+INPUT ../toppunkt3.png
+INPUT ../toppunkt3.png
 INPUT Teori_pendul.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/adforn/OrnementsADF.enc

@@ -3,6 +3,7 @@
 \author{}
 \date{}
 
+\usepackage{multicol}
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
@@ -90,5 +91,57 @@ Nu definerer jeg $R_T = R_0 + \Delta R$
 \begin{align*}
 	\frac{1}{F_T}&= \frac{-\left( R_0+\Delta R \right) }{R_wF_w} \\
 	\frac{1}{F_T}&= \frac{-R_0}{R_wF_w}-\frac{\Delta R}{R_wF_w}
-.\end{align*} 
+.\end{align*}
+\begin{subexercise}{Fejlpropagering, bestemmelse af perioder og skalering}
+
+\end{subexercise}
+\begin{solution}
+Som del af forsøget, vælger vi at kigge på sammenhængen mellem maks-amplituden og perioden. Vi formoder at der er en relation ala,
+\[
+	T(\theta_{maks}) = T_0 \cdot f(\theta_{maks})
+.\]
+Hvis der kun tages højde for tyngdekraften, kan $T_0$ udledes til at være lig,
+\[
+T_0 = 2\pi \sqrt{\frac{I_p}{M_pgL_p}} 
+.\]
+Dette er dog ikke sandt, i vores situation hvor der er gnidning i systemet. Vi vælger derfor i stedet at approksimere $T_0$ som værende perioden på den mindste målelige vinkeludsvinging. Dette er i vores tilfælde ca. 3 grader. Vores mål er nu, at se om der gælder en lignende mellem denne "eksperimentelle $T_0$" og perioden for større vinkel udsvingninger.
+\subsubsection*{Usikkerhed forbundet med at bestemme perioden.}
+Vi har valgt at bestemme usikkerheden på følgende måde: Perioden må givetvis være den tidslige afstand mellem 2 maksimale ekstrema i vores data. Vi har derfor skrevet et stykke kode som finder disse maksima. Der er dog her et lille problem. Pga. af opløsningen af vores data, kan der lokalt være flere punkter som har maksimale værdi. Det er dermed tvetydigt, hvilket af disse punkter, der er det egentlige toppunkt på kurven.\\
+Vi har valgt at løse det ved at vælge det midterste punkt som toppunktet, og sige at usikkerheden på dette punkt er halvdelen af bredden af de mulige toppunkter.
+\columnbreak
+\includegraphics[width=0.5\textwidth]{../toppunkt1}
+\includegraphics[width=0.5\textwidth]{../toppunkt2}
+\includegraphics[width=0.5\textwidth]{../toppunkt3}
+For at fitte til modellen, sætter vi $T_0 = 1$. Vi skalere derefter vores perioder til at følge med.
+ \[
+T_{scaled} = T\left( \theta \right) / T_0
+.\] 
+Alle disse perioder er fundet ud fra toppunkter som har en usikkerhed associeret med sig. Vi skal derfor lave fejlpropagering for at finde usikkerheden på $T_{scaled}$ 
+\[
+T_{scaled} = \frac{t_2-t_1}{t_0_2 - t_0_1}
+.\]
+Disse værdier har hver en usikkerhed associeret med sig. Vi betragter en funktion på formen,
+\[
+Z = \frac{A-B}{C-D}
+.\] 
+\[
+\alpha _Z^2 =  \left| \frac{\dd Z}{\dd A}\right|^2\alpha _A^2 +\left| \frac{\dd Z}{\dd B}\right|^2\alpha _B^2+ \left| \frac{\dd Z}{\dd C}\right|^2\alpha _C^2+\left| \frac{\dd Z}{\dd D}\right|^2\alpha _D^2
+.\] 
+\end{solution}
+Som udregnes,
+\[
+	\alpha _Z^2 = \frac{\alpha _A^2 + \alpha _B^2}{(C-D)^2}+\left| \frac{\dd Z}{\dd C}\right|^2\alpha _C^2+\left| \frac{\dd Z}{\dd D}\right|^2\alpha _D^2
+.\]
+\[
+\frac{\dd Z}{\dd C} = \left( A - B \right) \cdot \ln \left( C -D\right) = - \frac{\dd Z}{\dd D}
+.\] 
+\[
+	\left( \frac{\dd Z}{\dd C} \right) ^2 = \left( \frac{\dd Z}{\dd D} \right) ^2 = \left( A - B \right) ^2 \cdot \ln \left( C-D \right) ^2
+.\] 
+Dette kobles sammen til,
+\[
+\alpha _Z^2 = \frac{\alpha _A^2+\alpha _B^2}{\left( C-D \right) ^2} + \left( A-B \right) ^2\cdot \ln\left( C-D \right) ^2\left( \alpha _C^2 + \alpha _D^2 \right) 
+.\]
+Som altså er variansen på $Z$
+
 \end{document}
