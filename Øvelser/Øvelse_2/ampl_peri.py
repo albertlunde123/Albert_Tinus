@@ -9,10 +9,8 @@ exec(open('../Scripts/data_renser.py').read())
 exec(open('../Scripts/chi_sq.py').read())
 
 fig, ax = plt.subplots(figsize = (16,8))
-# fig, ax = plt.subplots(4,4,figsize = (16,8))
-# ax = ax.ravel()
 
-sol1 = Data('Kalibrering/40grader')
+sol1 = Data('Kalibrering/30grader')
 spænding = sol1.points
 ts = sol1.t*1000
 
@@ -20,17 +18,17 @@ mask = sol1.rinse2(0.15, 0.02)
 ts1 = ts[mask]
 
 vink = vinkel(spænding, *kali)*(360/(2*np.pi))
-#ax.scatter(ts[~mask], vink[~mask], color = 'blue', alpha = 0.2)
-#ax.plot(ts[mask], vink[mask], 'ro', alpha = 0.4, markersize = 4)
 
 error = propagation_function(spænding[mask], vinkel, list(kali), pcov)
-
 vinks = vink[mask]
+
 
 index = []
 err = []
 j = 0
 k = 0
+
+# Her bestemmer jeg toppunkterne
 
 bool = True
 while bool:
@@ -44,35 +42,10 @@ while bool:
     if len(tp) == 1:
         err.append(0.0033)
     else:
-        err.append((ts1[tp[-1]] - ts1[tp[0]])/2)
+        err.append((ts1[tp[-1]] - ts1[tp[0]])/4)
     j += index_max + 120
     if j > len(vinks):
         bool = False
-
-
-#for i in range(len(index)):
-  #  ax.plot([ts1[index[i]] - err[i], ts1[index[i]] + err[i]], [vinks[index[i]]]*2, 'k-')
-# fejlen på toppunktet. Picoscopet tager 1 måling pr,
-
-base_error = ts1[1000] - ts1[999]
-
-# Så usikkerheden på tiden er mindst,
-
-base_error = base_error/2
-
-# I tilfældet hvor der kun er én kandidat til toppunktet
-# Pga opløsningen på vores data, vil der af og til flere kandidater til
-# toppunktet, skal jeg vælge den "midterste". Jeg estimerer usikkerheden
-# til at være længden af intervallet hvori toppunktet ligger
-
-
-#ax.plot(ts1[index[:-1]], vinks[index[:-1]], 'ko')
-
-
-# for i in range(len(index)):
-#      if i+1 == len(index):
-#          break
-#       print((ts1[index[i+1]] - ts1[index[i]]))
 
 def sinus(t, *p):
      A = p[0]
@@ -81,63 +54,87 @@ def sinus(t, *p):
      d = p[3]
      return (A*np.cos(w*t+k)+d)
 
-masseP = 0.585
-g = 9.82
-Rw = 0.1189
-I = masseP * Rw ** 2
-k = 2*np.pi*np.sqrt(I/(masseP*g*Rw))
-
-print(k)
-
 A = []
 peri = []
 peri_err = []
-for i in range(len(index)-6):
-    vink = vinks[index[i]:index[i+2]]
-    ts = ts1[index[i]:index[i+2]]
-    per = (ts1[index[i+2]]-ts1[index[i]])
-    peri.append((ts1[index[i+2]]-ts1[index[i]]))
+
+for i in range(len(index)-5):
+
+    # Det her er noget rod... sorry...
+    # Det gik lige lidt hurtigt, beklager at det er så uoverksueligt
+
+    # Jeg starter med at finde de relevante vinkler, dem mellem to toppunkter
+
+    vink = vinks[index[i]:index[i+1]]
+
+    # afstand mellem toppunkter
+
+    ts = ts1[index[i]:index[i+1]]
+
+    # Længden på perioden
+
+    per = (ts1[index[i+1]]-ts1[index[i]])
+
+    # Perioden gemmes
+
+    peri.append((ts1[index[i+1]]-ts1[index[i]]))
+
+    # T_0
 
     peri_0 = ts1[index[-6]] - ts1[index[-7]]
-    peri_err.append(np.sqrt((err[i+2]**2 - err[i]**2)/peri_0**2 +
-       per**2*np.log(peri_0)**2*(err[-6]**2 + err[-7]**2)))
 
+    # Fejlpropageringen laves som beskrevet i Resultater
+
+    peri_err.append(np.sqrt((err[i+1]**2 + err[i]**2)/peri_0**2 +
+       per**2*1/(peri_0)**4*(err[30]**2 + err[29]**2)))
     guess = [50-i*2,-5,2,0]
 
-    #ax[i].plot(ts, vink, 'ro', alpha = 0.4, markersize = 4)
+    # Amplituden findes med curve_fit og gemmes
+
     popt, pcov2 = scp.curve_fit(sinus, ts, vink, guess,
-                                sigma = error[index[i]:index[i+2]], absolute_sigma = True)
+                                sigma = error[index[i]:index[i+1]], absolute_sigma = True)
 
-
-    #error1 = propagation_function(ts, sinus, list(popt), pcov2)
-     #ax[i].fill_between(ts,
-                    # sinus(ts, *popt)-error1,
-                    # sinus(ts, *popt)+error1,
-                    # alpha = 0.3)
-
-     #ax[i].plot(ts, sinus(ts, *popt), 'k', linewidth = 2)
-     # print(popt[0])
     A.append(abs(popt[0]))
 
-ax.errorbar(A[:-2], peri[:-2]/peri[-3], yerr = peri_err[:-2], fmt = 'o')
+# Perioderne plottes med error bars. Jeg har undladt de første og sidste
+# punkter, da disse ikke giver mening da der enten er for meget støj eller
+# Pendulet er meget dæmpet.
+
+ax.errorbar(A[1:-3], peri[1:-3]/peri[-4], yerr = peri_err[1:-3], fmt = 'o')
 
 print(peri[-3])
 
-def fitter(t, k, n):
-     ns = sum([(np.math.factorial(2*n)/(2**n*np.math.factorial(n))**2)**2*np.sin(t/2)**(2*n)
+A = np.array(A)*2*np.pi/360
+peri = np.array(peri)
+peri_err = np.array(peri_err)
+
+# Funktion fittes
+
+def fitter(A, n):
+     ns = sum([(np.math.factorial(2*n)/(2**n*np.math.factorial(n))**2)**2*np.sin(A/2)**(2*n)
            for n in range(n)])
      return ns
 
+# Chi-2 test. Funktionen er defineret i Scripts/
 
+chisq, pval = chi_sq(x = peri[1:-3]/peri[-4],t = A[1:-3],
+                     err = peri_err[1:-3], f = fitter,
+                     popt = [5], df = len(A[1:-3]))
+
+print(chisq, pval)
 
 ttss = np.linspace(0, 0.25*np.pi, 100)
+ax.plot(np.linspace(0, 45, 100), fitter(ttss, 10))
 
-ax.plot(np.linspace(0, 45, 100), fitter(ttss, k, 10))
 
+ax.set_title('$\chi_m$ = {}'.format(round(chisq, 3))
+             + '      $p$ = {}'.format(round(pval, 3)), fontsize = 20)
 
-ax.set_xlabel('t')
-ax.set_ylabel('vinkel')
+ax.set_xlabel('Vinkel \ $\\theta$', fontsize = 24)
+ax.set_ylabel('T \ $s$', fontsize = 24)
 ax.legend()
+
+fig.savefig('Ampl_Peri')
 
 plt.show()
 

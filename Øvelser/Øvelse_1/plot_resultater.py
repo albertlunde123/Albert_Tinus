@@ -14,24 +14,22 @@ v_u = [[a(v-0.5), a(v), a(v+0.5)] for v in vinkler]
 
 print(v_u)
 
-ys = list(np.linspace(0, 5, 5))
+ys = [11, 13, 15, 19, 21]
 
 # for v,y in zip(v_u, ys):
 #     ax.errorbar(v[1], y, xerr = np.array([v[0], v[2]]).T)
 
-ax.plot(v_u[0], [ys[0]]*3, 'r-' , linewidth = 2, label = "usikkerhed")
-ax.plot(v_u[0][1], [ys[0]], 'ko', ms = 10, label = 'forudset a')
-ax.plot(eksp[0], ys[0], 'b*', ms = 10, label = 'eksperimental a')
+ax.plot([ys[0]]*3, v_u[0], 'r-' , linewidth = 2, label = "usikkerhed")
+ax.plot([ys[0]], v_u[0][1], 'ko', ms = 10, label = 'forudset a')
+ax.plot(ys[0], eksp[0], 'b*', ms = 10, label = 'eksperimental a')
 
 for v,y,e in zip(v_u[1:], ys[1:], eksp[1:]):
-    ax.plot(v, [y]*3, 'r-' , linewidth = 2)
-    ax.plot(v[1], y, 'ko', ms = 10)
-    ax.plot(e, y, 'b*', ms = 10)
+    ax.plot([y]*3, v, 'r-' , linewidth = 2)
+    ax.plot(y, v[1], 'ko', ms = 10)
+    ax.plot(y, e, 'b*', ms = 10)
 
-
-
-ax.set_xlabel('acceleration', fontsize = 14)
-ax.set_ylabel('forsøg', fontsize = 14)
+ax.set_ylabel('acceleration', fontsize = 14)
+ax.set_xlabel('grader', fontsize = 14)
 ax.set_title('Resultater', fontsize = 20)
 ax.legend()
 plt.show()

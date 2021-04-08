@@ -41,7 +41,6 @@ def plotter_fitter(data, i):
     popt, pcov2 = scp.curve_fit(sinus, ts[mask], vink[mask], guess,
                                 sigma = error, absolute_sigma = True)
 
-    print(popt)
 
     error1 = propagation_function(ts[mask], sinus, list(popt), pcov2)
     ax[i].fill_between(ts[mask],
@@ -52,8 +51,8 @@ def plotter_fitter(data, i):
     ax[i].plot(ts[mask], sinus(ts[mask], *popt), 'k', linewidth = 2)
 
     sigma_b = round(np.sqrt(np.diag(pcov2))[3], 3)
-    ax[i].set_xlabel('t')
-    ax[i].set_ylabel('vinkel')
+    ax[i].set_xlabel('t $s$', fontsize = 20)
+    ax[i].set_ylabel('vinkel $\\theta$', fontsize = 20)
     ax[i].set_title(data + '   b = {}   '.format(round(popt[3], 3))
                     + '$\sigma_b\sim$ {}'.format(sigma_b), fontsize = 18)
 
@@ -73,6 +72,22 @@ save_plots(datases[1], '20vind')
 save_plots(datases[2], '10vind')
 save_plots(datases[3], '40vind')
 
+fig, ax = plt.subplots(figsize = (16,8))
+
+vinkler = [10, 20, 30, 40]
+b1 = [0.119, 0.053, 0.059, 0.052]
+b2 = [0.122, 0.056, 0.062, 0.06]
+
+ax.plot(vinkler, b1, 'ro', label = "Uden sejl")
+ax.plot(vinkler, b2, 'ko', label = "Med sejl")
+
+ax.set_title('Dæmpningens værdi for forskellige vinkler', fontsize = 18)
+ax.set_xlabel('Vinkel $\\theta$', fontsize = 20)
+ax.set_ylabel('Dæmpning $b$', fontsize = 20)
+ax.legend()
+plt.show()
+
+fig.savefig('Plots/Res_Vind')
 # plt.tight_layout()
 # plt.show()
 

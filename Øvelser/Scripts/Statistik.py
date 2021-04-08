@@ -23,9 +23,9 @@ def propagation_function(x, f, popt, pcov):
         f_error += (f(x, *j)-f(x, *popt))**2
     return np.sqrt(f_error)
 
-def plot_propagation( x, f, popt, pcov, ax):
+def plot_propagation(x, f, popt, pcov, ax):
     error = propagation_function(x, f, list(popt), pcov)
-    ax.fill_between(f(x, *popt) - error,
+    ax.fill_between(x, f(x, *popt) - error,
                     f(x, *popt) + error, alpha = 0.3)
 
 ##################################################
