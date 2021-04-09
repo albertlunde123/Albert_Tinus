@@ -1,0 +1,22 @@
+... Todo ...
+
+------------
+-- PUK.PY --
+------------
+
+- Usikkerheder på puk-vinkel og puk-dist.
+... Det kunne være fedt at udvide fejlprop-funktionen så den kan gøre dette. (delvist løst)
+
+- Fitte og bestemme vinkelhastigheden. X
+- Bestemme energi og impulsmoment X
+... Plotte begge på en fed måde 
+- Animér dataet i t.
+
+
+-----------------
+-- PUK_DIFF.PY --
+-----------------
+
+- Opstille differentialligninger
+- Bestemme forudsete værdier
+ 

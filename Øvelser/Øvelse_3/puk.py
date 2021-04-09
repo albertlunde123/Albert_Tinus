@@ -1,0 +1,237 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats as ss
+import scipy.optimize as scp
+
+fig, ax = plt.subplots(1, 2, figsize = (16,8))
+ax = ax.ravel()
+
+class Puk():
+
+    # Initialze puk-objekt. Dette objekt tager en liste med 2 stier, hvor disse
+    # stier til datasæt for henholdsvis "edge" og "center". Objektet skal
+    # desuden have pukkens radius R og masse m. Inertimomentet og antallet af
+    # datapunkter beregnes.
+
+    def __init__(self, path, m, R):
+        self.path = path
+        self.center = np.loadtxt(path[0])
+        self.edge = np.loadtxt(path[1])
+        self.m = m
+        self.R = R
+        self.I = 1/2*self.m*self.R
+        self.len = len(self.center[:, 0])
+
+    def get_center(self, t):
+        return self.center[:, t]
+
+    def get_edge(self, t):
+        return self.edge[:, t]
+
+    # Denne funktion bestemmer usikkerheden på henholdsvis t,x og y. Hvor denne
+    # usikkerhed er antaget til at være den 0.5*10**-n, hvor n er antallet af
+    # decimaler.
+
+    # def error(self):
+    #     t_err =
+    #     x_err =
+    #     y_err =
+
+    # Bestemmer pukkens vinkel med origo
+
+    def angle(self):
+        angles = []
+        edge_x = self.get_center(1) - self.get_edge(1)
+        edge_y = self.get_center(2) - self.get_edge(2)
+        for i in range(len(edge_x)):
+                       a = np.arctan2(edge_y[i], edge_x[i])
+                       if a < 0:
+                            a += 2*np.pi
+                       angles.append(a)
+        return angles
+
+    # Bestemmer pukkens afstand fra origo
+
+    def dist(self):
+        return np.sqrt(self.get_center(1)**2 + self.get_center(2)**2)
+
+    # Man kan evt. forsøge på at samle de næste 3-funktioner i én enkelt.
+    # Indtil videre fungerer det her nu fint nok.
+
+    # Plotter pukkens x,y koordinater
+
+    def plot_Puk_xy(self, ax, color):
+        ax.plot(self.get_center(1), self.get_center(2), color[0], label = 'CM')
+        ax.plot(self.get_edge(1), self.get_edge(2), color[1], label = 'Edge')
+
+    # Plotter pukkens afstand fra origo som funktion af tiden.
+
+    def plot_Puk_dist(self, ax, color):
+        ax.plot(self.get_center(0), self.dist(), color, label = 'Puk distance')
+        ax.set_title(self.path[0], fontsize = 20)
+        ax.set_xlabel('T / s', fontsize = 20)
+        ax.set_ylabel('Dist / m', fontsize = 20)
+
+    # Plotter pukkens vinkel med origo som funktion af tiden.
+
+    def plot_Puk_angle(self, ax, color):
+        ax.plot(self.get_center(0), self.angle(), color, label = 'Puk angle')
+        ax.set_title(self.path[0], fontsize = 20)
+        ax.set_xlabel('T / s', fontsize = 20)
+        ax.set_ylabel('Angle / $\theta$', fontsize = 20)
+
+    # Indexet for kollisionstiden beregnes.
+
+    # Skal evt. ændres. Magnitude af hældning er et dårligere mål end retning.
+    # Det her er nok den mest sårbare del af koden. Vil gerne snakke med dig om
+    # en smartere måde at håndtere problemet på.
+
+    def col_t(self):
+        xs = self.get_center(1)
+        a = xs[1] - xs[2]
+        i = 3
+        while a - 2 < xs[i] - xs[i+1] < a + 2:
+            i += 1
+        return i
+
+    # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
+    # nogle overvejelser omkring dette, men gider ikke at gøre det nu.
+
+    # Bestemmer hastighed før og efter kollision.
+
+    def dist_fitter(self):
+
+        def func(t, *p):
+            a = p[0]
+            b = p[1]
+            return a*t + b
+
+        guess = [0, 0]
+        resses = []
+        popt, pcov = scp.curve_fit(func,
+                                    self.get_center(0)[:self.col_t()],
+                                    self.dist()[:self.col_t()],
+                                    guess,
+                                    absolute_sigma = True)
+        resses.append([popt, np.sqrt(np.diag(pcov))])
+
+        popt1, pcov1 = scp.curve_fit(func,
+                                    self.get_center(0)[self.col_t()+1:],
+                                    self.dist()[self.col_t()+1:],
+                                    guess,
+                                    absolute_sigma = True)
+
+        resses.append([popt1, np.sqrt(np.diag(pcov1))])
+        return resses
+
+    # Der skal implementeres usikkerhed på self.angle(). Jeg har gjort mig
+    # nogle overvejelser omkring dette, men gider ikke at gøre det nu.
+
+    # Bestemmer vinkelhastighed før og efter kollision.
+
+    def angle_fitter(self):
+
+        def func(t, *p):
+            a = p[0]
+            b = p[1]
+            return a*t + b
+
+        guess = [0, 0]
+        resses = []
+        popt, pcov = scp.curve_fit(func,
+                                    self.get_center(0)[:self.col_t()],
+                                    self.angle()[:self.col_t()],
+                                    guess,
+                                    absolute_sigma = True)
+        resses.append([popt, np.sqrt(np.diag(pcov))])
+
+        popt1, pcov1 = scp.curve_fit(func,
+                                    self.get_center(0)[self.col_t()+1:],
+                                    self.angle()[self.col_t()+1:],
+                                    guess,
+                                    absolute_sigma = True)
+
+        resses.append([popt1, np.sqrt(np.diag(pcov1))])
+        return resses
+
+    # Plotter enten fit af hastighed eller vinkelhastighed.
+
+    def plot_fit(self, ax, f, color):
+
+        def func(t, *p):
+            a = p[0]
+            b = p[1]
+            return a*t + b
+
+        ts = self.get_center(0)
+        t_col = self.get_center(0)[self.col_t()]
+        t_col2 = self.get_center(0)[self.col_t()+1]
+
+        ts_1 = np.linspace(ts[0], t_col, 100)
+        ts_2 = np.linspace(t_col2, ts[-1],100)
+
+        popt1 = f[0][0]
+        popt2 = f[1][0]
+
+        ax.plot(ts_1, func(ts_1, *popt1), color)
+        ax.plot(ts_2, func(ts_2, *popt2), color)
+
+    # Giver en liste bestående af hastigheder og vinkelhastigheder.
+
+    def velocities(self):
+            return [np.array([self.dist_fitter()[0][0][0]] * self.col_t() +
+                   [self.dist_fitter()[1][0][0]] * (self.len - self.col_t())),
+                   np.array([self.angle_fitter()[0][0][0]] * self.col_t() +
+                   [self.angle_fitter()[1][0][0]] * (self.len - self.col_t()))]
+
+    # Giver pukkens kinetiske energi.
+
+    def kinetic_energy(self):
+        return 1/2*self.m*self.velocities[0]**2
+
+    # Giver pukkens rotationelle energi.
+
+    def rotational_energy(self):
+        return 1/2*self.I*self.velocites[1]**2
+
+    # Giver den totale mekaniske energi.
+
+    def energy(self):
+        return self.kinetic_energy() + self.rotational_energy()
+
+    # Giver impulsmomentet.
+
+    def angular_momentun(self):
+        return self.I*self.velocities()[1]
+
+def plot_Puks_xy(Puks, ax, colors):
+    for i in range(len(Puks)):
+        Puks[i].plot_Puk_xy(ax, colors[i])
+    ax.set_xlabel('x', fontsize = 20)
+    ax.set_ylabel('y', fontsize = 20)
+    ax.set_title('Puk bevægelse over tid', fontsize = 20)
+    ax.legend()
+
+# def plot_Puks_energi(Puks, ax, colors):
+#     ax.plot(Puks[0].get_center(0), Puks[0].energy(), colors[0])
+#     ax.plot(Puks[0].get_center(0), Puks[0].energy(), colors[0])
+#     ax.plot(Puks[0].get_center(0), Puks[0].energy(), colors[0])
+#     ax.set_xlabel('t / s', fontsize = 20)
+#     ax.set_ylabel('E / J', fontsize = 20)
+#     ax.set_title('Energi over tid.', fontsize = 20)
+#     ax.legend()
+#     plt.show()
+
+Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
+Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
+Puks = [Rota_Kastet, Rota_Stille]
+
+colors = [['r*', 'ro'],['b*', 'bo']]
+
+plot_Puks_xy(Puks, ax[0], colors)
+
+Rota_Kastet.plot_Puk_angle(ax[1], 'ro')
+Rota_Kastet.plot_fit(ax[1], Rota_Kastet.angle_fitter(), 'k-')
+
+print(Rota_Kastet.velocities())
+plt.show()
