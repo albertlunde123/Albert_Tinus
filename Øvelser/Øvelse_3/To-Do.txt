@@ -9,8 +9,8 @@
 
 - Fitte og bestemme vinkelhastigheden. X
 - Bestemme energi og impulsmoment X
-... Plotte begge på en fed måde 
-- Animér dataet i t.
+... Plotte begge på en fed måde X 
+- Animér dataet (delvist løst)
 
 
 -----------------

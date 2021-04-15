@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import scipy.stats as ss
 import scipy.optimize as scp
 
-# fig, ax = plt.subplots(1, 2, figsize = (16,8))
-# ax = ax.ravel()
+fig, ax = plt.subplots(1, 2, figsize = (16,8))
+ax = ax.ravel()
 
 class Puk():
 
@@ -224,21 +224,21 @@ def plot_Puks_energy(Puks, ax, colors, alpha = 1):
 def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     ax.plot(Puks[0].get_center(0), Puks[0].angular_momentum(), colors[0], alpha = alpha, label = 'Puk 1')
     ax.plot(Puks[0].get_center(0), Puks[1].angular_momentum(), colors[1], alpha = alpha, label = 'Puk 2')
-    ax.plot(Puks[0].get_center(0), Puks[0].angular_momentum()+ Puks[1].angular_momentum(),
+    ax.plot(Puks[0].get_center(0), Puks[0].angular_momentum()+ Puks[1].angular_momentum(), 
             colors[2], alpha = alpha, label = 'Samlet')
     ax.set_xlabel('t / s', fontsize = 20)
     ax.set_ylabel('L / $kg\cdot m^2 / s$', fontsize = 20)
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
     ax.legend()
 
-# Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
-# Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
-# Puks = [Rota_Kastet, Rota_Stille]
+Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
+Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
+Puks = [Rota_Kastet, Rota_Stille]
 
-# colors = ['r--', 'b--', 'g-']
+colors = ['r--', 'b--', 'g-']
 
-# plot_Puks_energy(Puks, ax[0], colors, alpha = 0.5)
-# plot_Puks_angular_momentum(Puks, ax[1], colors, alpha = 0.5)
+plot_Puks_energy(Puks, ax[0], colors, alpha = 0.5)
+plot_Puks_angular_momentum(Puks, ax[1], colors, alpha = 0.5)
 
-# print(Rota_Kastet.velocities())
-# plt.show()
+print(Rota_Kastet.velocities())
+plt.show()
