@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import scipy.stats as ss
 import scipy.optimize as scp
 
-# fig, ax = plt.subplots(1, 2, figsize = (16,8))
-# ax = ax.ravel()
+fig, ax = plt.subplots(2, 2, figsize = (20,12))
+ax = ax.ravel()
 
 class Puk():
 
@@ -19,7 +19,7 @@ class Puk():
         self.edge = np.loadtxt(path[1])
         self.m = m
         self.R = R
-        self.I = 1/2*self.m*self.R
+        self.I = 1/2*self.m*self.R**2
         self.len = len(self.center[:, 0])
 
     def get_center(self, t):
@@ -231,14 +231,20 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
     ax.legend()
 
-# Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
-# Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
-# Puks = [Rota_Kastet, Rota_Stille]
+Rota_Kastet = Puk(['Elastisk/KastetCenter','Elastisk/KastetSide'], 1, 1)
+Rota_Stille = Puk(['Elastisk/StilleCenter','Elastisk/StilleSide'], 1, 1)
+Puks = [Rota_Kastet, Rota_Stille]
 
-# colors = ['r--', 'b--', 'g-']
+colors1 = ['r--', 'b--', 'g-']
+colors2 = [['ro', 'r*'], ['bo', 'b*']]
 
-# plot_Puks_energy(Puks, ax[0], colors, alpha = 0.5)
-# plot_Puks_angular_momentum(Puks, ax[1], colors, alpha = 0.5)
+plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
+plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
+plot_Puks_xy(Puks, ax[2], colors2)
+Puks[0].plot_Puk_dist(ax[3], 'ro')
+Puks[0].plot_fit(ax[3], Puks[0].dist_fitter(), 'k-')
 
-# print(Rota_Kastet.velocities())
-# plt.show()
+
+print(Rota_Kastet.velocities())
+plt.tight_layout()
+plt.show()
