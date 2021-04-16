@@ -251,10 +251,6 @@ class Puk():
     # Giver impulsmomentet.
     # Beregner størrelsen ||r x p + Iw.||
 
-
-
-
-
     def angular_momentum(self):
 
         r = np.array([[self.get_center(1)[i], self.get_center(2)[i], 0] for i in range(len(self.get_center(1)))])
@@ -263,19 +259,11 @@ class Puk():
                       0] for i in range(len(self.get_center(1)))])
 
         rxp = np.cross(r, p)
-        print(rxp)
 
         Iw = np.array([[0, 0, self.I*self.velocities()[1][i]] for i in range(len(self.velocities()[1]))])
-
+        print(rxp)
         return np.array([rxp[i][2] + Iw[i][2] for i in range(len(rxp))])
-        # return np.array([np.linalg.norm(rxp[i] + Iw[i]) for i in range(len(Iw))])
-
-
-
-
-
-
-
+        # return np.array([np.linalg.norm(rxp[i] + Iw[i]) for i in range(len(Iw))]
 
 def plot_Puks_xy(Puks, ax, colors):
     for i in range(len(Puks)):
@@ -304,8 +292,8 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
     ax.legend()
 
-Rota_Kastet = Puk(['Elastisk/KastetCenter','Elastisk/KastetSide'], 1, 1)
-Rota_Stille = Puk(['Elastisk/StilleCenter','Elastisk/StilleSide'], 1, 1)
+Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
+Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
 Puks = [Rota_Kastet, Rota_Stille]
 
 colors1 = ['r--', 'b--', 'g-']
@@ -317,8 +305,5 @@ plot_Puks_xy(Puks, ax[2], colors2)
 Puks[0].plot_Puk_dist(ax[3], 'ro')
 Puks[0].plot_fit(ax[3], Puks[0].dist_fitter(), 'k-')
 
-
-print(Rota_Stille.velocities()[1])
-print(Rota_Kastet.velocities()[1])
 plt.tight_layout()
 plt.show()
