@@ -19,7 +19,7 @@ class Puk():
         self.edge = np.loadtxt(path[1])
         self.m = m
         self.R = R
-        self.I = 1/2*self.m*self.R
+        self.I = 1/2*self.m*self.R #der skal være R^2
         self.len = len(self.center[:, 0])
 
     def get_center(self, t):
@@ -93,7 +93,9 @@ class Puk():
         while a - 2 < xs[i] - xs[i+1] < a + 2:
             i += 1
         return i
-
+    
+    #def col_t1(self):
+        
     # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
     # nogle overvejelser omkring dette, men gider ikke at gøre det nu.
 
