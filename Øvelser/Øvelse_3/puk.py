@@ -99,6 +99,53 @@ class Puk():
 
     # Bestemmer hastighed før og efter kollision.
 
+
+    def x_velocity(self):
+
+        def func(t, *p):
+            a = p[0]
+            b = p[1]
+            return a*t + b
+
+        guess = [0, 0]
+        resses = []
+        popt, pcov = scp.curve_fit(func,
+                                    self.get_center(0)[:self.col_t()],
+                                    self.get_center(1)[:self.col_t()],
+                                    guess,
+                                    absolute_sigma = True)
+
+        popt1, pcov1 = scp.curve_fit(func,
+                                    self.get_center(0)[self.col_t()+1:],
+                                    self.get_center(1)[self.col_t()+1:],
+                                    guess,
+                                    absolute_sigma = True)
+
+        return np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t()))
+
+    def y_velocity(self):
+
+        def func(t, *p):
+            a = p[0]
+            b = p[1]
+            return a*t + b
+
+        guess = [0, 0]
+        resses = []
+        popt, pcov = scp.curve_fit(func,
+                                    self.get_center(0)[:self.col_t()],
+                                    self.get_center(2)[:self.col_t()],
+                                    guess,
+                                    absolute_sigma = True)
+
+        popt1, pcov1 = scp.curve_fit(func,
+                                    self.get_center(0)[self.col_t()+1:],
+                                    self.get_center(2)[self.col_t()+1:],
+                                    guess,
+                                    absolute_sigma = True)
+
+        return np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t()))
+
     def dist_fitter(self):
 
         def func(t, *p):
@@ -200,9 +247,33 @@ class Puk():
         return self.kinetic_energy() + self.rotational_energy()
 
     # Giver impulsmomentet.
+    # Beregner størrelsen ||r x p + Iw.||
+
+
+
+
 
     def angular_momentum(self):
-        return self.I*self.velocities()[1]
+
+        r = np.array([[self.get_center(1)[i], self.get_center(2)[i], 0] for i in range(len(self.get_center(1)))])
+
+        p = np.array([[self.x_velocity()[i], self.y_velocity()[i],
+                      0] for i in range(len(self.get_center(1)))])
+
+        rxp = np.cross(r, p)
+        print(rxp)
+
+        Iw = np.array([[0, 0, self.I*self.velocities()[1][i]] for i in range(len(self.velocities()[1]))])
+
+        return np.array([rxp[i][2] + Iw[i][2] for i in range(len(rxp))])
+        # return np.array([np.linalg.norm(rxp[i] + Iw[i]) for i in range(len(Iw))])
+
+
+
+
+
+
+
 
 def plot_Puks_xy(Puks, ax, colors):
     for i in range(len(Puks)):
@@ -245,6 +316,7 @@ Puks[0].plot_Puk_dist(ax[3], 'ro')
 Puks[0].plot_fit(ax[3], Puks[0].dist_fitter(), 'k-')
 
 
-print(Rota_Kastet.velocities())
+print(Rota_Stille.velocities()[1])
+print(Rota_Kastet.velocities()[1])
 plt.tight_layout()
 plt.show()
