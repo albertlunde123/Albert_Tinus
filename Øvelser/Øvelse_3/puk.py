@@ -94,6 +94,8 @@ class Puk():
             i += 1
         return i
 
+    #def col_t1(self):
+
     # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
     # nogle overvejelser omkring dette, men gider ikke at gøre det nu.
 
