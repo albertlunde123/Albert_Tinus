@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import scipy.stats as ss
 import scipy.optimize as scp
 
-# fig, ax = plt.subplots(2, 2, figsize = (20,12))
-# ax = ax.ravel()
+fig, ax = plt.subplots(2, 2, figsize = (20,12))
+ax = ax.ravel()
 
 class Puk():
 
@@ -258,8 +258,9 @@ class Puk():
     # Giver en liste bestående af hastigheder og vinkelhastigheder.
 
     def velocities(self):
-            return [np.array([self.dist_fitter()[0][0][0]] * self.col_t() +
-                   [self.dist_fitter()[1][0][0]] * (self.len - self.col_t())),
+            # return [np.array([self.dist_fitter()[0][0][0]] * self.col_t() +
+            #        [self.dist_fitter()[1][0][0]] * (self.len - self.col_t())),
+           return  [np.array(np.sqrt(self.x_velocity()**2 + self.y_velocity()**2)),
                    np.array([self.angle_fitter()[0][0][0]] * self.col_t() +
                    [self.angle_fitter()[1][0][0]] * (self.len - self.col_t()))]
 
@@ -291,7 +292,6 @@ class Puk():
         rxp = np.cross(r, p)
 
         Iw = np.array([[0, 0, self.I*self.velocities()[1][i]] for i in range(len(self.velocities()[1]))])
-        print(rxp)
         return np.array([rxp[i][2] + Iw[i][2] for i in range(len(rxp))])
         # return np.array([np.linalg.norm(rxp[i] + Iw[i]) for i in range(len(Iw))]
 
@@ -322,18 +322,19 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
     ax.legend()
 
-# Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
-# Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
-# Puks = [Rota_Kastet, Rota_Stille]
-# print(Puks[0].col_t())
-# colors1 = ['r--', 'b--', 'g-']
-# colors2 = [['ro', 'r*'], ['bo', 'b*']]
+Rota_Kastet = Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 0.0278, 0.0807)
+Rota_Stille = Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 0.0278, 0.0807)
+Puks = [Rota_Kastet, Rota_Stille]
 
-# plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-# plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
-# plot_Puks_xy(Puks, ax[2], colors2)
-# Puks[0].plot_Puk_dist(ax[3], 'ro')
-# Puks[0].plot_fit(ax[3], Puks[0].dist_fitter(), 'k-')
+colors1 = ['r--', 'b--', 'g-']
+colors2 = [['ro', 'r*'], ['bo', 'b*']]
+print(Puks[1].velocities()[0])
+print(Puks[0].velocities()[0])
+plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
+plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
+plot_Puks_xy(Puks, ax[2], colors2)
+Puks[1].plot_Puk_dist(ax[3], 'ro')
+Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
 
-# plt.tight_layout()
-# plt.show()
+plt.tight_layout()
+plt.show()
