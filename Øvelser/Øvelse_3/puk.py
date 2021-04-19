@@ -93,13 +93,90 @@ class Puk():
         while a - 2 < xs[i] - xs[i+1] < a + 2:
             i += 1
         return i
-    
+
+
+    def col_t(self):
+        def linear(t,a,b):
+            return a*t+b
+
+        xs = self.center[:,1]
+        ts = self.center[:,0]
+
+        curve1 = [ts[:8], xs[:8]]
+        inte = len(xs)-8
+        curve2 = [ts[inte:], xs[inte:]]
+
+        popt1,cov1 = scp.curve_fit(linear, curve1[0], curve1[1], absolute_sigma = True)
+        popt2,cov2 = scp.curve_fit(linear, curve2[0], curve2[1], absolute_sigma = True)
+
+        # find intersection
+        f = lambda x: popt1[0]*x+popt1[1]-(popt2[0]*x+popt2[1])
+
+        tpoint = scp.fsolve(f,0)
+        best_t = (1,0,0)
+
+        i = 9
+        for t in ts[8:-8]:
+            value = abs(t-tpoint)
+            if(value < best_t[0]):
+                best_t = (value,i,t)
+                i += 1
+            else:
+                i += 1
+        return best_t[1]
     #def col_t1(self):
-        
+
     # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
     # nogle overvejelser omkring dette, men gider ikke at gøre det nu.
 
     # Bestemmer hastighed før og efter kollision.
+
+
+    def x_velocity(self):
+
+        def func(t, *p):
+            a = p[0]
+            b = p[1]
+            return a*t + b
+
+        guess = [0, 0]
+        resses = []
+        popt, pcov = scp.curve_fit(func,
+                                    self.get_center(0)[:self.col_t()],
+                                    self.get_center(1)[:self.col_t()],
+                                    guess,
+                                    absolute_sigma = True)
+
+        popt1, pcov1 = scp.curve_fit(func,
+                                    self.get_center(0)[self.col_t()+1:],
+                                    self.get_center(1)[self.col_t()+1:],
+                                    guess,
+                                    absolute_sigma = True)
+
+        return np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t()))
+
+    def y_velocity(self):
+
+        def func(t, *p):
+            a = p[0]
+            b = p[1]
+            return a*t + b
+
+        guess = [0, 0]
+        resses = []
+        popt, pcov = scp.curve_fit(func,
+                                    self.get_center(0)[:self.col_t()],
+                                    self.get_center(2)[:self.col_t()],
+                                    guess,
+                                    absolute_sigma = True)
+
+        popt1, pcov1 = scp.curve_fit(func,
+                                    self.get_center(0)[self.col_t()+1:],
+                                    self.get_center(2)[self.col_t()+1:],
+                                    guess,
+                                    absolute_sigma = True)
+
+        return np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t()))
 
     def dist_fitter(self):
 
@@ -181,8 +258,9 @@ class Puk():
     # Giver en liste bestående af hastigheder og vinkelhastigheder.
 
     def velocities(self):
-            return [np.array([self.dist_fitter()[0][0][0]] * self.col_t() +
-                   [self.dist_fitter()[1][0][0]] * (self.len - self.col_t())),
+            # return [np.array([self.dist_fitter()[0][0][0]] * self.col_t() +
+            #        [self.dist_fitter()[1][0][0]] * (self.len - self.col_t())),
+           return  [np.array(np.sqrt(self.x_velocity()**2 + self.y_velocity()**2)),
                    np.array([self.angle_fitter()[0][0][0]] * self.col_t() +
                    [self.angle_fitter()[1][0][0]] * (self.len - self.col_t()))]
 
@@ -202,9 +280,20 @@ class Puk():
         return self.kinetic_energy() + self.rotational_energy()
 
     # Giver impulsmomentet.
+    # Beregner størrelsen ||r x p + Iw.||
 
     def angular_momentum(self):
-        return self.I*self.velocities()[1]
+
+        r = np.array([[self.get_center(1)[i], self.get_center(2)[i], 0] for i in range(len(self.get_center(1)))])
+
+        p = np.array([[self.x_velocity()[i], self.y_velocity()[i],
+                      0] for i in range(len(self.get_center(1)))])
+
+        rxp = np.cross(r, p)
+
+        Iw = np.array([[0, 0, self.I*self.velocities()[1][i]] for i in range(len(self.velocities()[1]))])
+        return np.array([rxp[i][2] + Iw[i][2] for i in range(len(rxp))])
+        # return np.array([np.linalg.norm(rxp[i] + Iw[i]) for i in range(len(Iw))]
 
 def plot_Puks_xy(Puks, ax, colors):
     for i in range(len(Puks)):
@@ -233,20 +322,19 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
     ax.legend()
 
-Rota_Kastet = Puk(['Elastisk/KastetCenter','Elastisk/KastetSide'], 1, 1)
-Rota_Stille = Puk(['Elastisk/StilleCenter','Elastisk/StilleSide'], 1, 1)
+Rota_Kastet = Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 0.0278, 0.0807)
+Rota_Stille = Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 0.0278, 0.0807)
 Puks = [Rota_Kastet, Rota_Stille]
 
 colors1 = ['r--', 'b--', 'g-']
 colors2 = [['ro', 'r*'], ['bo', 'b*']]
-
+print(Puks[1].velocities()[0])
+print(Puks[0].velocities()[0])
 plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
 plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
 plot_Puks_xy(Puks, ax[2], colors2)
-Puks[0].plot_Puk_dist(ax[3], 'ro')
-Puks[0].plot_fit(ax[3], Puks[0].dist_fitter(), 'k-')
+Puks[1].plot_Puk_dist(ax[3], 'ro')
+Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
 
-
-print(Rota_Kastet.velocities())
 plt.tight_layout()
 plt.show()
