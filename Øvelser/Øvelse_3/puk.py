@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import scipy.stats as ss
 import scipy.optimize as scp
 
-fig, ax = plt.subplots(2, 2, figsize = (20,12))
-ax = ax.ravel()
+# fig, ax = plt.subplots(2, 2, figsize = (20,12))
+# ax = ax.ravel()
 
 class Puk():
 
@@ -94,6 +94,36 @@ class Puk():
             i += 1
         return i
 
+
+    def col_t(self):
+        def linear(t,a,b):
+            return a*t+b
+
+        xs = self.center[:,1]
+        ts = self.center[:,0]
+
+        curve1 = [ts[:8], xs[:8]]
+        inte = len(xs)-8
+        curve2 = [ts[inte:], xs[inte:]]
+
+        popt1,cov1 = scp.curve_fit(linear, curve1[0], curve1[1], absolute_sigma = True)
+        popt2,cov2 = scp.curve_fit(linear, curve2[0], curve2[1], absolute_sigma = True)
+
+        # find intersection
+        f = lambda x: popt1[0]*x+popt1[1]-(popt2[0]*x+popt2[1])
+
+        tpoint = scp.fsolve(f,0)
+        best_t = (1,0,0)
+
+        i = 9
+        for t in ts[8:-8]:
+            value = abs(t-tpoint)
+            if(value < best_t[0]):
+                best_t = (value,i,t)
+                i += 1
+            else:
+                i += 1
+        return best_t[1]
     #def col_t1(self):
 
     # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
@@ -292,18 +322,18 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
     ax.legend()
 
-Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
-Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
-Puks = [Rota_Kastet, Rota_Stille]
+# Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
+# Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
+# Puks = [Rota_Kastet, Rota_Stille]
+# print(Puks[0].col_t())
+# colors1 = ['r--', 'b--', 'g-']
+# colors2 = [['ro', 'r*'], ['bo', 'b*']]
 
-colors1 = ['r--', 'b--', 'g-']
-colors2 = [['ro', 'r*'], ['bo', 'b*']]
+# plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
+# plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
+# plot_Puks_xy(Puks, ax[2], colors2)
+# Puks[0].plot_Puk_dist(ax[3], 'ro')
+# Puks[0].plot_fit(ax[3], Puks[0].dist_fitter(), 'k-')
 
-plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
-plot_Puks_xy(Puks, ax[2], colors2)
-Puks[0].plot_Puk_dist(ax[3], 'ro')
-Puks[0].plot_fit(ax[3], Puks[0].dist_fitter(), 'k-')
-
-plt.tight_layout()
-plt.show()
+# plt.tight_layout()
+# plt.show()
