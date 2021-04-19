@@ -19,11 +19,7 @@ class Puk():
         self.edge = np.loadtxt(path[1])
         self.m = m
         self.R = R
-<<<<<<< HEAD
-        self.I = 1/2*self.m*self.R #der skal være R^2
-=======
         self.I = 1/2*self.m*self.R**2
->>>>>>> 15ecde9a33fd5e9a39f4a5dd840611523f223be6
         self.len = len(self.center[:, 0])
 
     def get_center(self, t):
