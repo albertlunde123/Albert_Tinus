@@ -37,7 +37,7 @@ class Puk():
 
     def ge_err(self, t):
         err = []
-        for i in self.center[:, t]:
+        for i in self.edge[:, t]:
             err.append(0.5*10**(-len(str(i).split('.')[-1])))
         return np.array(err)
 
@@ -109,10 +109,18 @@ class Puk():
 
     # Indexet for kollisionstiden beregnes.
 
-
     # Skal evt. ændres. Magnitude af hældning er et dårligere mål end retning.
     # Det her er nok den mest sårbare del af koden. Vil gerne snakke med dig om
     # en smartere måde at håndtere problemet på.
+
+    def col_t(self):
+        xs = self.get_center(1)
+        a = xs[1] - xs[2]
+        i = 3
+        while a - 2 < xs[i] - xs[i+1] < a + 2:
+            i += 1
+        return i
+
 
     def col_t(self):
 
@@ -143,9 +151,7 @@ class Puk():
                 i += 1
             else:
                 i += 1
-
         return best_t[1]
-
     #def col_t1(self):
 
     # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
@@ -176,6 +182,9 @@ class Puk():
                                     guess,
                                     sigma = self.gc_err(1)[self.col_t()+1:],
                                     absolute_sigma = True)
+
+        pcov = np.sqrt(np.diag(pcov))
+        pcov1 = np.sqrt(np.diag(pcov1))
 
         return [np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t())),
                          np.array([pcov[0]]*self.col_t() + [pcov1[0]]*(len(self.get_center(0))-self.col_t()))]
@@ -307,23 +316,51 @@ class Puk():
         def f(x,y):
             return np.sqrt(x**2 + y**2)
 
-        return fejl.propagation_function_2(f, fejl.collector([x,y]),
-                                          fejl.collector([x_err, y_err]))
+        return np.array(fejl.propagation_function_2(f, fejl.collector([x,y]), fejl.collector([x_err, y_err])))
 
     # Giver pukkens kinetiske energi.
 
     def kinetic_energy(self):
         return 1/2*self.m*self.velocities()[0]**2
 
+    def kin_err(self):
+        vel = self.velocities()[0]
+        vel_err = self.vel_err()
+        m = self.m
+
+        return np.sqrt(m**2*vel**2*vel_err**2)
+
+
     # Giver pukkens rotationelle energi.
 
     def rotational_energy(self):
         return 1/2*self.I*self.velocities()[1]**2
 
+    def rot_err(self):
+        rot = self.velocities()[1]
+        angle_err = np.array([self.angle_fitter()[0][1][0]] * self.col_t() +
+                   [self.angle_fitter()[1][1][0]] * (self.len - self.col_t()))
+        m = self.I
+
+        return np.sqrt(m**2*rot**2*angle_err**2)
+
+
     # Giver den totale mekaniske energi.
 
     def energy(self):
         return self.kinetic_energy() + self.rotational_energy()
+
+    def energy_err(self):
+        kin = self.kinetic_energy()
+        rot = self.rotational_energy()
+        kin_err = self.kin_err()
+        rot_err = self.rot_err()
+
+        def f(x,y):
+           return x + y
+
+        return fejl.propagation_function_2(f, fejl.collector([kin, rot]),
+                                           fejl.collector([kin_err, rot_err]))
 
     # Giver impulsmomentet.
     # Beregner størrelsen ||r x p + Iw.||
@@ -332,15 +369,40 @@ class Puk():
 
         a = self.x_velocity()[0]
         b = self.y_velocity()[0]
+        w = self.velocities()[1]
 
         r = np.array([[self.get_center(1)[i], self.get_center(2)[i], 0] for i in range(len(self.get_center(1)))])
 
-        p = np.array([[a[i], b[i], 0] for i in range(len(self.get_center(1)))])
+        p = np.array([[a[i], b[i], 0] for i in range(len(self.get_center(1)))])*self.m
 
         rxp = np.cross(r, p)
 
-        Iw = np.array([[0, 0, self.I*np.sqrt(a[i]**2 + b[i]**2)] for i in range(len(a))])
+        Iw = np.array([[0, 0, self.I*w[i]**2] for i in range(len(a))])
         return np.array([rxp[i][2] + Iw[i][2] for i in range(len(rxp))])
+
+    def angu_err(self):
+
+        a = self.x_velocity()[0]
+        b = self.y_velocity()[0]
+        w = self.velocities()[1]
+        I = self.I
+        m = self.m
+        x = self.get_center(1)
+        y = self.get_center(2)
+
+        a_err = self.x_velocity()[1]
+        b_err = self.y_velocity()[1]
+        w_err = np.array([self.angle_fitter()[0][1][0]] * self.col_t() +
+                   [self.angle_fitter()[1][1][0]] * (self.len - self.col_t()))
+
+        x_err = self.gc_err(1)
+        y_err = self.gc_err(2)
+
+        def f(x, y, a, b, w):
+            return np.cross(np.array([x, y, 0]), np.array([a, b, 0]))[2]*self.m + I*w
+
+        return np.array(fejl.propagation_function_2(f, fejl.collector([x,y,a,b,w]),
+                                           fejl.collector([x_err, y_err, a_err, b_err, w_err])))
 
 def plot_Puks_xy(Puks, ax, colors):
     for i in range(len(Puks)):
@@ -387,26 +449,14 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
     ax.legend()
 
+    return popt
+
 Rota_Kastet = Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 0.0278, 0.0807)
 Rota_Stille = Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 0.0278, 0.0807)
 Puks = [Rota_Kastet, Rota_Stille]
 
-<<<<<<< HEAD
-colors1 = ['r--', 'b--', 'g-']
-colors2 = [['ro', 'r*'], ['bo', 'b*']]
-#print(Puks[1].velocities()[0])
-#print(Puks[0].velocities()[0])
-plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
-plot_Puks_xy(Puks, ax[2], colors2)
-Puks[1].plot_Puk_dist(ax[3], 'ro')
-Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
-
-plt.tight_layout()
-plt.show()
-=======
-print(Puks[0].vel_err())
-# colors1 = ['r--', 'b--', 'g-']
+print(Puks[0].x_velocity()[1])
+# colors1 = ['r--', 'b--', 'g-', 'k']
 # colors2 = [['ro', 'r*'], ['bo', 'b*']]
 
 # plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
@@ -418,4 +468,3 @@ print(Puks[0].vel_err())
 
 # plt.tight_layout()
 # plt.show()
->>>>>>> 9b85246b88474d253c74f2128e74f46d90367ece
