@@ -2,9 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as ss
 import scipy.optimize as scp
+import fejlpropagering as fejl
 
-fig, ax = plt.subplots(2, 2, figsize = (20,12))
-ax = ax.ravel()
+# fig, ax = plt.subplots(2, 2, figsize = (20,12))
+# ax = ax.ravel()
 
 class Puk():
 
@@ -25,8 +26,20 @@ class Puk():
     def get_center(self, t):
         return self.center[:, t]
 
+    def gc_err(self, t):
+        err = []
+        for i in self.center[:, t]:
+            err.append(0.5*10**(-len(str(i).split('.')[-1])))
+        return np.array(err)
+
     def get_edge(self, t):
         return self.edge[:, t]
+
+    def ge_err(self, t):
+        err = []
+        for i in self.center[:, t]:
+            err.append(0.5*10**(-len(str(i).split('.')[-1])))
+        return np.array(err)
 
     # Denne funktion bestemmer usikkerheden på henholdsvis t,x og y. Hvor denne
     # usikkerhed er antaget til at være den 0.5*10**-n, hvor n er antallet af
@@ -50,10 +63,24 @@ class Puk():
                        angles.append(a)
         return angles
 
+    def angle_err(self):
+
+        edge_x = self.get_center(1) - self.get_edge(1)
+        edge_y = self.get_center(2) - self.get_edge(2)
+
+        def f(x,y):
+            return np.arctan2(y, x)
+
+        return fejl.propagation_function_2(f,
+                                          fejl.collector([edge_x, edge_y]),
+                                          fejl.collector([self.ge_err(1), self.ge_err(2)]))
+
+
     # Bestemmer pukkens afstand fra origo
 
     def dist(self):
         return np.sqrt(self.get_center(1)**2 + self.get_center(2)**2)
+
 
     # Man kan evt. forsøge på at samle de næste 3-funktioner i én enkelt.
     # Indtil videre fungerer det her nu fint nok.
@@ -88,15 +115,7 @@ class Puk():
     # en smartere måde at håndtere problemet på.
 
     def col_t(self):
-        xs = self.get_center(1)
-        a = xs[1] - xs[2]
-        i = 3
-        while a - 2 < xs[i] - xs[i+1] < a + 2:
-            i += 1
-        return i
 
-
-    def col_t(self):
         def linear(t,a,b):
             return a*t+b
 
@@ -124,7 +143,9 @@ class Puk():
                 i += 1
             else:
                 i += 1
+
         return best_t[1]
+
     #def col_t1(self):
 
     # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
@@ -146,15 +167,18 @@ class Puk():
                                     self.get_center(0)[:self.col_t()],
                                     self.get_center(1)[:self.col_t()],
                                     guess,
+                                    sigma = self.gc_err(1)[:self.col_t()],
                                     absolute_sigma = True)
 
         popt1, pcov1 = scp.curve_fit(func,
                                     self.get_center(0)[self.col_t()+1:],
                                     self.get_center(1)[self.col_t()+1:],
                                     guess,
+                                    sigma = self.gc_err(1)[self.col_t()+1:],
                                     absolute_sigma = True)
 
-        return np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t()))
+        return [np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t())),
+                         np.array([pcov[0]]*self.col_t() + [pcov1[0]]*(len(self.get_center(0))-self.col_t()))]
 
     def y_velocity(self):
 
@@ -169,15 +193,21 @@ class Puk():
                                     self.get_center(0)[:self.col_t()],
                                     self.get_center(2)[:self.col_t()],
                                     guess,
+                                    sigma = self.gc_err(2)[:self.col_t()],
                                     absolute_sigma = True)
 
         popt1, pcov1 = scp.curve_fit(func,
                                     self.get_center(0)[self.col_t()+1:],
                                     self.get_center(2)[self.col_t()+1:],
                                     guess,
+                                    sigma = self.gc_err(2)[self.col_t()+1:],
                                     absolute_sigma = True)
 
-        return np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t()))
+        pcov = np.sqrt(np.diag(pcov))
+        pcov1 = np.sqrt(np.diag(pcov1))
+
+        return [np.array([popt[0]]*self.col_t() + [popt1[0]]*(len(self.get_center(0))-self.col_t())),
+                         np.array([pcov[0]]*self.col_t() + [pcov1[0]]*(len(self.get_center(0))-self.col_t()))]
 
     def dist_fitter(self):
 
@@ -222,6 +252,7 @@ class Puk():
                                     self.get_center(0)[:self.col_t()],
                                     self.angle()[:self.col_t()],
                                     guess,
+                                    sigma = self.angle_err()[:self.col_t()],
                                     absolute_sigma = True)
         resses.append([popt, np.sqrt(np.diag(pcov))])
 
@@ -229,6 +260,7 @@ class Puk():
                                     self.get_center(0)[self.col_t()+1:],
                                     self.angle()[self.col_t()+1:],
                                     guess,
+                                    sigma = self.angle_err()[self.col_t()+1:],
                                     absolute_sigma = True)
 
         resses.append([popt1, np.sqrt(np.diag(pcov1))])
@@ -259,11 +291,24 @@ class Puk():
     # Giver en liste bestående af hastigheder og vinkelhastigheder.
 
     def velocities(self):
-            # return [np.array([self.dist_fitter()[0][0][0]] * self.col_t() +
-            #        [self.dist_fitter()[1][0][0]] * (self.len - self.col_t())),
-           return  [np.array(np.sqrt(self.x_velocity()**2 + self.y_velocity()**2)),
+           return  [np.array(np.sqrt(self.x_velocity()[0]**2 + self.y_velocity()[0]**2)),
                    np.array([self.angle_fitter()[0][0][0]] * self.col_t() +
                    [self.angle_fitter()[1][0][0]] * (self.len - self.col_t()))]
+
+    def vel_err(self):
+
+        x_vel = self.x_velocity()
+        y_vel = self.y_velocity()
+        x = x_vel[0]
+        y = y_vel[0]
+        x_err = x_vel[1]
+        y_err = y_vel[1]
+
+        def f(x,y):
+            return np.sqrt(x**2 + y**2)
+
+        return fejl.propagation_function_2(f, fejl.collector([x,y]),
+                                          fejl.collector([x_err, y_err]))
 
     # Giver pukkens kinetiske energi.
 
@@ -285,16 +330,17 @@ class Puk():
 
     def angular_momentum(self):
 
+        a = self.x_velocity()[0]
+        b = self.y_velocity()[0]
+
         r = np.array([[self.get_center(1)[i], self.get_center(2)[i], 0] for i in range(len(self.get_center(1)))])
 
-        p = np.array([[self.x_velocity()[i], self.y_velocity()[i],
-                      0] for i in range(len(self.get_center(1)))])
+        p = np.array([[a[i], b[i], 0] for i in range(len(self.get_center(1)))])
 
         rxp = np.cross(r, p)
 
-        Iw = np.array([[0, 0, self.I*self.velocities()[1][i]] for i in range(len(self.velocities()[1]))])
+        Iw = np.array([[0, 0, self.I*np.sqrt(a[i]**2 + b[i]**2)] for i in range(len(a))])
         return np.array([rxp[i][2] + Iw[i][2] for i in range(len(rxp))])
-        # return np.array([np.linalg.norm(rxp[i] + Iw[i]) for i in range(len(Iw))]
 
 def plot_Puks_xy(Puks, ax, colors):
     for i in range(len(Puks)):
@@ -314,10 +360,28 @@ def plot_Puks_energy(Puks, ax, colors, alpha = 1):
     ax.legend()
 
 def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
-    ax.plot(Puks[0].get_center(0), Puks[0].angular_momentum(), colors[0], alpha = alpha, label = 'Puk 1')
-    ax.plot(Puks[0].get_center(0), Puks[1].angular_momentum(), colors[1], alpha = alpha, label = 'Puk 2')
-    ax.plot(Puks[0].get_center(0), Puks[0].angular_momentum()+ Puks[1].angular_momentum(),
+    a = Puks[0].angular_momentum()
+    b = Puks[1].angular_momentum()
+    ax.plot(Puks[0].get_center(0), a, colors[0], alpha = alpha, label = 'Puk 1')
+    ax.plot(Puks[0].get_center(0), b, colors[1], alpha = alpha, label = 'Puk 2')
+    ax.plot(Puks[0].get_center(0), a + b,
             colors[2], alpha = alpha, label = 'Samlet')
+
+    def f(t, *p):
+        a = p[0]
+        return a + t*0
+
+    guess = [a[0]+b[0]]
+    t = Puks[0].get_center(0)
+
+    popt, pcov = scp.curve_fit(f, t, a+b, guess,
+                   # sigma = error,
+                   absolute_sigma = True)
+
+    ts = np.linspace(t[0], t[-1], 100)
+
+    ax.plot(ts, f(ts, *popt), colors[3], alpha = 1, label = 'constant fit')
+
     ax.set_xlabel('t / s', fontsize = 20)
     ax.set_ylabel('L / $kg\cdot m^2 / s$', fontsize = 20)
     ax.set_title('Impulsmoment over tid.', fontsize = 20)
@@ -327,6 +391,7 @@ Rota_Kastet = Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 0.0278, 0
 Rota_Stille = Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 0.0278, 0.0807)
 Puks = [Rota_Kastet, Rota_Stille]
 
+<<<<<<< HEAD
 colors1 = ['r--', 'b--', 'g-']
 colors2 = [['ro', 'r*'], ['bo', 'b*']]
 #print(Puks[1].velocities()[0])
@@ -339,3 +404,18 @@ Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
 
 plt.tight_layout()
 plt.show()
+=======
+print(Puks[0].vel_err())
+# colors1 = ['r--', 'b--', 'g-']
+# colors2 = [['ro', 'r*'], ['bo', 'b*']]
+
+# plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
+# plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
+# plot_Puks_xy(Puks, ax[2], colors2)
+
+# Puks[1].plot_Puk_dist(ax[3], 'ro')
+# Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
+
+# plt.tight_layout()
+# plt.show()
+>>>>>>> 9b85246b88474d253c74f2128e74f46d90367ece

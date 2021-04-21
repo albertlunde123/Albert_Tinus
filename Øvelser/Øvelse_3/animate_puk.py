@@ -5,8 +5,13 @@ from matplotlib import animation, rc
 
 fig, ax = plt.subplots(figsize = (8,8))
 
+<<<<<<< HEAD
 Rota_Kastet = puk.Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
 Rota_Stille = puk.Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
+=======
+Rota_Kastet = puk.Puk(['Elastisk/KastetCenter','Elastisk/KastetSide'], 1, 1)
+Rota_Stille = puk.Puk(['Elastisk/StilleCenter','Elastisk/StilleSide'], 1, 1)
+>>>>>>> 9b85246b88474d253c74f2128e74f46d90367ece
 puks = [Rota_Kastet, Rota_Stille]
 
 def pukanim(puks, ax):
@@ -32,5 +37,9 @@ def pukanim(puks, ax):
                                 blit=True)
     return plt.show()
 ax.set_xlim(-1, 1)
+<<<<<<< HEAD
 ax.set_ylim(-1, 1)
+=======
+ax.set_ylim(-1.0, 1.0)
+>>>>>>> 9b85246b88474d253c74f2128e74f46d90367ece
 pukanim(puks, ax)
