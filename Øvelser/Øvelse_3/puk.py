@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as ss
 import scipy.optimize as scp
-import fejlpropagering as fejl
+import Albert_Tinus.Øvelser.Scripts.fejlpropagering as fejl
 
 fig, ax = plt.subplots(2, 2, figsize = (20,12))
 ax = ax.ravel()
