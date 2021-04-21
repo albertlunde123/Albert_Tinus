@@ -75,20 +75,5 @@ def dydt(t,y):
 
 times = np.linspace(0,t_end,steps)
 mysol = solve_ivp(dydt,[0,t_end],y0,max_step=1e-3, t_eval = times)
-<<<<<<< HEAD
-    
-  
-ax.plot(puk2.get_center(1),puk2.get_center(2))
-ax.plot(puk1.get_center(1),puk1.get_center(2))
-xs1 = mysol.y[0]
-ys1 = mysol.y[1]
-xs2 = mysol.y[2]
-ys2 = mysol.y[3]
-ax.plot(xs1,ys1)
-ax.plot(xs2,ys2)
-#ax.plot(times,xs2)
-=======
 
-
->>>>>>> 9b85246b88474d253c74f2128e74f46d90367ece
 

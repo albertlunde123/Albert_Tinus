@@ -1,7 +1,6 @@
 import puk as puk
 import matplotlib.pyplot as plt
 from matplotlib import animation, rc
-%matplotlib qt
 
 fig, ax = plt.subplots(figsize = (8,8))
 

@@ -2,7 +2,6 @@ import numpy as np
 import puk as puk
 import matplotlib.pyplot as plt
 import scipy.optimize as scp
-%matplotlib qt
 fig,ax = plt.subplots()
 puk1 = puk.Puk(['Elastisk/StilleCenter','Elastisk/StilleSide'],0.0278,0.0807)
 puk2 = puk.Puk(['Elastisk/KastetCenter','Elastisk/KastetSide'],0.0278,0.0807)
@@ -43,26 +42,15 @@ def findcol(Puk):
     #        maxc = change
     #        bestt = tup[0]
     #print(bestt)
-    best_t = (1,0,0)
-    i = 9
-    for t in ts[8:-8]:
-        value = abs(t-tpoint)
-        if(value < best_t[0]):
-            best_t = (value,i,t)
-            i += 1
-        else:
-            i += 1
-    print(best_t[1:])
+    #best_t = (1,0,0)
+    #i = 9
+    #for t in ts[8:-8]:
+    #    value = abs(t-tpoint)
+    #    if(value < best_t[0]):
+    #        best_t = (value,i,t)
+    #        i += 1
+    #    else:
+    #        i += 1
+    #print(best_t[1:])
 
 #findcol(puk1)
-
-xs1 = puk3.get_center(1)
-ys1 = puk3.get_center(2)
-exs1 = puk3.get_edge(1)
-eys1 = puk3.get_edge(2)
-xs2 = puk4.get_center(1)
-ys2 = puk4.get_center(2)
-exs2 = puk4.get_edge(1)
-eys2 = puk4.get_edge(2)
-ax.scatter(xs2,ys2)
-ax.scatter(exs2,eys2)

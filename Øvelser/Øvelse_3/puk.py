@@ -4,8 +4,8 @@ import scipy.stats as ss
 import scipy.optimize as scp
 import fejlpropagering as fejl
 
-# fig, ax = plt.subplots(2, 2, figsize = (20,12))
-# ax = ax.ravel()
+fig, ax = plt.subplots(2, 2, figsize = (20,12))
+ax = ax.ravel()
 
 class Puk():
 
@@ -34,7 +34,13 @@ class Puk():
 
     def get_edge(self, t):
         return self.edge[:, t]
-
+    
+    def get_r(self):
+        return self.R
+    
+    def get_m(self):
+        return self.m
+    
     def ge_err(self, t):
         err = []
         for i in self.center[:, t]:
@@ -51,6 +57,7 @@ class Puk():
     #     y_err =
 
     # Bestemmer pukkens vinkel med origo
+    
 
     def angle(self):
         angles = []
@@ -391,21 +398,21 @@ Rota_Kastet = Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 0.0278, 0
 Rota_Stille = Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 0.0278, 0.0807)
 Puks = [Rota_Kastet, Rota_Stille]
 
-<<<<<<< HEAD
+
 colors1 = ['r--', 'b--', 'g-']
 colors2 = [['ro', 'r*'], ['bo', 'b*']]
 #print(Puks[1].velocities()[0])
 #print(Puks[0].velocities()[0])
 plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
+#plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
 plot_Puks_xy(Puks, ax[2], colors2)
-Puks[1].plot_Puk_dist(ax[3], 'ro')
-Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
+#Puks[1].plot_Puk_dist(ax[3], 'ro')
+#Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
 
-plt.tight_layout()
-plt.show()
-=======
-print(Puks[0].vel_err())
+#plt.tight_layout()
+#plt.show()
+
+#print(Puks[0].vel_err())
 # colors1 = ['r--', 'b--', 'g-']
 # colors2 = [['ro', 'r*'], ['bo', 'b*']]
 
@@ -418,4 +425,3 @@ print(Puks[0].vel_err())
 
 # plt.tight_layout()
 # plt.show()
->>>>>>> 9b85246b88474d253c74f2128e74f46d90367ece
