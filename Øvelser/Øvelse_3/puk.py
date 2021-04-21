@@ -82,6 +82,7 @@ class Puk():
 
     # Indexet for kollisionstiden beregnes.
 
+
     # Skal evt. ændres. Magnitude af hældning er et dårligere mål end retning.
     # Det her er nok den mest sårbare del af koden. Vil gerne snakke med dig om
     # en smartere måde at håndtere problemet på.
@@ -328,8 +329,8 @@ Puks = [Rota_Kastet, Rota_Stille]
 
 colors1 = ['r--', 'b--', 'g-']
 colors2 = [['ro', 'r*'], ['bo', 'b*']]
-print(Puks[1].velocities()[0])
-print(Puks[0].velocities()[0])
+#print(Puks[1].velocities()[0])
+#print(Puks[0].velocities()[0])
 plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
 plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
 plot_Puks_xy(Puks, ax[2], colors2)

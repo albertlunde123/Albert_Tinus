@@ -1,21 +1,22 @@
 import puk as puk
 import matplotlib.pyplot as plt
-from matplotlib import animation
+from matplotlib import animation, rc
+%matplotlib qt
 
-fig, ax = plt.subplots(figsize = (16,8))
+fig, ax = plt.subplots(figsize = (8,8))
 
-Rota_Kastet = puk.Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 1, 1)
-Rota_Stille = puk.Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 1, 1)
+Rota_Kastet = puk.Puk(['Rota/KastetCenter','Rota/KastetSide'], 1, 1)
+Rota_Stille = puk.Puk(['Rota/StilleCenter','Rota/StilleSide'], 1, 1)
 puks = [Rota_Kastet, Rota_Stille]
 
 def pukanim(puks, ax):
     N = len(puks[0].get_center(0))
     color = ['bo', 'ro', 'ko', 'ko']
 
-    puk11 = ax.plot(puks[0].get_center(1)[0], puks[0].get_center(2)[0], color[0], label = 'Puk distance', ms = 50)[0]
-    puk21 = ax.plot(puks[1].get_center(1)[0], puks[1].get_center(2)[0], color[1], label = 'Puk distance', ms = 50)[0]
-    puk12 = ax.plot(puks[0].get_edge(1)[0], puks[0].get_edge(2)[0], color[2], label = 'Puk distance', ms = 15)[0]
-    puk22 = ax.plot(puks[1].get_edge(1)[0], puks[1].get_edge(2)[0], color[3], label = 'Puk distance', ms = 15)[0]
+    puk11 = ax.plot(puks[0].get_center(1)[0], puks[0].get_center(2)[0], color[0], label = 'Puk distance', ms = 18)[0]
+    puk21 = ax.plot(puks[1].get_center(1)[0], puks[1].get_center(2)[0], color[1], label = 'Puk distance', ms = 18)[0]
+    puk12 = ax.plot(puks[0].get_edge(1)[0], puks[0].get_edge(2)[0], color[2], label = 'Puk distance', ms = 5)[0]
+    puk22 = ax.plot(puks[1].get_edge(1)[0], puks[1].get_edge(2)[0], color[3], label = 'Puk distance', ms = 5)[0]
 
     def update(i):
         puk11.set_data(puks[0].get_center(1)[i], puks[0].get_center(2)[i])
@@ -30,6 +31,6 @@ def pukanim(puks, ax):
                                 interval= 100,
                                 blit=True)
     return plt.show()
-ax.set_xlim(0, 1)
-ax.set_ylim(-1.0, 1.5)
+ax.set_xlim(-1, 1)
+ax.set_ylim(-1, 1)
 pukanim(puks, ax)
