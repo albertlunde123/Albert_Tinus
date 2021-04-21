@@ -47,7 +47,7 @@ def dydt(t,y):
     dr1xdt = v1[0]
     dr1ydt = v1[1]
     dr2xdt = v2[0]
-    dr2ydt = v2[1]    
+    dr2ydt = v2[1]
     Fp = np.array([0,0])
     Fv = np.array([0,0])
     r21 = r2-r1
@@ -69,9 +69,9 @@ def dydt(t,y):
     result = [dr1xdt,dr1ydt,dr2xdt,dr2ydt,dv1xdt,dv1ydt,dv2xdt,dv2ydt,dth1dt,dth2dt,dw1dt,dw2dt]
     print(result)
     return result
-    
+
 times = np.linspace(0,t_end,steps)
 mysol = solve_ivp(dydt,[0,t_end],y0,max_step=1e-3, t_eval = times)
-    
-    
-    
+
+
+

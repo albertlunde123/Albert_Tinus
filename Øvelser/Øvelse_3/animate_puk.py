@@ -4,8 +4,8 @@ from matplotlib import animation
 
 fig, ax = plt.subplots(figsize = (16,8))
 
-Rota_Kastet = puk.Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 1, 1)
-Rota_Stille = puk.Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 1, 1)
+Rota_Kastet = puk.Puk(['Elastisk/KastetCenter','Elastisk/KastetSide'], 1, 1)
+Rota_Stille = puk.Puk(['Elastisk/StilleCenter','Elastisk/StilleSide'], 1, 1)
 puks = [Rota_Kastet, Rota_Stille]
 
 def pukanim(puks, ax):
@@ -30,6 +30,6 @@ def pukanim(puks, ax):
                                 interval= 100,
                                 blit=True)
     return plt.show()
-ax.set_xlim(0, 1)
-ax.set_ylim(-1.0, 1.5)
+ax.set_xlim(-1, 1)
+ax.set_ylim(-1.0, 1.0)
 pukanim(puks, ax)
