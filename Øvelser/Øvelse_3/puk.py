@@ -174,6 +174,7 @@ class Puk():
             b = p[1]
             return a*t + b
 
+#Man går muligvis glip af et punkt her
         guess = [0, 0]
         resses = []
         popt, pcov = scp.curve_fit(func,
