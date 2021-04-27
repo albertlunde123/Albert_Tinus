@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import puk as puk
-import chi_sq as chi
 
 fig, ax = plt.subplots(2, 2, figsize = (30,15))
 ax = ax.ravel()
@@ -22,7 +21,7 @@ for t, ax in zip(trials, ax):
     a.append(puk.plot_Puks_angular_momentum(t, ax, colors, alpha = 1))
 
 
-def tot_angu_err(Puks):
+def tot_angu_err(Puks): 
     return np.sqrt(Puks[0].angu_err()**2+Puks[1].angu_err()**2)
 
 def tot_angu(Puks):
@@ -33,13 +32,13 @@ def chi_sq(ang, exp, err):
 
 print(tot_angu_err(trials[0]))
 
-def p_value(ang, exp, err, df):
-    return round(1 - chi.chi2.cdf(chi_sq(ang, exp, err), df), 3)
+#def p_value(ang, exp, err, df):
+#    return round(1 - chi.chi2.cdf(chi_sq(ang, exp, err), df), 3)
 
 df = [len(trials[0][0].get_center(0))-1]*len(trials)
 
-print(chi_sq(tot_angu(trials[0]), a[0], tot_angu_err(trials[0])))
-print(p_value(tot_angu(trials[0]), a[0], tot_angu_err(trials[0]), df[0]))
+#print(chi_sq(tot_angu(trials[0]), a[0], tot_angu_err(trials[0])))
+#print(p_value(tot_angu(trials[0]), a[0], tot_angu_err(trials[0]), df[0]))
 
 # for ang, exp, err, df in zip()
 # plt.tight_layout()

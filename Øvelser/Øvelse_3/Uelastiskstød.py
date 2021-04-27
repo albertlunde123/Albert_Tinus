@@ -78,3 +78,4 @@ val = newObject(puk1, puk2)
 xs = val[0]
 ys = val[1]
 ax.scatter(xs,ys)
+plt.show()

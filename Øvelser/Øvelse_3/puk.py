@@ -134,8 +134,8 @@ class Puk():
         def linear(t,a,b):
             return a*t+b
 
-        xs = self.center[:,1]
-        ts = self.center[:,0]
+        xs = self.get_center(1)
+        ts = self.get_center(0)
 
         curve1 = [ts[:8], xs[:8]]
         inte = len(xs)-8
@@ -148,17 +148,24 @@ class Puk():
         f = lambda x: popt1[0]*x+popt1[1]-(popt2[0]*x+popt2[1])
 
         tpoint = scp.fsolve(f,0)
-        best_t = (1,0,0)
-
+        tlist = []
         i = 9
         for t in ts[8:-8]:
-            value = abs(t-tpoint)
-            if(value < best_t[0]):
-                best_t = (value,i,t)
-                i += 1
+            if(abs(tpoint-t) <= 0.1 ):
+                tlist.append((t,i))
+                i +=1
             else:
-                i += 1
-        return best_t[1]
+                i+= 1
+        maxc = 0
+        bestt = 0
+        for tup in tlist:
+            dx = abs(self.get_center(1)[tup[1]]-self.get_center(1)[tup[1]+1])
+            dy = abs(self.get_center(2)[tup[1]]-self.get_center(2)[tup[1]+1])
+            change = dx + dy
+            if(change > maxc):
+                maxc = change
+                bestt = tup
+        return bestt[1]
     #def col_t1(self):
 
     # Der skal implementeres usikkerhed på self.dist(). Jeg har gjort mig
@@ -459,8 +466,8 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
 
     return popt
 
-Rota_Kastet = Puk(['Data/Data0/KastetCenter','Data/Data0/KastetSide'], 0.0278, 0.0807)
-Rota_Stille = Puk(['Data/Data0/StilleCenter','Data/Data0/StilleSide'], 0.0278, 0.0807)
+Rota_Kastet = Puk(['Rota/KastetCenter','Rota/KastetSide'], 0.0278, 0.0807)
+Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 0.0278, 0.0807)
 Puks = [Rota_Kastet, Rota_Stille]
 
 
@@ -468,9 +475,9 @@ colors1 = ['r--', 'b--', 'g-']
 colors2 = [['ro', 'r*'], ['bo', 'b*']]
 #print(Puks[1].velocities()[0])
 #print(Puks[0].velocities()[0])
-plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-#plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
-plot_Puks_xy(Puks, ax[2], colors2)
+#plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
+plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
+#plot_Puks_xy(Puks, ax[2], colors2)
 #Puks[1].plot_Puk_dist(ax[3], 'ro')
 #Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
 
@@ -485,9 +492,9 @@ print(Puks[0].x_velocity()[1])
 
 # colors2 = [['ro', 'r*'], ['bo', 'b*']]
 
-# plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-# plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
-# plot_Puks_xy(Puks, ax[2], colors2)
+plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
+#plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
+plot_Puks_xy(Puks, ax[2], colors2)
 
 # Puks[1].plot_Puk_dist(ax[3], 'ro')
 # Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')

@@ -1,11 +1,11 @@
 Masse af rød puk med kryds: 27,8 g
-Radius af rød puk med kryds: 8.07 cm
+Radius af rød puk med kryds: 4.035 cm
 
 Masse af rød puk med cirkel: 27,7 g
-Radius af rød puk med cirkel: 8.07 cm
+Radius af rød puk med cirkel: 4.035 cm
 
 Masse af velcro puk med kryds: 56,9 g
-Radius af velcro puk med kryds: 8,2+-0.025 cm
+Radius af velcro puk med kryds: 4,2+-0.25 cm
 
 Masse af velcro puk med cirkel: 28,5 g
-Radius af velcro puk med cirkel: 8,14+-0.25 cm
+Radius af velcro puk med cirkel: 4,2+-0.25 cm

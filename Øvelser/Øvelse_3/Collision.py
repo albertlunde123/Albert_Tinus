@@ -24,33 +24,24 @@ def findcol(Puk):
     # find intersection
     f = lambda x: popt1[0]*x+popt1[1]-(popt2[0]*x+popt2[1])
     tpoint = scp.fsolve(f,0)
-    #tlist = []
-    #i = 9
-    #for t in ts[8:-8]:
-    #    if(abs(tpoint-t) <= 0.1 ):
-    #        tlist.append((t,i))
-    #        i +=1
-    #    else:
-    #        i+= 1
-    #maxc = 0
-    #bestt = 0
-    #for tup in tlist:
-    #    dx = abs(Puk.center[tup[1],1]-(Puk.center[tup[1]+1,1]))
-    #    dy = abs(Puk.center[tup[1],2]-(Puk.center[tup[1]+1,2]))
-    #    change = dx + dy
-    #    if(change > maxc):
-    #        maxc = change
-    #        bestt = tup[0]
-    #print(bestt)
-    #best_t = (1,0,0)
-    #i = 9
-    #for t in ts[8:-8]:
-    #    value = abs(t-tpoint)
-    #    if(value < best_t[0]):
-    #        best_t = (value,i,t)
-    #        i += 1
-    #    else:
-    #        i += 1
-    #print(best_t[1:])
+    tlist = []
+    i = 9
+    for t in ts[8:-8]:
+        if(abs(tpoint-t) <= 0.1 ):
+            tlist.append((t,i))
+            i +=1
+        else:
+            i+= 1
+    maxc = 0
+    bestt = 0
+    for tup in tlist:
+        dx = abs(Puk.center[tup[1],1]-(Puk.center[tup[1]+1,1]))
+        dy = abs(Puk.center[tup[1],2]-(Puk.center[tup[1]+1,2]))
+        change = dx + dy
+        if(change > maxc):
+            maxc = change
+            bestt = tup[0]
+    print(bestt)
+
 
 #findcol(puk1)
