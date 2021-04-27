@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%
+%% SUPER PREAMBLE %%
+%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Fonts and stuff
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb} % math
+
+\usepackage{fancyhdr} % Header, Footer etc.
+\usepackage{adforn}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{Albert Lunde}
+\fancyfoot[C]{\adforn{17}\quad\thepage\quad\adforn{45}}
+
+\renewcommand{\headrule}{%
+	\hrulefill
+	 {\quad\adforn{21}\adforn{10}\adforn{49}\quad}%
+	\hrulefill}
+\renewcommand{\footrulewidth}{0pt}
+
+%% Margin Control %%
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% figure support
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikzsymbols} % Symbols
+\usepackage[framemethod=TikZ]{mdframed} % Boxes around theorem environments
+\usepackage{thmtools}

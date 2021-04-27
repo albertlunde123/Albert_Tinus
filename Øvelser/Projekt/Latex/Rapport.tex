@@ -1,0 +1,31 @@
+\documentclass[working]{tuftebook}
+\input{preamble-gilles.tex}
+\usepackage{pdfpages}
+
+\usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{titletoc}
+
+\usepackage{cmbright}
+\usepackage{bm}
+
+\title{Rapport - Read-out Noise, Dark Charge og Signal to Noise Ratio i Princeton Instruments CCD-kamera.}
+\author{Albert Lunde, Tinus Blæsbjerg}
+\date{Academic year 2020--2021}
+
+\begin{document}
+\maketitle
+\pagestyle{fancy}
+\tableofcontents
+\cleardoublepage
+\chapter*{Teori}
+I denne del beskriver vi teorien bag \textbf{read-out noise}, \textbf{dark charge} og \textbf{signal to noise ratio}. Vi beskriver desuden de statistiske metoder vi har brugt til at beregne usikkerheden på disse størrelser.
+\section{Read-out Noise}
+\begin{marginfigure}
+    \centering
+    \incfig{read-out-noise}
+    \caption{Read-out-noise: Hver pixel læses lineært af kameraet. Først tømmes øverste række, derefter rykkes næste kollonne op.}
+    \label{fig:read-out-noise}
+\end{marginfigure}
+Et CCD er opbygget af et gitterværk af elektriske brønde. Hver af brøndene svarer til én pixel på det endelige billede som kameraet giver. Når én af disse brønde rammes af en foton, omdanner brønden denne foton til elektrisk ladning. Desto flere ladninger der rammer brønden des større ladning. Når shutteren i kameraet lukkes, oversætter den nu disse ladninger i brøndene til en lysstyrke svarende til størrelsen af ladningen. 
+\end{document}
