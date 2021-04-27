@@ -3,8 +3,59 @@ from PIL import Image
 from numba import jit
 
 path = "../../../Data/"
+qualities = ["Low Noise", "High Capacity"]
+speeds = ["100 kHz", "1 MHz", "4 MHz"]
+gains = ["Low", "Medium", "High"]
+bins = ["1x1","4x4","8x8","20x20"]
 
-im = Image.open(path + 'ron_qH_gH_b1_r0.1.tif')
+#Laver en string som er den komplette path der skal åbnes
+
+def name(path, quality, gain, bins, read_out_rate):
+    result = "ron_"
+    
+    if(quality == "Low Noise"):
+        result += "qL_"   
+    else:
+        result += "qH_"
+    
+    if(gain == "Low"):
+        result += "gL_"   
+    if(gain == "Medium"):
+        result += "gM_"
+    if(gain == "High"):
+        result += "gH_"
+        
+    if(bins == "1x1"):
+        result += "b1_"
+    if(bins == "4x4"):
+        result += "b4_"
+    if(bins == "8x8"):
+        result += "b8_"
+    if(bins == "20x20"):
+        result += "b20_"
+        
+    if(read_out_rate == "100 kHz"):
+        result += "r0.1"
+    if(read_out_rate == "1 MHz"):
+        result += "r1"
+    if(read_out_rate == "4 MHz"):
+        result += "r4"
+    
+    result += ".tif"
+    
+    return path + result
+
+#Autogenerer en path for alle kombinationer af indstillinger
+
+def files(qualities, gains, bins, speeds):
+    files = []
+    for q in qualities:
+        for g in gains:
+            for b in bins:
+                for s in speeds:
+                    files.append(name(path,q,g,b,s))
+    return files
+
 
 def tif_unfold(image):
 
@@ -31,6 +82,7 @@ def series_noise(pics):
     return [np.mean(diff_ims), np.std(diff_ims, ddof = 1)/np.sqrt(len(pics))]
 
 im = tif_unfold(im)
+
 
 print(series_noise(im))
 
