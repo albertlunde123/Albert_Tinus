@@ -1,0 +1,1 @@
+im = Image.open('dataProjekt/ron_qH_gH_b1_r0.1.tif')
