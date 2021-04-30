@@ -1,4 +1,12 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.1}Read-out Noise}{5}{section.0.1}%
+\contentsline {section}{\numberline {0.1}Read-out Noise}{7}{section.0.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.1.1}Hvad er Read-out Noise?}{7}{subsection.0.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.2}Plotning af data}{8}{section.0.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.1}Overvejelser i forbindelse med plotning}{8}{subsection.0.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.3}Vurdering af kamera}{8}{section.0.3}%
 \contentsfinish 

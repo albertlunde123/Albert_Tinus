@@ -18,6 +18,9 @@
 \pagestyle{fancy}
 \tableofcontents
 \cleardoublepage
+\chapter*{Problemformulering}
+Vi vil i denne rapport undersøge billeder taget af et CCD Camera fra Princeton Instruments, med henblik på at bestemme kameraets read-out-noise til forskellige indstillinger. I forlængelse af dette, vil vi kigge på, hvordan forholdet er mellem de forskellige read-out-noises, og den usikkerhed der forbundet med den målte poissonfordelte data. Dette vil vi så bruge til at vurdere kameraets kvalitet. Hvis vi bliver færdig med overstående i god tid, vil vi også kigge på, hvordan dark charge giver anledning til mere støj.
+
 \chapter*{Teori}
 I denne del beskriver vi teorien bag \textbf{read-out noise}, \textbf{dark charge} og \textbf{signal to noise ratio}. Vi beskriver desuden de statistiske metoder vi har brugt til at beregne usikkerheden på disse størrelser.
 \section{Read-out Noise}
@@ -27,5 +30,43 @@ I denne del beskriver vi teorien bag \textbf{read-out noise}, \textbf{dark charg
     \caption{Read-out-noise: Hver pixel læses lineært af kameraet. Først tømmes øverste række, derefter rykkes næste kollonne op.}
     \label{fig:read-out-noise}
 \end{marginfigure}
-Et CCD er opbygget af et gitterværk af elektriske brønde. Hver af brøndene svarer til én pixel på det endelige billede som kameraet giver. Når én af disse brønde rammes af en foton, omdanner brønden denne foton til elektrisk ladning. Desto flere ladninger der rammer brønden des større ladning. Når shutteren i kameraet lukkes, oversætter den nu disse ladninger i brøndene til en lysstyrke svarende til størrelsen af ladningen. 
+Et CCD er opbygget af et gitterværk af elektriske brønde. Hver af brøndene svarer til én pixel på det endelige billede som kameraet giver. Når én af disse brønde rammes af en foton, omdanner brønden denne foton til elektrisk ladning. Desto flere ladninger der rammer brønden des større ladning. Når shutteren i kameraet lukkes, oversætter den nu disse ladninger i brøndene til en lysstyrke svarende til størrelsen af ladningen.
+\\
+\subsection{Hvad er Read-out Noise?}
+Hvad er read-out noise konkret? Ideelt set, så burde to billeder taget med de samme indstillinger være identiske, men dette er ikke tilfældet, hvilket man ville kunne se, hvis man sammenlignede en masse billeder med hinanden. Denne variation i billederne er essensen af read-out-noise, fordi hvis der ingen støj var, så ville billederne netop være ens. Så hvis man estimere denne usikkerhed, så kan man fraregne den fra ens faktisk data, og på den måde få bedre data. 
+\\
+Hvordan beskriver vi denne støj? Man kan ikke estimere den udfra et billede, men hvis vi har to billeder, som vi kan sammenligne, så kan vi finde ud af, hvad differencen mellem de to billeder er, hvilket vi kan bruge til at estimere, hvad støjen på et billede er. Det skyldes, at når vi kigger på differencen mellem de to billeder, så propagerer vi fejlen fra de enkelte billeder gennem en multivariabel funktion, som vi godt kan finde fejlen på. 
+Dette kan fx gøres ved at bruge den calculus-baseret approksimation for en multi-variabel funktion. Funktionen er givet ved:
+\begin{center}
+$Z=A-B$
+\end{center}
+Fejlen estimeres vha. følgende udtryk:
+\begin{center}
+$(\alpha_Z)^2=(\frac{\partial Z}{\partial A})^2(\alpha_A)^2+(\frac{\partial Z}{\partial B})^2(\alpha_B)^2$
+$\implies$
+$\alpha_Z=\sqrt{(\alpha_A)^2+(\alpha_B)^2}$
+\end{center}
+
+Fejlen på Z kan nemt beregnes i praksis, fordi man har en masse datapunkter, som man kan finde både middelværdi og spredningen på.
+\\
+Fejlen på A og B må nødvendigvis være den samme, da de pga samme kameraindstillinger , må komme fra den samme statistiske fordeling. Derfor kan man omskrive udtrykket:
+\begin{center}
+$\alpha_Z=\sqrt{2(\alpha_A)^2}$
+\smallskip
+
+$\alpha_Z=\sqrt{2}+\alpha_A  $
+\smallskip
+
+$\alpha_A=\frac{\alpha_Z}{\sqrt{2}}$
+\end{center}
+Pr. konstruktion af forsøget er der taget 10 billeder med hver indstilling, hvilket betyder, at man kan tage differencen parvis for alle kombinationer af de 10 billeder. Dette giver en masse middelværdier for read-out noise, som vi kan tage middelværdien, for at få et godt estimat af hvad den faktiske read-out noise for et sæt af specifikke indstillinger er. Vi ved, at når vi tager middelværdien af noget data, så er der en usikkerhed forbundet med denne middelværdi, som er givet ved:
+\begin{center}
+$\alpha = \frac{\sigma_{N-1}}{\sqrt{N}}$
+\smallskip
+
+$\bar{x}\pm \alpha$
+\end{center}
+\section{Plotning af data}
+\subsection{Overvejelser i forbindelse med plotning}
+\section{Vurdering af kamera}
 \end{document}
