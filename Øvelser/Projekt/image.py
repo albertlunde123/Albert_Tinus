@@ -12,19 +12,19 @@ bins = ["1x1","4x4","8x8","20x20"]
 
 def name(path, quality, gain, bins, read_out_rate):
     result = "ron_"
-    
+
     if(quality == "Low Noise"):
-        result += "qL_"   
+        result += "qL_"
     else:
         result += "qH_"
-    
+
     if(gain == "Low"):
-        result += "gL_"   
+        result += "gL_"
     if(gain == "Medium"):
         result += "gM_"
     if(gain == "High"):
         result += "gH_"
-        
+
     if(bins == "1x1"):
         result += "b1_"
     if(bins == "4x4"):
@@ -33,16 +33,16 @@ def name(path, quality, gain, bins, read_out_rate):
         result += "b8_"
     if(bins == "20x20"):
         result += "b20_"
-        
+
     if(read_out_rate == "100 kHz"):
         result += "r0.1"
     if(read_out_rate == "1 MHz"):
         result += "r1"
     if(read_out_rate == "4 MHz"):
         result += "r4"
-    
+
     result += ".tif"
-    
+
     return path + result
 
 #Autogenerer en path for alle kombinationer af indstillinger
@@ -70,8 +70,9 @@ def tif_unfold(image):
 def read_out_noise(image1, image2):
     return np.std((image1 - image2).ravel())/np.sqrt(2)
 
-def series_noise(pics):
+def series_noise(path):
 
+    pics = tif_unfold(Image.open(path))
     diff_ims = []
 
     for i in range(len(pics) - 1):
@@ -80,9 +81,4 @@ def series_noise(pics):
     diff_ims = np.array(diff_ims)
 
     return [np.mean(diff_ims), np.std(diff_ims, ddof = 1)/np.sqrt(len(pics))]
-
-im = tif_unfold(im)
-
-
-print(series_noise(im))
 
