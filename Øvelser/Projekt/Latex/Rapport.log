@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.2.26)  30 APR 2021 19:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.2.26)  4 MAY 2021 10:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1390,7 +1390,7 @@ Package logreq Info: Writing requests to 'Rapport.run.xml'.
 Here is how much of TeX's memory you used:
  34724 strings out of 481239
  667593 string characters out of 5920377
- 1447733 words of memory out of 5000000
+ 1447766 words of memory out of 5000000
  49237 multiletter control sequences out of 15000+600000
  554247 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
