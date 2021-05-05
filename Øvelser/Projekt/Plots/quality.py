@@ -10,8 +10,12 @@ data = np.array(df.values)
 
 sf.plotter(['qH', 'qL'], ax)
 
-ax.set_xlabel('', fontsize = 16)
-ax.set_ylabel('', fontsize = 16)
-ax.set_title('', fontsize = 16)
+ax.set_xlabel('Indstillinger', fontsize = 18, labelpad = 20)
+ax.set_ylabel('Read-Out Noise', fontsize = 18, labelpad = 20)
+ax.set_title('Plot af quality indstillinger', fontsize = 20, pad = 30)
+plt.tick_params(right = False, labelbottom = False, bottom = False)
+plt.tight_layout()
 ax.legend()
 plt.show()
+
+fig.savefig('quality')
