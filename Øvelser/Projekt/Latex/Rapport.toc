@@ -6,5 +6,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {0.2}Plotning af data}{8}{section.0.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.3}Vurdering af kamera}{8}{section.0.3}%
+\contentsline {subsection}{\numberline {0.2.1}Enkelte indstillinger}{8}{subsection.0.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.2}Bedste indstillinger}{9}{subsection.0.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.3}Vurdering af kamera}{9}{section.0.3}%
 \contentsfinish 

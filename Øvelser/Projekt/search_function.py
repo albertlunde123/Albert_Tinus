@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# df = pd.read_csv('../Projekt/read-out-noise.csv', sep = ',')
-# data = np.array(df.values)
-
+df = pd.read_csv('read-out-noise.csv', sep = ',')
+data = np.array(df.values)
+print(data)
 def search(paths):
     result = []
     for d in data:
