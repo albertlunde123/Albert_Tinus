@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# df = pd.read_csv('../Projekt/read-out-noise.csv', sep = ',')
-# data = np.array(df.values)
+df = pd.read_csv('../read-out-noise.csv', sep = ',')
+data = np.array(df.values)
 
 def search(paths):
     result = []
@@ -47,18 +47,35 @@ def paths(data):
     return np.array(res)
 
 def plotter(settings, ax):
-    col1 = ['ro', 'bo', 'ko', 'go']
-    col2 = ['r-', 'b-', 'k-', 'g-']
+
+    col1 = ['r', 'b', 'k', 'g']
+    col2 = ['r--', 'b--', 'k--', 'g--']
     first = search([settings[0]])
-    ax.plot(range(len(first)), noises(first), col1[0])
-    ax.plot(range(len(first)), noises(first), col2[0])
+
+    ax.errorbar(range(len(first)),
+                noises(first),
+                yerr = error(first),
+                color = col1[0],
+                fmt = 'o',
+                capsize = 5)
+
+    ax.plot(range(len(first)),
+            noises(first),
+            col2[0],
+            label = settings[0],
+            alpha = 0.6)
+
     for sett, c1, c2 in zip(settings[1:], col1[1:], col2[1:]):
-        ax.errorbars(range(len(first)),
+
+        ax.errorbar(range(len(first)),
                 noises(ordered_search(sett, paths(first), settings[0])),
-                y_err = error(ordered_search(sett, paths(first), settings[0])),
-                ecolor = c1)
+                yerr = error(ordered_search(sett, paths(first), settings[0])),
+                color = c1,
+                fmt = 'o',
+                capsize = 5)
+
         ax.plot(range(len(first)),
                 noises(ordered_search(sett, paths(first), settings[0])),
-                c2)
-
-
+                c2,
+                label = sett,
+                alpha = 0.6)
