@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.9.3)  5 MAY 2021 11:24
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.2.26)  4 MAY 2021 10:17
+>>>>>>> 077eb4a525362a5709788ce75d19c7c587d24453
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1647,11 +1651,19 @@ Package logreq Info: Writing requests to 'Rapport.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  35044 strings out of 480893
  675294 string characters out of 5911973
  1486067 words of memory out of 5000000
  49886 multiletter control sequences out of 15000+600000
  557345 words of font info for 117 fonts, out of 8000000 for 9000
+=======
+ 34724 strings out of 481239
+ 667593 string characters out of 5920377
+ 1447766 words of memory out of 5000000
+ 49237 multiletter control sequences out of 15000+600000
+ 554247 words of font info for 108 fonts, out of 8000000 for 9000
+>>>>>>> 077eb4a525362a5709788ce75d19c7c587d24453
  1141 hyphenation exceptions out of 8191
  63i,12n,89p,1196b,802s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<c:/texl
