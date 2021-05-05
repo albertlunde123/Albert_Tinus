@@ -52,12 +52,25 @@ Fejlen på A og B må nødvendigvis være den samme, da de pga samme kameraindst
 	\alpha_Z&=\sqrt{2}\cdot \alpha_A \\
 	\alpha_A&=\frac{\alpha_Z}{\sqrt{2}}
 .\end{align*}
+
+Read-out noise er jo netop den flukturation omkring hvert datapunkt, der gør, at det samme datapunkt på to seperate billeder kan have forskellige værdier. Så et godt estimat for denne støj, vil være spredningen omkring hvert datapunkt. Vi har vist at denne spredning kan findes, hvis man kigger på fejlen i Z. Men fejlen i Z stammer jo også fra den tilfældige flukturation associeret ved støjen af to billeder, derfor er spredningen af Z netop også et godt estimat for fejlen på Z. Med disse antagelser kan vi omskrive udtrykket fra før:
+\begin{align*}
+	noise&=\frac{\sigma_{Z}}{\sqrt{2}} 
+.\end{align*}
+
 Pr. konstruktion af forsøget er der taget 10 billeder med hver indstilling, hvilket betyder, at man kan tage differencen parvis for alle kombinationer af de 10 billeder. Dette giver en masse middelværdier for read-out noise, som vi kan tage middelværdien, for at få et godt estimat af hvad den faktiske read-out noise for et sæt af specifikke indstillinger er. Vi ved, at når vi tager middelværdien af noget data, så er der en usikkerhed forbundet med denne middelværdi, som er givet ved:
 \begin{align*}
 \alpha = \frac{\sigma_{N-1}}{\sqrt{N}}
 \bar{x}\pm \alpha
 .\end{align*}
 \section{Plotning af data}
-\subsection{Overvejelser i forbindelse med plotning}
+Efter vi har beregnet vores read-out noise til forskellige indstillinger, så skal vi også have tolket på vores data. Den bedste måde at gøre dette på, er selvfølgelig ved at plotte dataet. 
+\\
+\subsubsection*{Enkelte indstillinger}
+Vi har gjort os en række overvejelser i forbindelse med plotningen af vores data, fordi vi skal have repræsenteret vores data på en overskuelig måde. Vi kom frem til, at vi gerne ville undersøge, hvordan de enkelte indstillinger påvirker den read-out noise man får ud. Måden vi har valgt at gøre det på, er ved at lave fire forskellige plots, hvor vi i hvert plot undersøger en bestemt indstilling. 
+\\
+Et eksempel kunne fx være \textbf{bin-indstillingen}, hvor man gerne vil undersøge, hvad der sker, når man ændrer på bin-størrelsen. Rent plotteteknisk gøres dette ved at sortere dataet i en bestemt rækkefølge på forhånd uafhængigt af bin-indstillinge. Det betyder, at punkterne med identiske indstillinger på nær bin-indstillingen kommer til at ligge over hinanden i plottet. Derefter kan man så farvekode de forskellige bin-indstillinger, så man nemt kan se, hvordan ændringen i bins ændrer ens read-out noise. Dette kan gøres ved alle indstillinger.
+\subsubsection*{Bedste indstilling}
+Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen, så det.
 \section{Vurdering af kamera}
 \end{document}
