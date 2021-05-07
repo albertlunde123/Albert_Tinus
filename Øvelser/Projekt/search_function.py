@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('read-out-noise.csv', sep = ',')
 data = np.array(df.values)
-print(data)
 def search(paths):
     result = []
     for d in data:
@@ -16,7 +15,7 @@ def search(paths):
             result.append(d)
     a = np.array(result)
     return a[a[:, 1].argsort()]
-
+print(search(['b1']))
 def string_splitter(string):
     return string.split('_')[1:-1] + [string.split('_')[-1].split('.tif')[0]]
 
