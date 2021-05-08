@@ -2,10 +2,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+<<<<<<< HEAD
 # df = pd.read_csv('../Projekt/read-out-noise.csv', sep = ',')
 # data = np.array(df.values)
 
 def search(paths, data):
+=======
+df = pd.read_csv('read-out-noise.csv', sep = ',')
+data = np.array(df.values)
+def search(paths):
+>>>>>>> 91e882e37c446cd6833b13bf2e83632e0fbd70b1
     result = []
     for d in data:
         i = 0
@@ -16,7 +22,7 @@ def search(paths, data):
             result.append(d)
     a = np.array(result)
     return a[a[:, 1].argsort()]
-
+print(search(['b1']))
 def string_splitter(string):
     return string.split('_')[1:-1] + [string.split('_')[-1].split('.tif')[0]]
 

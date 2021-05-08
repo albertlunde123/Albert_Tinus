@@ -1,10 +1,14 @@
 # Fdb version 3
-["biber Rapport"] 1620213791 "Rapport.bcf" "Rapport.bbl" "Rapport" 1620215139
-  "Rapport.bcf" 1620215139 101233 c75ee250b3c386d38b322eec212a0009 "pdflatex"
+["biber Rapport"] 1620483490 "Rapport.bcf" "Rapport.bbl" "Rapport" 1620483663
+  "Rapport.bcf" 1620483663 101233 c75ee250b3c386d38b322eec212a0009 "pdflatex"
   (generated)
   "Rapport.blg"
   "Rapport.bbl"
-["pdflatex"] 1620215138 "Rapport.tex" "Rapport.pdf" "Rapport" 1620215139
+["pdflatex"] 1620483661 "Rapport.tex" "Rapport.pdf" "Rapport" 1620483663
+  "../Plots/bins.png" 1620206201 110570 f61f75ac30554735354e8c1bacd79ae3 ""
+  "../Plots/gain.png" 1620206174 81664 951791a7bf000c0316a1c748438d7c24 ""
+  "../Plots/quality.png" 1620206781 67917 da3f5f64f9a588ccf75051b51caea998 ""
+  "../Plots/read-out-rate.png" 1620206262 98003 20dd643bfe64e0f21571f7e83ca40e0b ""
   "/etc/texmf/web2c/texmf.cnf" 1614156342 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -255,12 +259,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1614346670 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1614346686 8257438 04c7c2a75a050d8d57dbec69848e99a9 ""
-  "Rapport.aux" 1620215139 3582 a1a277ee58598eb106583cf4afbfe8f5 "pdflatex"
-  "Rapport.bbl" 1620213792 466 f7f239c736cf01ac6ce7bd829f9b3c7b "biber Rapport"
-  "Rapport.out" 1620215139 340 bf164a6b11f3f3024fb905c4ced71eb2 "pdflatex"
-  "Rapport.run.xml" 1620215139 2328 848c04401e8d5657a689303863c2815e "pdflatex"
-  "Rapport.tex" 1620215137 6901 46c09ac0a5d1cc7a62e29d0a7fbc35cb ""
-  "Rapport.toc" 1620215139 792 bbd4f7e0e116478714ccf58299b7c5e1 "pdflatex"
+  "Rapport.aux" 1620483663 5051 bfee4cf86052392a5989e7c7dc0c4115 "pdflatex"
+  "Rapport.bbl" 1620483491 466 f7f239c736cf01ac6ce7bd829f9b3c7b "biber Rapport"
+  "Rapport.out" 1620483663 552 a13520e8d24e5a5f299aad8817a7ced0 "pdflatex"
+  "Rapport.run.xml" 1620483663 2328 848c04401e8d5657a689303863c2815e "pdflatex"
+  "Rapport.tex" 1620483659 10236 8270fdbbe9a958ccbedb16a113667d4e ""
+  "Rapport.toc" 1620483663 1159 35c97c1483951d4983e2213a2dc9c6c9 "pdflatex"
   "figures/bins.pdf" 1620214304 1870 be2c385312be2918323a77b1f3764ab6 ""
   "figures/bins.pdf_tex" 1620214304 2049 a5ed05443fae0d4fdbed9f73e4697f50 ""
   "figures/read-out-noise.pdf" 1619552643 3081 60bc9344a1a14660fa136ab73d190990 ""
@@ -268,10 +272,10 @@
   "preamble-gilles.tex" 1620115465 5096 ded8e1ffbd5e769776c3b24164592674 ""
   "tuftebook.cls" 1619550469 5909 6f7d4fe9827a3de67ab77c754d46a78b ""
   (generated)
-  "Rapport.pdf"
-  "Rapport.log"
-  "Rapport.aux"
   "Rapport.out"
+  "Rapport.pdf"
+  "Rapport.toc"
+  "Rapport.aux"
   "Rapport.run.xml"
   "Rapport.bcf"
-  "Rapport.toc"
+  "Rapport.log"

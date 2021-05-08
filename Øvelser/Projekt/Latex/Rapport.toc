@@ -6,9 +6,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {0.2}Plotning af data}{8}{section.0.2}%
 \defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.2.1}Enkelte indstillinger}{8}{subsection.0.2.1}%
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {0.3}Vurdering af kamera}{8}{section.0.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Resulater}{9}{chapter.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Read-out Noise}{9}{section.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.1}Bedste indstillinger}{10}{subsection.1.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Vurdering af kamera}{11}{section.1.2}%
 \contentsfinish 

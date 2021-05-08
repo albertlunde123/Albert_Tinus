@@ -66,7 +66,7 @@ Pr. konstruktion af forsøget er der taget 10 billeder med hver indstilling, hvi
 \section{Plotning af data}
 Efter vi har beregnet vores read-out noise til forskellige indstillinger, så skal vi også have tolket på vores data. Den bedste måde at gøre dette på, er selvfølgelig ved at plotte dataet. 
 \\
-\subsubsection*{Enkelte indstillinger}
+\subsection{Enkelte indstillinger}
 Vi har gjort os en række overvejelser i forbindelse med plotningen af vores data, fordi vi skal have repræsenteret vores data på en overskuelig måde. Vi kom frem til, at vi gerne ville undersøge, hvordan de enkelte indstillinger påvirker den read-out noise man får ud. Måden vi har valgt at gøre det på, er ved at lave fire forskellige plots, hvor vi i hvert plot undersøger en bestemt indstilling. 
 \\
 \begin{marginfigure}[-100pt]
@@ -82,4 +82,40 @@ Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen,
 \chapter{Resulater}
 \section{Read-out Noise}
 Her følger plots af de forskellige indstillinger. Vi har valgt at samle de forskellige parametre i hver deres plot og dermed undersøge den overordnede som disse parametre har på read-out noise.
+Et eksempel kunne fx være \textbf{bin-indstillingen}, hvor man gerne vil undersøge, hvad der sker, når man ændrer på bin-størrelsen. Rent plotteteknisk gøres dette ved at sortere dataet i en bestemt rækkefølge på forhånd uafhængigt af bin-indstillinge. Det betyder, at punkterne med identiske indstillinger på nær bin-indstillingen kommer til at ligge over hinanden i plottet. Derefter kan man så farvekode de forskellige bin-indstillinger, så man nemt kan se, hvordan ændringen i bins ændrer ens read-out noise. Dette kan gøres ved alle indstillinger.
+\subsubsection*{Bin-Indstilling}
+\begin{figure}[ht]
+\centering
+\sidecaption{Plot af bins}
+\includegraphics[width = \textwidth]{../Plots/bins.png}	
+\end{figure}
+Hvis vi kigger på de røde punkter med bin-indstilling 1x1, så kan vi se, at den generelt har den laveste read-out noise over de fleste indstillinger, udover et par enkelte punkter til sidst. Men en ting man kan bide mærke i, når man kigger på de røde punkter er, at der ikke er en specielt stor fejl på værdierne. Det giver meget god meningen, fordi bin-indstillingen indvirker netop på hvor mange datapunkter der er i hvert billede. Hvis man har et højt antal datapunkter bliver ens måling mere præcis, hvilket betyder at hvert værdien af hvert datapunkt ikke flukturerer lige så meget som højrere bin-indstillinger. Hvis man så fx kigger på 20x20-indstillingen, så er der langt færre datapunkter, hvilket vil sige, at hvert datapunkt indeholder mere information. Det betyder også, at ens data bliver mere upræcis, hvilket så netop både giver anledning til en større read-out noise, men også større fejl på read-out noisen. Værdien for et datapunkt fluktuerer netop pga. af read-out noise, hvis man så har mange punkter indeholdende mindre information, så er flukturationen ikke nær så stor som et mindre antal punkter, ind
+\subsubsection*{Quality-Indstilling}
+\begin{figure}[ht]
+\centering
+\sidecaption{Plot af quality}
+\includegraphics[width = \textwidth]{../Plots/quality.png}	
+\end{figure}
+
+\subsubsection*{Gain-Indstilling}
+\begin{figure}[ht]
+\centering
+\sidecaption{Plot af gain}
+\includegraphics[width = \textwidth]{../Plots/gain.png}	
+\end{figure}
+
+\subsubsection*{Read-out-rate-Indstilling}
+\begin{figure}[ht]
+\centering
+\sidecaption{Plot af read-out-rate}
+\includegraphics[width = \textwidth]{../Plots/read-out-rate.png}	
+
+\end{figure}
+\subsection{Bedste indstillinger}
+Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen, så  vil vi også gerne kigge på, hvilket sæt af indstillinger der giver den mindste read-out noise. Det vil vi gøre, ved at lave et samlet plot med alle de målte read-out noises på. Vi vil så prøve at estimere, hvilket sæt af indstillinger der giver den laveste read-out noise. De 5 bedste punkter vil vi farvekode, så de adskiller sig fra de andre. Det kunne måske være, at der var en indstilling, der var mere følsom i forhold til at inducere read-out noise. 
+\\
+Efter analysen kan man måske gå ind og vurdere på hvilken indstilling der er mest følsom overfor read-out noise. 
+
+\section{Vurdering af kamera}
+Efter analysen af ens data, kan man måske gå ind og vurdere på, om kameraet er godt nok til det forsøg, som man skal lave med det. Men det er ikke helt meningen med den her rapport
 \end{document}
