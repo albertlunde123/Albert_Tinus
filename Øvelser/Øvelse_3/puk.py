@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as ss
 import scipy.optimize as scp
-import Albert_Tinus.Øvelser.Scripts.fejlpropagering as fejl
+import fejlpropagering as fejl
 
-fig, ax = plt.subplots(2, 2, figsize = (20,12))
-ax = ax.ravel()
+# fig, ax = plt.subplots(2, 2, figsize = (20,12))
+# ax = ax.ravel()
 
 class Puk():
 
@@ -29,22 +29,24 @@ class Puk():
     def gc_err(self, t):
         err = []
         for i in self.center[:, t]:
-            err.append(0.5*10**(-len(str(i).split('.')[-1])))
+            err.append(0.85*10**-2)
+            # err.append(5*10**(-len(str(i).split('.')[-1])))
         return np.array(err)
 
     def get_edge(self, t):
         return self.edge[:, t]
-    
+
     def get_r(self):
         return self.R
-    
+
     def get_m(self):
         return self.m
-    
+
     def ge_err(self, t):
         err = []
         for i in self.edge[:, t]:
-            err.append(0.5*10**(-len(str(i).split('.')[-1])))
+            err.append(0.85*10**-2)
+            # err.append(5*10**(-len(str(i).split('.')[-1])))
         return np.array(err)
 
     # Denne funktion bestemmer usikkerheden på henholdsvis t,x og y. Hvor denne
@@ -57,7 +59,7 @@ class Puk():
     #     y_err =
 
     # Bestemmer pukkens vinkel med origo
-    
+
 
     def angle(self):
         angles = []
@@ -374,8 +376,8 @@ class Puk():
         def f(x,y):
            return x + y
 
-        return fejl.propagation_function_2(f, fejl.collector([kin, rot]),
-                                           fejl.collector([kin_err, rot_err]))
+        return np.array(fejl.propagation_function_2(f, fejl.collector([kin, rot]),
+                                           fejl.collector([kin_err, rot_err])))
 
     # Giver impulsmomentet.
     # Beregner størrelsen ||r x p + Iw.||
@@ -428,9 +430,22 @@ def plot_Puks_xy(Puks, ax, colors):
     ax.legend()
 
 def plot_Puks_energy(Puks, ax, colors, alpha = 1):
-    ax.plot(Puks[0].get_center(0), Puks[0].energy(), colors[0], alpha = alpha, label = 'Puk 1')
-    ax.plot(Puks[0].get_center(0), Puks[1].energy(), colors[1], alpha = alpha, label = 'Puk 2')
-    ax.plot(Puks[0].get_center(0), Puks[0].energy()+ Puks[1].energy(), colors[2], alpha = alpha, label = 'Samlet')
+
+    a = Puks[0].energy()
+    b = Puks[1].energy()
+    a_err = Puks[0].energy_err()
+    b_err = Puks[1].energy_err()
+    tot_err = np.sqrt(a_err**2 + b_err**2)
+
+    ax.errorbar(Puks[0].get_center(0), a, yerr = a_err, fmt = 'o-',
+            color = colors[0], alpha = alpha, label = 'Puk 1')
+
+    ax.errorbar(Puks[0].get_center(0), b, yerr = b_err, fmt = 'o-',
+            color = colors[1],alpha = alpha, label = 'Puk 2')
+
+    ax.errorbar(Puks[0].get_center(0), a+b, yerr = tot_err, fmt = 'o-',
+            color = colors[2], alpha = alpha, label = 'Samlet')
+
     ax.set_xlabel('t / s', fontsize = 20)
     ax.set_ylabel('E / J', fontsize = 20)
     ax.set_title('Energi over tid.', fontsize = 20)
@@ -438,11 +453,22 @@ def plot_Puks_energy(Puks, ax, colors, alpha = 1):
 
 def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     a = Puks[0].angular_momentum()
+    a_err = Puks[0].angu_err()
     b = Puks[1].angular_momentum()
-    ax.plot(Puks[0].get_center(0), a, colors[0], alpha = alpha, label = 'Puk 1')
-    ax.plot(Puks[0].get_center(0), b, colors[1], alpha = alpha, label = 'Puk 2')
-    ax.plot(Puks[0].get_center(0), a + b,
-            colors[2], alpha = alpha, label = 'Samlet')
+    b_err = Puks[1].angu_err()
+    tot_err = np.sqrt(a_err**2 + b_err**2)
+
+    ax.errorbar(Puks[0].get_center(0), a, yerr = a_err,
+                color = colors[0], fmt = 'o-', capsize = 2,
+                alpha = alpha, label = 'Puk 1')
+
+    ax.errorbar(Puks[0].get_center(0), b, yerr = b_err,
+                color = colors[1], fmt = 'o-', capsize = 2,
+                alpha = alpha, label = 'Puk 2')
+
+    ax.errorbar(Puks[0].get_center(0), a + b, yerr = tot_err,
+            color = colors[2], fmt = 'o-', capsize = 2,
+                alpha = alpha, label = 'Samlet')
 
     def f(t, *p):
         a = p[0]
@@ -452,12 +478,13 @@ def plot_Puks_angular_momentum(Puks, ax, colors, alpha = 1):
     t = Puks[0].get_center(0)
 
     popt, pcov = scp.curve_fit(f, t, a+b, guess,
-                   # sigma = error,
+                   sigma = tot_err,
                    absolute_sigma = True)
 
     ts = np.linspace(t[0], t[-1], 100)
 
     ax.plot(ts, f(ts, *popt), colors[3], alpha = 1, label = 'constant fit')
+    fejl.plot_propagation(ts, f, popt, pcov, ax)
 
     ax.set_xlabel('t / s', fontsize = 20)
     ax.set_ylabel('L / $kg\cdot m^2 / s$', fontsize = 20)
@@ -471,33 +498,3 @@ Rota_Stille = Puk(['Rota/StilleCenter','Rota/StilleSide'], 0.0278, 0.0807)
 Puks = [Rota_Kastet, Rota_Stille]
 
 
-colors1 = ['r--', 'b--', 'g-']
-colors2 = [['ro', 'r*'], ['bo', 'b*']]
-#print(Puks[1].velocities()[0])
-#print(Puks[0].velocities()[0])
-#plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
-#plot_Puks_xy(Puks, ax[2], colors2)
-#Puks[1].plot_Puk_dist(ax[3], 'ro')
-#Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
-
-#plt.tight_layout()
-#plt.show()
-
-#print(Puks[0].vel_err())
-# colors1 = ['r--', 'b--', 'g-']
-
-print(Puks[0].x_velocity()[1])
-# colors1 = ['r--', 'b--', 'g-', 'k']
-
-# colors2 = [['ro', 'r*'], ['bo', 'b*']]
-
-plot_Puks_energy(Puks, ax[0], colors1, alpha = 0.5)
-#plot_Puks_angular_momentum(Puks, ax[1], colors1, alpha = 0.5)
-plot_Puks_xy(Puks, ax[2], colors2)
-
-# Puks[1].plot_Puk_dist(ax[3], 'ro')
-# Puks[1].plot_fit(ax[3], Puks[1].dist_fitter(), 'k-')
-
-# plt.tight_layout()
-# plt.show()

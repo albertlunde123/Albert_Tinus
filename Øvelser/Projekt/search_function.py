@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # df = pd.read_csv('../Projekt/read-out-noise.csv', sep = ',')
 # data = np.array(df.values)
 
-def search(paths):
+def search(paths, data):
     result = []
     for d in data:
         i = 0
