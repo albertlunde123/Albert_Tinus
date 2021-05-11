@@ -80,7 +80,25 @@ Et eksempel kunne fx være \textbf{bin-indstillingen}, hvor man gerne vil unders
 Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen, så det.
 \section{Vurdering af kamera}
 \section{Dark Noise}
-Udover den støj der kommer 
+Udover den støj der kommer
+\subsection{Beregning af Dark Charge}
+I vores undersøgelse af CCD-kameraet, har vi gjort brug af diverse metoder til at bestemme mængden af Dark Charge på et enkelt billede. Vi har fået givet 10 billeder taget til en bestemt tid $t$. For hvert af disse billeder har vi bestemt en gennemsnitlig pixel-lysstyrke $\overline{x}_i$ med en associeret usikkerhed $\alpha_i $. Disse middelværdier og usikkerheder er bestemt med samme metode som i \textbf{0.0.1}. Vi har derefter fundet den vægtede middelværdi af pixel-lysstyrken på tværs af de 10 billeder. Denne beregnes via\sidenote{HH ligning (4.30)},
+\[
+	\overline{x}_w = \frac{\sum_i w_i\overline{x}_i}{\sum_i w_i} 
+,\]
+hvor vægten $w_i$, er givet som\sidenote{HH ligning (4.31)}
+ \[
+w_i = \frac{1}{\alpha _i^2}
+.\]
+Usikkerheden på den vægtede middelværdi er givet som,
+\[
+\alpha_w =\left( \sum_{i} \frac{1}{\alpha _i^2}   \right)^{-2}
+.\]
+Pga. Dark Charges natur vil vores forventning være at størrelsen $\overline{x}_w$ vokser lineært med tiden. Vi har derfor fittet funktionen,
+\[
+\overline{x}_w\left( t \right)  = a\cdot t + b
+.\]
+til vores data og estimeret parametrene $a$ og $b$.
 \chapter{Resulater}
 \section{Read-out Noise}
 Her følger plots af de forskellige indstillinger. Vi har valgt at samle de forskellige parametre i hver deres plot og dermed undersøge den overordnede som disse parametre har på read-out noise.

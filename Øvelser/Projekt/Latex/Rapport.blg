@@ -1,9 +1,9 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'Rapport.blg'
-[69] biber:322> INFO - === Sat May  8, 2021, 16:18:11
-[81] Biber.pm:415> INFO - Reading 'Rapport.bcf'
-[152] Biber.pm:943> INFO - Found 0 citekeys in bib section 0
-[156] Utils.pm:293> WARN - The file 'Rapport.bcf' does not contain any citations!
-[163] bbl.pm:652> INFO - Writing 'Rapport.bbl' with encoding 'UTF-8'
-[163] bbl.pm:755> INFO - Output to Rapport.bbl
-[163] Biber.pm:128> INFO - WARNINGS: 1
+[120] biber:322> INFO - === Tue May 11, 2021, 15:35:55
+[140] Biber.pm:415> INFO - Reading 'Rapport.bcf'
+[382] Biber.pm:943> INFO - Found 0 citekeys in bib section 0
+[396] Utils.pm:293> WARN - The file 'Rapport.bcf' does not contain any citations!
+[424] bbl.pm:652> INFO - Writing 'Rapport.bbl' with encoding 'UTF-8'
+[425] bbl.pm:755> INFO - Output to Rapport.bbl
+[426] Biber.pm:128> INFO - WARNINGS: 1

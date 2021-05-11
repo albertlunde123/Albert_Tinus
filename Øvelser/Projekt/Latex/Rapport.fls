@@ -482,6 +482,8 @@ INPUT ./figures/bins.pdf_tex
 INPUT ./figures/bins.pdf
 INPUT ./figures/bins.pdf
 INPUT ./figures/bins.pdf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmr8.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmr8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/cmbr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/cmbrmi10.tfm
