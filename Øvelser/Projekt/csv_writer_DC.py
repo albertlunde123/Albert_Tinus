@@ -12,9 +12,12 @@ path = '../../../Data_DC/'
 with open('dark-charge.csv', mode = 'w') as rod:
 
     rod_writer = csv.writer(rod, delimiter = ',')
-    rod_writer.writerow(['Settings', 'Read-Out-Noise', 'Error'])
+    rod_writer.writerow(['Settings', 'Mean-charge', 'Error'])
     i = 0
     for filename in os.listdir(path):
+        i += 1
         print(len(os.listdir(path))-i)
-        x = image.series_noise(path + filename)
-        rod_writer.writerow([filename, x[0], x[1]])
+        # x = image.series_noise(path + filename)
+        x = image.dark_mean(path + filename)
+        y = image.dark_error(path + filename)
+        rod_writer.writerow([filename, x, y])
