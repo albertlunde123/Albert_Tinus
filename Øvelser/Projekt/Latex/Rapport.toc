@@ -10,6 +10,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {0.3}Vurdering af kamera}{8}{section.0.3}%
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.4}Dark Noise}{8}{section.0.4}%
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Resulater}{9}{chapter.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Read-out Noise}{9}{section.1.1}%

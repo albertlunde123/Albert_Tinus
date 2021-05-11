@@ -29,7 +29,7 @@ I denne del beskriver vi teorien bag \textbf{read-out noise}, \textbf{dark charg
     \caption{Read-out-noise: Hver pixel læses lineært af kameraet. Først tømmes øverste række, derefter rykkes næste kollonne op.}
     \label{fig:read-out-noise}
 \end{marginfigure}
-Et CCD er opbygget af et gitterværk af elektriske brønde. Hver af brøndene svarer til én pixel på det endelige billede som kameraet giver. Når én af disse brønde rammes af en foton, omdanner brønden denne foton til elektrisk ladning. Desto flere ladninger der rammer brønden des større ladning. Når shutteren i kameraet lukkes, oversætter den nu disse ladninger i brøndene til en lysstyrke svarende til størrelsen af ladningen.
+Et CCD er opbygget af et gitterværk af elektriske brønde. Hver af brøndene svarer til én pixel på det endelige billede som kameraet giver. Når én af disse brønde rammes af en foton, omdanner brønden denne foton til elektrisk ladning. Desto flere ladninger der rammer brønden des større ladning. Når shutteren i kameraet lukkes, oversætter den nu disse ladninger i brøndene til en lysstyrke svarende til størrelsen af ladningen. Støjen kommer rent mekanisk fra designet af kameraet, hvor 
 \\
 \subsection{Hvad er Read-out Noise?}
 Hvad er read-out noise konkret? Ideelt set, så burde to billeder taget med de samme indstillinger være identiske, men dette er ikke tilfældet, hvilket man ville kunne se, hvis man sammenlignede en masse billeder med hinanden. Denne variation i billederne er essensen af read-out-noise, fordi hvis der ingen støj var, så ville billederne netop være ens. Så hvis man estimere denne usikkerhed, så kan man fraregne den fra ens faktisk data, og på den måde få bedre data. 
@@ -79,6 +79,8 @@ Et eksempel kunne fx være \textbf{bin-indstillingen}, hvor man gerne vil unders
 \subsubsection*{Bedste indstilling}
 Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen, så det.
 \section{Vurdering af kamera}
+\section{Dark Noise}
+Udover den støj der kommer 
 \chapter{Resulater}
 \section{Read-out Noise}
 Her følger plots af de forskellige indstillinger. Vi har valgt at samle de forskellige parametre i hver deres plot og dermed undersøge den overordnede som disse parametre har på read-out noise.
