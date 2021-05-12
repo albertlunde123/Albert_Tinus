@@ -74,7 +74,7 @@ footskip=40pt,
 \footnotesize
 \enspace sektion \thesection \enspace}{4pt}{\normalfont\Large\filcenter}[]% section format
 
-\titleformat{\subsection}[hang]{\normalfont\bfseries}{}{1em}{}[]% subsection format
+\titleformat{\subsection}[hang]{\thesubsection \enspace \normalfont\bfseries\underline}{}{1em}{}[\quad]% subsection format
 % \titleformat{\paragraph}[runin]{\normalfont\itshape}{}{1em}{}[]% paragraph format
 % \renewcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont\em #1}% italic description instead of bold)
 % \setcounter{tocdepth}{0}% The Table of Contents, only chapters 

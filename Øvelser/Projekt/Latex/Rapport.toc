@@ -8,11 +8,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {0.2.1}Enkelte indstillinger}{8}{subsection.0.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.3}Vurdering af kamera}{9}{section.0.3}%
+\contentsline {section}{\numberline {0.3}Dark Noise}{9}{section.0.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.4}Dark Noise}{9}{section.0.4}%
+\contentsline {subsection}{\numberline {0.3.1}Beregning af Dark Charge}{9}{subsection.0.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {0.4.1}Beregning af Dark Charge}{9}{subsection.0.4.1}%
+\contentsline {section}{\numberline {0.4}Vurdering af kamera}{9}{section.0.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Resulater}{11}{chapter.1}%
 \defcounter {refsection}{0}\relax 

@@ -85,12 +85,12 @@ def dark_mean(path):
     pics = tif_unfold(Image.open(path))
     N = len(pics[0])
     errs = np.array([np.std(pic.ravel(), ddof = 1)/np.sqrt(N) for pic in pics])
-    return sum([np.mean(pic.ravel())/err**2 for pic,err in zip(pics, errs)])/sum(errs)
+    return sum([np.mean(pic.ravel())/err**2 for pic,err in zip(pics, errs)])/sum(1/errs**2)
 
 def dark_error(path):
     pics = tif_unfold(Image.open(path))
     N = len(pics[0].ravel())
     errs = np.array([np.std(pic.ravel(), ddof = 1)/np.sqrt(N) for pic in pics])
-    err_CE = sum(1/errs**2)**(-2)
+    err_CE = sum(1/errs**2)**(-0.5)
     return err_CE
 

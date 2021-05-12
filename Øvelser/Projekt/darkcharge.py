@@ -5,7 +5,7 @@ import pandas as pd
 import scipy.stats as ss
 import scipy.optimize as scp
 
-fig, ax = plt.subplots(figsize = (32,16))
+# fig, ax = plt.subplots(figsize = (32,16))
 
 df = pd.read_csv('dark-charge.csv', sep = ',')
 data = np.array(df.values)
@@ -51,8 +51,8 @@ def plot_DC(setting, ds, ax):
 
     return popt[0]/((int(setting[2].split('b')[-1]))**2)
 
-for sett in setting:
-     print(plot_DC(sett, data, ax))
+# for sett in setting:
+#      print(plot_DC(sett, data, ax))
 
 def find_a(setting, ds):
 
@@ -60,17 +60,17 @@ def find_a(setting, ds):
     ts = np.array([int(d[0].split('e')[-1].split('.')[0]) for d in data])/1000
 
     guess = [0, 600]
-    print(se.noises(data))
     popt, pcov = scp.curve_fit(linear_fit, ts, se.noises(data), guess,
-                   # sigma = error,
-                   absolute_sigma = True)
+                             bounds = ((0, 500), (0.5, 700)),
+                             sigma = se.error(data),
+                             absolute_sigma = True)
     b = 1
 
     for sett in setting:
         if 'b' in sett:
             b = sett
-    print(popt[0])
-    return popt[0]/((int(b.split('b')[-1]))**2)
+
+    return popt[0]/((int(b.split('b')[-1]))**2), np.sqrt(np.diag(pcov))[0]
 
 def unique_settings(data):
     all_setts = []
@@ -85,13 +85,13 @@ def unique_settings(data):
             unique_setts.append(sett)
     return unique_setts
 
-print(unique_settings(data))
-steepness = [[find_a(uniq, data), uniq]for uniq in unique_settings(data)]
-print(steepness)
-print(find_a(setting[0], data))
+# print(unique_settings(data))
+# steepness = [[find_a(uniq, data), uniq]for uniq in unique_settings(data)]
+# print(steepness)
+# print(find_a(setting[0], data))
 
-ax.set_xlabel('', fontsize = 16)
-ax.set_ylabel('', fontsize = 16)
-ax.set_title('', fontsize = 16)
-ax.legend()
-plt.show()
+# ax.set_xlabel('', fontsize = 16)
+# ax.set_ylabel('', fontsize = 16)
+# ax.set_title('', fontsize = 16)
+# ax.legend()
+# plt.show()

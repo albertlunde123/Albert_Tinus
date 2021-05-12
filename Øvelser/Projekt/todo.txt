@@ -1,0 +1,11 @@
+To do
+-Måske fit hældningerne til konstant fit
+-Kommentering på read-out noise
+-Dark current/noise teori afsnit
+-Kig på hældning i forhold til antal bins
+-Fodnoter
+-Litteraturliste
+-Pæn forside
+-Plot med bedste read-out noise indstillinger
+-Måske (Vurdering af kamera)
+

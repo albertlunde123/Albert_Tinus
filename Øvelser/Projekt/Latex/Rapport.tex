@@ -30,7 +30,7 @@ I denne del beskriver vi teorien bag \textbf{read-out noise}, \textbf{dark charg
     \label{fig:read-out-noise}
 \end{marginfigure}
 Et CCD er opbygget af et gitterværk af elektriske brønde. Hver af brøndene svarer til én pixel på det endelige billede som kameraet giver. Når én af disse brønde rammes af en foton, omdanner brønden denne foton til elektrisk ladning. Desto flere ladninger der rammer brønden des større ladning. Når shutteren i kameraet lukkes, oversætter den nu disse ladninger i brøndene til en lysstyrke svarende til størrelsen af ladningen. Støjen kommer rent mekanisk fra designet af kameraet, hvor 
-\\
+
 \subsection{Hvad er Read-out Noise?}
 Hvad er read-out noise konkret? Ideelt set, så burde to billeder taget med de samme indstillinger være identiske, men dette er ikke tilfældet, hvilket man ville kunne se, hvis man sammenlignede en masse billeder med hinanden. Denne variation i billederne er essensen af read-out-noise, fordi hvis der ingen støj var, så ville billederne netop være ens. Så hvis man estimere denne usikkerhed, så kan man fraregne den fra ens faktisk data, og på den måde få bedre data. 
 \\
@@ -65,7 +65,7 @@ Pr. konstruktion af forsøget er der taget 10 billeder med hver indstilling, hvi
 .\end{align*}
 \section{Plotning af data}
 Efter vi har beregnet vores read-out noise til forskellige indstillinger, så skal vi også have tolket på vores data. Den bedste måde at gøre dette på, er selvfølgelig ved at plotte dataet. 
-\\
+
 \subsection{Enkelte indstillinger}
 Vi har gjort os en række overvejelser i forbindelse med plotningen af vores data, fordi vi skal have repræsenteret vores data på en overskuelig måde. Vi kom frem til, at vi gerne ville undersøge, hvordan de enkelte indstillinger påvirker den read-out noise man får ud. Måden vi har valgt at gøre det på, er ved at lave fire forskellige plots, hvor vi i hvert plot undersøger en bestemt indstilling. 
 \\
@@ -78,9 +78,12 @@ Vi har gjort os en række overvejelser i forbindelse med plotningen af vores dat
 Et eksempel kunne fx være \textbf{bin-indstillingen}, hvor man gerne vil undersøge, hvad der sker,når man ændrer på bin størrelsen. rent plotteteknisk gøres dette ved at sortere dataet i en bestemt rækkefølge på forhånd uafhængigt af bin indstillingen. Det betyder, at punkterne med identiske indstillinger på nær bin indstillingen kommer til at ligge over hinanden i plottet. Derefter kan man så farvekode de forskellige bin indstillinger, så man nemt kan se, hvordan ændringen i bins ændrer ens read-out-noise. Dette kan gøres ved alle indstillinger.
 \subsubsection*{Bedste indstilling}
 Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen, så det.
-\section{Vurdering af kamera}
 \section{Dark Noise}
-Udover den støj der kommer
+En anden støj som vi også kan kigge på, er den støj som er forbundet med \textbf{dark current}.
+\begin{marginfigure}
+\textbf{Dark current:} Elektroner genereres spontant inde i kameraet, hvilket resulterer i en strøm, når man kigger på et tidsinterval og deraf navnet. Den spontane generering af elektroner er stærkt temperaturafhængig, så hvis kameraet køles, reduceres denne strøm meget.
+
+\end{marginfigure} 
 \subsection{Beregning af Dark Charge}
 I vores undersøgelse af CCD-kameraet, har vi gjort brug af diverse metoder til at bestemme mængden af Dark Charge på et enkelt billede. Vi har fået givet 10 billeder taget til en bestemt tid $t$. For hvert af disse billeder har vi bestemt en gennemsnitlig pixel-lysstyrke $\overline{x}_i$ med en associeret usikkerhed $\alpha_i $. Disse middelværdier og usikkerheder er bestemt med samme metode som i \textbf{0.0.1}. Vi har derefter fundet den vægtede middelværdi af pixel-lysstyrken på tværs af de 10 billeder. Denne beregnes via\sidenote{HH ligning (4.30)},
 \[
@@ -98,7 +101,11 @@ Pga. Dark Charges natur vil vores forventning være at størrelsen $\overline{x}
 \[
 \overline{x}_w\left( t \right)  = a\cdot t + b
 .\]
-til vores data og estimeret parametrene $a$ og $b$.
+til vores data og estimeret parametrene $a$ og $b$. Denne hældning $a$ vil være afhængig af bin-størrelsen, da en større bin , vil give anledning til et større areal hvorpå der kan dannes dark-charge. For at finde den faktiske dark-charge hældning deler vi derfor med arealet af binnet.
+\[
+a = \frac{a_b}{A_b}
+.\] 
+\section{Vurdering af kamera}
 \chapter{Resulater}
 \section{Read-out Noise}
 Her følger plots af de forskellige indstillinger. Vi har valgt at samle de forskellige parametre i hver deres plot og dermed undersøge den overordnede som disse parametre har på read-out noise.
