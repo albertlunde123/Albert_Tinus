@@ -7,7 +7,7 @@ import scipy.optimize as scp
 import darkcharge as DC
 import fejlpropagering as fejl
 
-fig, ax = plt.subplots(1, 2, figsize = (32,16))
+fig, ax = plt.subplots(figsize = (16,8))
 
 df = pd.read_csv('dark-charge.csv', sep = ',')
 data = np.array(df.values)
@@ -38,42 +38,50 @@ not_b1s = [[steep[0][0], a, steep[0][1]] for steep, a in zip(steepness, ts) if '
 
 t = np.linspace(0, len(steep), 100)
 
-ax[0].errorbar([b[1] for b in b1s],
+ax.errorbar([b[1] for b in b1s],
            [b[0] for b in b1s],
            yerr = [b[2] for b in b1s],
            color = 'b',
-           fmt = 'o')
+           fmt = 'o',
+           label = 'hældninger')
 
-ax[0].errorbar([b[1] for b in not_b1s],
+ax.errorbar([b[1] for b in not_b1s],
            [b[0] for b in not_b1s],
            yerr = [b[2] for b in not_b1s],
            color = 'r',
-           fmt = 'o')
+           fmt = 'o',
+           label = 'b1 - hældninger')
 
 
 popt1, pcov1 = fitter(linear_fit, [b[0] for b in steep], [b[2] for b in steep])
-ax[0].plot(t, linear_fit(t, *popt1), 'k--')
+ax.plot(t, linear_fit(t, *popt1), 'k--')
 
-ax[0].set_xlabel('Indstillinger', fontsize = 16)
-ax[0].set_ylabel('Dark Charge pr. tid', fontsize = 16)
-ax[0].set_title('Plot over samtlige dark charge indstillinger', fontsize = 16)
-ax[0].legend()
-fejl.plot_propagation(t, linear_fit, popt1, pcov1, ax[0])
+ax.set_xlabel('Indstillinger', fontsize = 16)
+ax.set_ylabel('Dark Charge pr. tid', fontsize = 16)
+ax.set_title('Plot over samtlige dark charge indstillinger', fontsize = 16)
+ax.legend()
+fejl.plot_propagation(t, linear_fit, popt1, pcov1, ax)
 
-ax[1].errorbar([b[1] for b in not_b1s],
+
+fig.savefig('Plots/dark_hældninger_1')
+
+fig, ax = plt.subplots(figsize = (16,8))
+
+ax.errorbar([b[1] for b in not_b1s],
            [b[0] for b in not_b1s],
            yerr = [b[2] for b in not_b1s],
            color = 'r',
-           fmt = 'o')
+           fmt = 'o',
+           label = 'hældninger uden b1')
 
 popt2, pcov2 = fitter(linear_fit, [b[0] for b in not_b1s], [b[2] for b in not_b1s])
-ax[1].plot(t, linear_fit(t, *popt2), 'k--')
-fejl.plot_propagation(t, linear_fit, popt2, pcov2, ax[1])
+ax.plot(t, linear_fit(t, *popt2), 'k--')
+fejl.plot_propagation(t, linear_fit, popt2, pcov2, ax)
 
-# ax[1].plot(t, linear_fit(t, *fitter(linear_fit, [b[0] for b in not_b1s])[0]), 'k--')
-ax[1].set_xlabel('Indstillinger', fontsize = 16)
-ax[1].set_ylabel('Dark Charge pr. tid', fontsize = 16)
-ax[1].set_title('dark charge indstillinger - uden \'b1\'', fontsize = 16)
-ax[1].legend()
+ax.set_xlabel('Indstillinger', fontsize = 16)
+ax.set_ylabel('Dark Charge pr. tid', fontsize = 16)
+ax.set_title('dark charge indstillinger - uden \'b1\'', fontsize = 16)
+ax.legend()
 
-plt.show()
+
+fig.savefig('Plots/dark_hældninger_2')

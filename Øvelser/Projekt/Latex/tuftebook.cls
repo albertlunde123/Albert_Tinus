@@ -68,12 +68,11 @@ footskip=40pt,
 
 % \setcounter{secnumdepth}{-1}% no numbering at all
 
-\titleformat{\section}[frame]{
-\normalfont\bfseries}{
-\filright
+\titleformat{\section}[frame]{\normalfont\bfseries
+}{\filright
 \footnotesize
-\enspace sektion \thesection \enspace}{4pt}{\normalfont\Large\filcenter}[]% section format
-
+\enspace Sektion \thesection \enspace
+}{4pt}{\normalfont\Large\filcenter}% section format
 \titleformat{\subsection}[hang]{\thesubsection \enspace \normalfont\bfseries\underline}{}{1em}{}[\quad]% subsection format
 % \titleformat{\paragraph}[runin]{\normalfont\itshape}{}{1em}{}[]% paragraph format
 % \renewcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont\em #1}% italic description instead of bold)

@@ -70,7 +70,7 @@ def find_a(setting, ds):
         if 'b' in sett:
             b = sett
 
-    return popt[0]/((int(b.split('b')[-1]))**2), np.sqrt(np.diag(pcov))[0]
+    return popt[0]/((int(b.split('b')[-1]))**2), np.sqrt(np.diag(pcov))[0]/((int(b.split('b')[-1]))**2)
 
 def unique_settings(data):
     all_setts = []
