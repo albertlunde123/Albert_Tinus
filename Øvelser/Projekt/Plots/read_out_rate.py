@@ -18,4 +18,4 @@ plt.tight_layout()
 ax.legend()
 plt.show()
 
-fig.savefig('read-out-rate')
+fig.savefig('../Plots/read-out-rate')

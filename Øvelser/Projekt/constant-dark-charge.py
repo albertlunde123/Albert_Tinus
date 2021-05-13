@@ -56,14 +56,15 @@ ax.errorbar([b[1] for b in not_b1s],
 popt1, pcov1 = fitter(linear_fit, [b[0] for b in steep], [b[2] for b in steep])
 ax.plot(t, linear_fit(t, *popt1), 'k--')
 
-ax.set_xlabel('Indstillinger', fontsize = 16)
-ax.set_ylabel('Dark Charge pr. tid', fontsize = 16)
-ax.set_title('Plot over samtlige dark charge indstillinger', fontsize = 16)
+ax.set_xlabel('Indstillinger', fontsize = 20)
+ax.set_ylabel('Dark Charge pr. tid', fontsize = 20)
+ax.set_title('Plot over samtlige dark charge indstillinger', fontsize = 20)
 ax.legend()
 fejl.plot_propagation(t, linear_fit, popt1, pcov1, ax)
+plt.tight_layout()
 
 
-fig.savefig('Plots/dark_hældninger_1')
+fig.savefig('Latex/Plots/dark_hældninger_1')
 
 fig, ax = plt.subplots(figsize = (16,8))
 
@@ -78,10 +79,11 @@ popt2, pcov2 = fitter(linear_fit, [b[0] for b in not_b1s], [b[2] for b in not_b1
 ax.plot(t, linear_fit(t, *popt2), 'k--')
 fejl.plot_propagation(t, linear_fit, popt2, pcov2, ax)
 
-ax.set_xlabel('Indstillinger', fontsize = 16)
-ax.set_ylabel('Dark Charge pr. tid', fontsize = 16)
-ax.set_title('dark charge indstillinger - uden \'b1\'', fontsize = 16)
+ax.set_xlabel('Indstillinger', fontsize = 20)
+ax.set_ylabel('Dark Charge pr. tid', fontsize = 20)
+ax.set_title('dark charge indstillinger - uden \'b1\'', fontsize = 20)
 ax.legend()
+plt.tight_layout()
 
 
-fig.savefig('Plots/dark_hældninger_2')
+fig.savefig('Latex/Plots/dark_hældninger_2')

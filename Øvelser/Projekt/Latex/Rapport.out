@@ -9,4 +9,6 @@
 \BOOKMARK [0][-]{chapter.1}{Resulater}{}% 9
 \BOOKMARK [1][-]{section.1.1}{Read-out Noise}{chapter.1}% 10
 \BOOKMARK [2][-]{subsection.1.1.1}{Bedste indstillinger}{section.1.1}% 11
-\BOOKMARK [1][-]{section.1.2}{Vurdering af kamera}{chapter.1}% 12
+\BOOKMARK [1][-]{section.1.2}{Dark Current og Noise}{chapter.1}% 12
+\BOOKMARK [2][-]{subsection.1.2.1}{Er Dark Current konstant?}{section.1.2}% 13
+\BOOKMARK [1][-]{section.1.3}{Vurdering af kamera}{chapter.1}% 14

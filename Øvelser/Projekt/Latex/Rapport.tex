@@ -161,7 +161,26 @@ Hvis vi kigger på de røde punkter med bin-indstilling 1x1, så kan vi se, at d
 Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen, så  vil vi også gerne kigge på, hvilket sæt af indstillinger der giver den mindste read-out noise. Det vil vi gøre, ved at lave et samlet plot med alle de målte read-out noises på. Vi vil så prøve at estimere, hvilket sæt af indstillinger der giver den laveste read-out noise. De 5 bedste punkter vil vi farvekode, så de adskiller sig fra de andre. Det kunne måske være, at der var en indstilling, der var mere følsom i forhold til at inducere read-out noise. 
 \\
 Efter analysen kan man måske gå ind og vurdere på hvilken indstilling der er mest følsom overfor read-out noise. 
-
+\section{Dark Current og Noise}
+\subsection{Er Dark Current konstant?}
+Det første vi har overvejet, er hvorvidt Dark Current er uafhængig af indstillingen på CCD-kameraet. Vi undersøgte derfor Dark Current for hver eneste indstilling, og beregnede Dark Current tilvæksten for hver af disse. Vi fittede derefter alle disse punkter til en konstant, og overvejede hvorvidt dette fit var fornuftigt.
+% \begin{marginfigure}
+% 	Der skal lige defineres et enviroment til det her.
+% \end{marginfigure}
+\\
+Fittet følger her,
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = \textwidth]{../Plots/dark_hældninger_1.png}
+	\sidecaption{Fit af Dark Charge til en konstant funktion, usikkerheden er medtaget i linjen. Hvor errorbars ikke er synlige, er usikkerheden inkluderet i punktet.}
+\end{figure}
+\\
+Her er alle punkter medtaget, men punkterne med indstillingen \textbf{b1} er markeret med blå, da denne indstilling generelt opførte sig underligt. Med disse punkter medtaget, var det meget tydeligt at det konstante fit ikke fungerede. Vi undersøgte derfor om fittet blev godt når, disse indstillinger blev udelukket.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = \textwidth]{../Plots/dark_hældninger_2.png}
+	\sidecaption{Fit af Dark Charge, hvor indstilingen \textbf{b1} ikke er inkluderet.}
+\end{figure}
 \section{Vurdering af kamera}
 Efter analysen af ens data, kan man måske gå ind og vurdere på, om kameraet er godt nok til det forsøg, som man skal lave med det. Men det er ikke helt meningen med den her rapport
 \end{document}

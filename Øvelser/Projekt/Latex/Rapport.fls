@@ -506,6 +506,12 @@ INPUT ../Plots/gain.png
 INPUT ../Plots/read-out-rate.png
 INPUT ../Plots/read-out-rate.png
 INPUT ../Plots/read-out-rate.png
+INPUT ../Plots/dark_hældninger_1.png
+INPUT ../Plots/dark_hældninger_1.png
+INPUT ../Plots/dark_hældninger_1.png
+INPUT ../Plots/dark_hældninger_2.png
+INPUT ../Plots/dark_hældninger_2.png
+INPUT ../Plots/dark_hældninger_2.png
 INPUT Rapport.aux
 INPUT ./Rapport.out
 INPUT ./Rapport.out
