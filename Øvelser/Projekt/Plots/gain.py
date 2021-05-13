@@ -18,4 +18,4 @@ plt.tight_layout()
 ax.legend()
 plt.show()
 
-fig.savefig('../Plots/gain')
+fig.savefig('../Latex/Plots/gain')

@@ -18,4 +18,4 @@ plt.tight_layout()
 ax.legend()
 plt.show()
 
-fig.savefig('../Plots/quality')
+fig.savefig('../Latex/Plots/quality')
