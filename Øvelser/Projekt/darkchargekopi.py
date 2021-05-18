@@ -16,7 +16,7 @@ df = pd.read_csv('dark-charge.csv', sep = ',')
 data = np.array(df.values)
 
 bs = ['b1', 'b4', 'b8', 'b20']
-setting = [['gM', 'qH', b, 'r0.1'] for b in bs]
+#setting = [['gM', 'qH', b, 'r0.1'] for b in bs]
 
 def sort(data):
     k = []
@@ -67,7 +67,7 @@ def find_a(setting, ds):
 
     guess = [0, 600]
     popt, pcov = scp.curve_fit(linear_fit, ts, se.noises(data), guess,
-                             bounds = ((0, 500), (0.5, 700)),
+                             bounds = ((0, -np.inf), (np.inf, np.inf)),
                              sigma = se.error(data),
                              absolute_sigma = True)
     b = 1

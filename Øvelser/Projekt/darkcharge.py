@@ -84,7 +84,7 @@ def find_effektiv_a(setting, ds):
 
     guess = [0, 600]
     popt, pcov = scp.curve_fit(linear_fit, ts, se.noises(data), guess,
-                             bounds = ((0, 500), (0.5, 700)),
+                             bounds = ((0, -np.inf), (np.inf, np.inf)),
                              sigma = se.error(data),
                              absolute_sigma = True)
     b = 1

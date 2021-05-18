@@ -41,34 +41,20 @@ def same_setting(ron, dcur):
                 #et grimt plot, plus at fejlen på datapunket bliver ekstremt
                 #stor pr. den fejlfunktionen længere nede.
                 if(val[0] > 10**-6):
+                    setting.pop(-1)
                     dcs.append([val[0],val[1],setting])
                     rons.append([ron[i][1],ron[i][2],setting])
-                    setting.pop(-1)
                     break
             
     return dcs,rons
 dcs,ros = same_setting(dataron,datadc)
 
-#wantd = []
-#wantr = []
-#for i in range(len(dcs)):
-#    dcs[i][2].pop(-1)
-#    for o in dcs[i][2]:
-#        j=0
-#        print(o)
-#        if o in ['gL', 'qH', 'b1', 'r0.1']:
-#            j += 1
-#        if(j == 2):
-#           print('hello')
-#            wantd.append(dcs[i])
-#            wantr.append(ros[i])
-#            break
-#print(wantd)
+
 def find_cut(darks, rons):
     roots = []
     for i in range(len(darks)):
         f = lambda x: np.sqrt(darks[i][0]*x)-rons[i][0]
-        root = scp.fsolve(f,20)
+        root = scp.fsolve(f,200)
         roots.append(root[0])
     return roots
 
@@ -83,14 +69,33 @@ def find_cut_error(darks, rons, roots):
     return root_errors
 
 errs = find_cut_error(dcs, ros, ans)
-#print(errs)
-points = range(len(ans))
-ax.errorbar(points,ans, errs, fmt = 's--')
-
-#ax.plot(points[25:],ans[25:], marker  = '*')
+#fjern punkter der har en værdi, der er så høj, at man ikke vile have kameraet
+#tændt så længe.
+res1 = []
+res2 = []
+res3 = []
+res4 = []
+for i in range(len(ans)):
+    print(ans[i])
+    if(ans[i] < 500):
+        print('hello')
+        res1.append(ans[i])
+        res2.append(dcs[i])
+        res3.append(ros[i])
+        res4.append(errs[i])
+ans = res1
+dcs = res2
+ros = res3
+errs = res4
     
-#print(len(dataron))
-#print(len(datadc))
+points = range(len(ans))
+ax.errorbar(points,ans, errs, fmt = 's--', label = 'Skæringstidspunkter', ms = 10)
+ax.set_xlabel('Indstillinger', fontsize = 20)
+ax.set_ylabel('Tid(s)', fontsize = 20)
+ax.set_title('Skæringstidspunkter for Dark Noise vs Read-out Noise', fontsize = 25)
+ax.legend(fontsize = 16)
+plt.tick_params(right = False, labelbottom = False, bottom = False)
+fig.savefig('C:/Users/123ti/Albert_Tinus/Øvelser/Projekt/Latex/Plots/DNvsRONskær')
 
 
 
