@@ -1,30 +1,46 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.1}Read-out Noise}{7}{section.0.1}%
+\contentsline {chapter}{\numberline {1}Problemformulering}{iii}{chapter.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {0.1.1}Hvad er Read-out Noise?}{7}{subsection.0.1.1}%
+\contentsline {chapter}{\numberline {2}Teori}{iv}{chapter.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.2}Plotning af data}{8}{section.0.2}%
+\contentsline {section}{\numberline {2.1}Read-out Noise}{iv}{section.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {0.2.1}Enkelte indstillinger}{8}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Hvad er Read-out Noise?}{iv}{subsection.2.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.3}Dark Noise}{9}{section.0.3}%
+\contentsline {section}{\numberline {2.2}Plotning af data}{v}{section.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {0.3.1}Sammenligning af dark noise og read-out noise}{9}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {2.2.1}Enkelte indstillinger}{v}{subsection.2.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {0.3.2}Beregning af Dark Charge}{9}{subsection.0.3.2}%
+\contentsline {subsection}{\numberline {2.2.2}Bedste indstilling}{v}{subsection.2.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.4}Vurdering af kamera}{10}{section.0.4}%
+\contentsline {subsection}{\numberline {2.2.3}Fit og fejlpropagering}{vi}{subsection.2.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {1}Resulater}{11}{chapter.1}%
+\contentsline {section}{\numberline {2.3}Dark Noise}{vi}{section.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}Read-out Noise}{11}{section.1.1}%
+\contentsline {subsection}{\numberline {2.3.1}Sammenligning af dark noise og read-out noise}{vi}{subsection.2.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1.1}Bedste indstillinger}{12}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {2.3.2}Beregning af Dark Charge}{vii}{subsection.2.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Dark Current og Noise}{13}{section.1.2}%
+\contentsline {section}{\numberline {2.4}Vurdering af kamera}{vii}{section.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.1}Er Dark Current konstant?}{13}{subsection.1.2.1}%
+\contentsline {chapter}{\numberline {3}Resulater}{viii}{chapter.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Vurdering af kamera}{14}{section.1.3}%
+\contentsline {section}{\numberline {3.1}Read-out Noise}{viii}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Bin-Indstilling}{viii}{subsection.3.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}Quality-Indstilling}{ix}{subsection.3.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}Gain-Indstilling}{ix}{subsection.3.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.4}Read-out-rate-Indstilling}{ix}{subsection.3.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.5}Bedste indstillinger}{x}{subsection.3.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Dark Current og Noise}{x}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Er Dark Current konstant?}{x}{subsection.3.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Vurdering af kamera}{xi}{section.3.3}%
 \contentsfinish 

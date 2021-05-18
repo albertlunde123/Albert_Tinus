@@ -1,14 +1,22 @@
-\BOOKMARK [1][-]{section.0.1}{Read-out Noise}{}% 1
-\BOOKMARK [2][-]{subsection.0.1.1}{Hvad er Read-out Noise?}{section.0.1}% 2
-\BOOKMARK [1][-]{section.0.2}{Plotning af data}{}% 3
-\BOOKMARK [2][-]{subsection.0.2.1}{Enkelte indstillinger}{section.0.2}% 4
-\BOOKMARK [1][-]{section.0.3}{Dark Noise}{}% 5
-\BOOKMARK [2][-]{subsection.0.3.1}{Sammenligning af dark noise og read-out noise}{section.0.3}% 6
-\BOOKMARK [2][-]{subsection.0.3.2}{Beregning af Dark Charge}{section.0.3}% 7
-\BOOKMARK [1][-]{section.0.4}{Vurdering af kamera}{}% 8
-\BOOKMARK [0][-]{chapter.1}{Resulater}{}% 9
-\BOOKMARK [1][-]{section.1.1}{Read-out Noise}{chapter.1}% 10
-\BOOKMARK [2][-]{subsection.1.1.1}{Bedste indstillinger}{section.1.1}% 11
-\BOOKMARK [1][-]{section.1.2}{Dark Current og Noise}{chapter.1}% 12
-\BOOKMARK [2][-]{subsection.1.2.1}{Er Dark Current konstant?}{section.1.2}% 13
-\BOOKMARK [1][-]{section.1.3}{Vurdering af kamera}{chapter.1}% 14
+\BOOKMARK [0][-]{chapter.1}{Problemformulering}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Teori}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Read-out Noise}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{Hvad er Read-out Noise?}{section.2.1}% 4
+\BOOKMARK [1][-]{section.2.2}{Plotning af data}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.2.1}{Enkelte indstillinger}{section.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.2}{Bedste indstilling}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.3}{Fit og fejlpropagering}{section.2.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Dark Noise}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.3.1}{Sammenligning af dark noise og read-out noise}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.2}{Beregning af Dark Charge}{section.2.3}% 11
+\BOOKMARK [1][-]{section.2.4}{Vurdering af kamera}{chapter.2}% 12
+\BOOKMARK [0][-]{chapter.3}{Resulater}{}% 13
+\BOOKMARK [1][-]{section.3.1}{Read-out Noise}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.1.1}{Bin-Indstilling}{section.3.1}% 15
+\BOOKMARK [2][-]{subsection.3.1.2}{Quality-Indstilling}{section.3.1}% 16
+\BOOKMARK [2][-]{subsection.3.1.3}{Gain-Indstilling}{section.3.1}% 17
+\BOOKMARK [2][-]{subsection.3.1.4}{Read-out-rate-Indstilling}{section.3.1}% 18
+\BOOKMARK [2][-]{subsection.3.1.5}{Bedste indstillinger}{section.3.1}% 19
+\BOOKMARK [1][-]{section.3.2}{Dark Current og Noise}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.2.1}{Er Dark Current konstant?}{section.3.2}% 21
+\BOOKMARK [1][-]{section.3.3}{Vurdering af kamera}{chapter.3}% 22

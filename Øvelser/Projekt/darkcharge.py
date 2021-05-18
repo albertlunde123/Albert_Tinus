@@ -5,13 +5,14 @@ import pandas as pd
 import scipy.stats as ss
 import scipy.optimize as scp
 
-# fig, ax = plt.subplots(figsize = (32,16))
+fig, ax = plt.subplots(figsize = (32,16))
 
 df = pd.read_csv('dark-charge.csv', sep = ',')
 data = np.array(df.values)
 
 bs = ['b1', 'b4', 'b8', 'b20']
 setting = [['gM', 'qH', b, 'r0.1'] for b in bs]
+setting = ['qL', 'r1', 'b1', 'gL']
 
 def sort(data):
     k = []
@@ -36,7 +37,7 @@ def plot_DC(setting, ds, ax):
 
     guess = [0, 600]
     popt, pcov = scp.curve_fit(linear_fit, ts, se.noises(data), guess,
-                   # sigma = error,
+                   sigma = se.error(data),
                    absolute_sigma = True)
 
     ax.plot(t_fit, linear_fit(t_fit, *popt), 'k--')
@@ -51,8 +52,12 @@ def plot_DC(setting, ds, ax):
 
     return popt[0]/((int(setting[2].split('b')[-1]))**2)
 
-# for sett in setting:
-#      print(plot_DC(sett, data, ax))
+print(plot_DC(setting, data, ax))
+ax.set_xlabel('', fontsize = 16)
+ax.set_ylabel('', fontsize = 16)
+ax.set_title('', fontsize = 16)
+ax.legend()
+plt.show()
 
 def find_a(setting, ds):
 
@@ -61,7 +66,7 @@ def find_a(setting, ds):
 
     guess = [0, 600]
     popt, pcov = scp.curve_fit(linear_fit, ts, se.noises(data), guess,
-                             bounds = ((0, 500), (0.5, 700)),
+                             bounds = ((0, -np.inf), (np.inf, np.inf)),
                              sigma = se.error(data),
                              absolute_sigma = True)
     b = 1
@@ -101,6 +106,12 @@ def unique_settings(data):
         else:
             unique_setts.append(sett)
     return unique_setts
+
+b1s = unique_settings(se.search(['b1'], data))
+for b in b1s:
+    print(b)
+    print(find_a(b, data))
+
 
 # print(unique_settings(data))
 # steepness = [[find_a(uniq, data), uniq]for uniq in unique_settings(data)]

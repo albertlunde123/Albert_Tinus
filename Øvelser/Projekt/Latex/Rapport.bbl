@@ -16,5 +16,34 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{HH}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1c9d731ffb394f9d9ab4ffdd71b0830e}{%
+           family={Ifan\bibnamedelimb G.\bibnamedelimi Hughes},
+           familyi={I\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Thomas\bibnamedelimb P.A\bibnamedelima Hase},
+           giveni={T\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford university press}%
+      }
+      \strng{namehash}{1c9d731ffb394f9d9ab4ffdd71b0830e}
+      \strng{fullhash}{1c9d731ffb394f9d9ab4ffdd71b0830e}
+      \strng{bibnamehash}{1c9d731ffb394f9d9ab4ffdd71b0830e}
+      \strng{authorbibnamehash}{1c9d731ffb394f9d9ab4ffdd71b0830e}
+      \strng{authornamehash}{1c9d731ffb394f9d9ab4ffdd71b0830e}
+      \strng{authorfullhash}{1c9d731ffb394f9d9ab4ffdd71b0830e}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Measurements and their Uncertainties}
+      \field{year}{2016}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

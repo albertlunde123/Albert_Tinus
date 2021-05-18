@@ -13,14 +13,28 @@
 \author{Albert Lunde, Tinus Blæsbjerg}
 \date{Academic year 2020--2021}
 
-\begin{document}
-\maketitle
+\begin{document}    
+\renewcommand{\thepage}{\roman{page}}
+\includepdf[pages=-, fitpaper=true]{./frontmatter.pdf}
 \pagestyle{fancy}
+
+\begingroup
+\let\cleardoublepage\relax
+\let\clearpage\relax  
+\maketitle
+\endgroup
+
+
+\begingroup
+\let\cleardoublepage\relax
+\let\clearpage\relax  
 \tableofcontents
-\chapter*{Problemformulering}
+\endgroup
+\let\cleardoublepage\clearpage
+\chapter{Problemformulering}
 Vi vil i denne rapport undersøge billeder taget af et CCD Camera fra Princeton Instruments, med henblik på at bestemme kameraets read-out-noise til forskellige indstillinger. I forlængelse af dette, vil vi kigge på, hvordan forholdet er mellem de forskellige read-out-noises, og den usikkerhed der forbundet med den målte poissonfordelte data. Dette vil vi så bruge til at vurdere kameraets kvalitet. Hvis vi bliver færdig med overstående i god tid, vil vi også kigge på, hvordan dark charge giver anledning til mere støj.
 
-\chapter*{Teori}
+\chapter{Teori}
 I denne del beskriver vi teorien bag \textbf{read-out noise}, \textbf{dark charge} og \textbf{signal to noise ratio}. Vi beskriver desuden de statistiske metoder vi har brugt til at beregne usikkerheden på disse størrelser.
 \section{Read-out Noise}
 \begin{marginfigure}
@@ -76,12 +90,21 @@ Vi har gjort os en række overvejelser i forbindelse med plotningen af vores dat
     \label{fig:bins}
 \end{marginfigure}
 Et eksempel kunne fx være \textbf{bin-indstillingen}, hvor man gerne vil undersøge, hvad der sker,når man ændrer på bin størrelsen. rent plotteteknisk gøres dette ved at sortere dataet i en bestemt rækkefølge på forhånd uafhængigt af bin indstillingen. Det betyder, at punkterne med identiske indstillinger på nær bin indstillingen kommer til at ligge over hinanden i plottet. Derefter kan man så farvekode de forskellige bin indstillinger, så man nemt kan se, hvordan ændringen i bins ændrer ens read-out-noise. Dette kan gøres ved alle indstillinger.
-\subsubsection*{Bedste indstilling}
+\subsection{Bedste indstilling}
 Udover at kigge på, hvordan de enkelte indstillinger påvirker read-out noisen, så  vil vi også kigge på alle indstillingerne i et samlet plot. Her vil vi prøve at finde frem til, hvilket sæt af indstillinger, der giver den laveste read-out noise.
+\subsection{Fit og fejlpropagering}
+De steder i rapporten hvor vi har fittet vores data til funktioner, har vi lavet lavet fejlpropagering på fittet. Vi har brugt ophobningsloven via. den funktionelle metode. Med hjælp af den funktionelle udregnes fejlen på hvert punkt til at være,
+\begin{align*}
+	\alpha _z^2= &\left[ f\left( A + \alpha_A, B, C, \ldots \right) - f\left( A, B, C, \ldots\right)   \right]^2  \\
+	 + &\left[ f\left( A, B + \alpha _B, C, \ldots  \right) - f\left( A, B, C, \ldots\right)   \right]^2 \\
+	 + &\left[ f\left( A, B, C+\alpha_C , \ldots  \right) - f\left( A, B, C, \ldots\right)   \right]^2\\
+	 + & \ldots
+\end{align*}
+I tilfældet hvor funktionen tager tiden $t$ som en parameter, antager vi at usikkerheden på $t$ er neglicibel. På vores har vi skraveret usikkerheden omkring fittet. I de fleste tilfælde har usikkerheden på fittet dog været så lille at det skraverede areal ikke kan ses på plottet.
 \section{Dark Noise}
 En anden støj som vi også kan kigge på, er den støj som er forbundet med \textbf{dark current}.
 \begin{marginfigure}
-\textbf{Dark current:} Elektroner genereres spontant inde i kameraet, hvilket resulterer i en strøm, når man kigger på et tidsinterval og deraf navnet. Den spontane generering af elektroner er stærkt temperaturafhængig, så hvis kameraet køles, reduceres denne strøm meget.
+	\textbf{Dark current:} Elektroner genereres spontant inde i kameraet, hvilket resulterer i en strøm, når man kigger på et tidsinterval og deraf navnet. Den spontane generering af elektroner er stærkt temperaturafhængig, så hvis kameraet køles, reduceres denne strøm meget.\cite{HH}
 
 \end{marginfigure}
 Ved alle målinger med kameraet, hvor man observerer i et tidsrum, vil der være dark current tilstede i ens data. Så i princippet, når man udlæser ens data fra kammeraet, vil en lille del af det signal man måler kommer fra de termisk genererede elektroner. I princippet kan man jo så tage en baggrundsmålling, inden man går videre til det rigtige forsøg. Denne måling kan man så tage højde for, når man laver sine faktiske målinger og på den måde tilnærmelsesvis eliminere bidraget fra dark current. Man vil så ikke helt få elimineret bidraget fra dark current, fordi der er en støj forbundet med denne, heraf \textit{dark noise}. Denne støj kommer af, at dark current afhænger af antal elektroner der er talt. Det betyder, at det er poisson fordelt. 
@@ -100,10 +123,42 @@ Vi kan prøve at lave en sammelinging af, hvilken en af de to faktorer, der bidr
 \end{align*}
 Hvilket i vores opgave vil svare til:
 \begin{align*}
-\alpha_{total} = \sqrt{\alpha_{d-noise}^2 + \alpha_{ro-noise}^2} 
+\alpha_{total} = \sqrt{\alpha_{d-noise}^2 + \alpha_{ro-noise}^2}. 
 \end{align*}
+I vores sammenligining, har vi plottet de 2 former for støj. Vi har underøgt til hvilken tid dark noise bliver større end read-out noise. Altså for hvilket $t'$ der gælder,
+\[
+	\alpha _{d} \left( t' \right)  - \alpha _{ro} = 0
+.\]
+For at bestemme usikkerheden $\alpha _{t'}$ på denne tid har vi gjort brug af ophobningsloven. Read-out noise er konstant over tid, mens Dark Noise er givet ved følgende udtryk,
+\[
+\alpha _d \left( t \right) = \sqrt{I_{dc}\cdot t} 
+.\]
+Usikkerheden på dark noise til tiden $t$, bestemmes ved at betragte funktionen,
+\[
+Z = \sqrt{I_{dc}\cdot t} 
+.\] 
+Vi kender $\alpha _{dc}$ og kan dermed bestemme $\alpha _Z$,
+\begin{align*}
+	\alpha_{z}^2 &= \left| \frac{\partial Z}{\partial I_{dc}} \right|^2\alpha_{dc}^2 = t^2 \cdot \left( \frac{1}{2\cdot \sqrt{I\cdot t} } \right)^2\cdot \alpha _{dc}^2 = \left( \frac{\sqrt{t}}{ 2\cdot \sqrt{I}} \right)^2 \cdot \alpha _{dc}^2 \\
+	\alpha _z &= \left( \frac{\sqrt{t} }{2\cdot \sqrt{I} } \right) \cdot \alpha _{dc}
+.\end{align*}
+For at bestemme usikkerheden på skæringstiden $t'$, betragter vi nu funktionen,
+ \[
+Z'\left( t \right) = \sqrt{I_{dc}\cdot t} - RO
+.\] 
+Pr. ophobingsloven er usikkerden på $Z'$,
+ \[
+\alpha _Z'\left( t \right)  = \sqrt{\left( \frac{\sqrt{t} }{2\cdot \sqrt{I} } \right)^2 + \alpha _{ro}^2 }
+.\]
+Vi bestemmer altså først $t'$ ved at finde skæringspunktet mellem de 2 kurver. Vi bruger derefter funktionen $\alpha _Z'\left( t \right) $ til at bestemme usikkerheden på denne tid. \\
 Det viser sig, at dark noise ikke bidrager specielt meget til den totale støj i forhold til read-out noise, men dette vil vi undersøge dybbere nede i resultaterne.
+
 \subsection{Beregning af Dark Charge}
+\begin{marginfigure}
+	\centering
+	\caption{Eksempel på dark charge fit}
+	\includegraphics[width = \textwidth]{Plots/DarkCurrent.png}
+\end{marginfigure}
 I vores undersøgelse af CCD-kameraet, har vi gjort brug af diverse metoder til at bestemme mængden af Dark Charge på et enkelt billede. Vi har fået givet 10 billeder taget til en bestemt tid $t$. For hvert af disse billeder har vi bestemt en gennemsnitlig pixel-lysstyrke $\overline{x}_i$ med en associeret usikkerhed $\alpha_i $. Disse middelværdier og usikkerheder er bestemt med samme metode som i \textbf{0.0.1}. Vi har derefter fundet den vægtede middelværdi af pixel-lysstyrken på tværs af de 10 billeder. Denne beregnes via\sidenote{HH ligning (4.30)},
 \[
 	\overline{x}_w = \frac{\sum_i w_i\overline{x}_i}{\sum_i w_i} 
@@ -129,28 +184,39 @@ a = \frac{a_b}{A_b}
 \section{Read-out Noise}
 Her følger plots af de forskellige indstillinger. Vi har valgt at samle de forskellige parametre i hver deres plot og dermed undersøge den overordnede som disse parametre har på read-out noise.
 Et eksempel kunne fx være \textbf{bin-indstillingen}, hvor man gerne vil undersøge, hvad der sker, når man ændrer på bin-størrelsen. Rent plotteteknisk gøres dette ved at sortere dataet i en bestemt rækkefølge på forhånd uafhængigt af bin-indstillinge. Det betyder, at punkterne med identiske indstillinger på nær bin-indstillingen kommer til at ligge over hinanden i plottet. Derefter kan man så farvekode de forskellige bin-indstillinger, så man nemt kan se, hvordan ændringen i bins ændrer ens read-out noise. Dette kan gøres ved alle indstillinger.
-\subsubsection*{Bin-Indstilling}
+\subsection{Bin-Indstilling}
 \begin{figure}[ht]
 \centering
 \sidecaption{Plot af bins}
-\includegraphics[width = \textwidth]{../Plots/bins.png}	
+\includegraphics[width = \textwidth]{Plots/bins.png}	
 \end{figure}
 Hvis vi kigger på de røde punkter med bin-indstilling 1x1, så kan vi se, at den generelt har den laveste read-out noise over de fleste indstillinger, udover et par enkelte punkter til sidst. Men en ting man kan bide mærke i, når man kigger på de røde punkter er, at der ikke er en specielt stor fejl på værdierne. Det giver meget god meningen, fordi bin-indstillingen indvirker netop på hvor mange datapunkter der er i hvert billede. Hvis man har et højt antal datapunkter bliver ens måling mere præcis, hvilket betyder at hvert værdien af hvert datapunkt ikke flukturerer lige så meget som højrere bin-indstillinger. Hvis man så fx kigger på 20x20-indstillingen, så er der langt færre datapunkter, hvilket vil sige, at hvert datapunkt indeholder mere information. Det betyder også, at ens data bliver mere upræcis, hvilket så netop både giver anledning til en større read-out noise, men også større fejl på read-out noisen. Værdien for et datapunkt fluktuerer netop pga. af read-out noise, hvis man så har mange punkter indeholdende mindre information, så er flukturationen ikke nær så stor som et mindre antal punkter, ind
-\subsubsection*{Quality-Indstilling}
+\subsection{Quality-Indstilling}
+På quality-indstillingen ser vi at 'high-quality' næsten altid giver anledning til en lavere read-out noise end 'low-quality'. 'High-quality' giver desuden også en lavere usikkerhed på read-out noise.
 \begin{figure}[ht]
 \centering
 \sidecaption{Plot af quality}
 \includegraphics[width = \textwidth]{../Plots/quality.png}	
 \end{figure}
 
-\subsubsection*{Gain-Indstilling}
+\subsection{Gain-Indstilling} 
+Ved 'gain' indstillingen ser vi følgende forhold som er overholdt på tværs af stort set alle indstillinger,
+\[
+gH > gM < gL
+.\]
+Dette giver god mening da gain er et mål for hvor forholdt strøm målt i en bin og lysstyrken på pixelen denne oversættes til. En høj gain vil dermed betyde at der skal færre elektroner til at skabe en høj lysstyrke på billedet. Når kameraets følsomhed øges på denne måde, giver det god mening at støjen også vil blive øget.
 \begin{figure}[ht]
 \centering
 \sidecaption{Plot af gain}
 \includegraphics[width = \textwidth]{../Plots/gain.png}	
 \end{figure}
 
-\subsubsection*{Read-out-rate-Indstilling}
+\subsection{Read-out-rate-Indstilling}
+Ved 'read-out rate' finde vi følgende forhold,
+\[
+r0.1 > r1 > r4
+.\]
+Read-out rate er et mål for kameraet udlæsningnshastighed. Altså et mål for hvor meget tid kameraet bruger på oversætte hver bin til en pixel på billedet. Det giver dermed fint mening at en høj read-out rate, og dermed langsom og omhyggelig udlæsning, giver den mindst mulige read-out noise
 \begin{figure}[ht]
 \centering
 \sidecaption{Plot af read-out-rate}
@@ -171,16 +237,19 @@ Det første vi har overvejet, er hvorvidt Dark Current er uafhængig af indstill
 Fittet følger her,
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = \textwidth]{../Plots/dark_hældninger_1.png}
 	\sidecaption{Fit af Dark Charge til en konstant funktion, usikkerheden er medtaget i linjen. Hvor errorbars ikke er synlige, er usikkerheden inkluderet i punktet.}
+	\includegraphics[width = \textwidth]{Plots/dark_hældninger_1.png}
 \end{figure}
 \\
-Her er alle punkter medtaget, men punkterne med indstillingen \textbf{b1} er markeret med blå, da denne indstilling generelt opførte sig underligt. Med disse punkter medtaget, var det meget tydeligt at det konstante fit ikke fungerede. Vi undersøgte derfor om fittet blev godt når, disse indstillinger blev udelukket.
+Her er alle punkter medtaget, men punkterne med indstillingen \textbf{b1} er markeret med blå, da denne indstilling generelt gav en større usikkerhed. Vi undersøgte derfor hvordan fittet så ud når, disse indstillinger blev udelukket.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = \textwidth]{../Plots/dark_hældninger_2.png}
 	\sidecaption{Fit af Dark Charge, hvor indstilingen \textbf{b1} ikke er inkluderet.}
+	\includegraphics[width = \textwidth]{Plots/dark_hældninger_2.png}
 \end{figure}
+\\ 
+I begge tilfælde ser fittet ganske fornuftigt ud, men det er tydeligt at \textbf{b1} indstillingen giver anledning til de største usikkerhed. Vi konkluderer at Dark Current er konstant på tværs af indstillinger.
 \section{Vurdering af kamera}
 Efter analysen af ens data, kan man måske gå ind og vurdere på, om kameraet er godt nok til det forsøg, som man skal lave med det. Men det er ikke helt meningen med den her rapport
+\printbibliography
 \end{document}
