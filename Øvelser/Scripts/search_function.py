@@ -1,8 +1,11 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-df = pd.read_csv('../read-out-noise.csv', sep = ',')
+import os
+print(os.getcwd())
+os.chdir('C:/Users/123ti/Albert_Tinus/Øvelser/Projekt')
+df = pd.read_csv('read-out-noise.csv', sep = ',')
+#df = pd.read_csv('../read-out-noise.csv', sep = ',')
 data = np.array(df.values)
 
 def search(paths):

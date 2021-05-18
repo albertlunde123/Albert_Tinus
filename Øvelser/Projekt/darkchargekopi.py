@@ -1,11 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import search_function1 as se
 import pandas as pd
+import os 
+import sys
+sys.path.append('C:/Users/123ti/Albert_Tinus/Øvelser/Scripts')
+import search_function1 as se
+print(os.getcwd())
+os.chdir('C:/Users/123ti/Albert_Tinus/Øvelser/Projekt')
 import scipy.stats as ss
 import scipy.optimize as scp
 
-# fig, ax = plt.subplots(figsize = (32,16))
+fig, ax = plt.subplots(figsize = (16,8))
 
 df = pd.read_csv('dark-charge.csv', sep = ',')
 data = np.array(df.values)
@@ -29,7 +34,7 @@ def linear_fit(t, *p):
 
 def plot_DC(setting, ds, ax):
 
-    data = sort(se.search(setting, ds))
+    data = sort(se.search(setting,ds))
     ts = np.array([int(d[0].split('e')[-1].split('.')[0]) for d in data])/1000
 
     t_fit = np.linspace(ts[0], ts[-1], 100)
@@ -72,23 +77,6 @@ def find_a(setting, ds):
 
     return popt[0]/((int(b.split('b')[-1]))**2), np.sqrt(np.diag(pcov))[0]/((int(b.split('b')[-1]))**2)
 
-def find_effektiv_a(setting, ds):
-    
-    data = sort(se.search(setting, ds))
-    ts = np.array([int(d[0].split('e')[-1].split('.')[0]) for d in data])/1000
-
-    guess = [0, 600]
-    popt, pcov = scp.curve_fit(linear_fit, ts, se.noises(data), guess,
-                             bounds = ((0, 500), (0.5, 700)),
-                             sigma = se.error(data),
-                             absolute_sigma = True)
-    b = 1
-
-    for sett in setting:
-        if 'b' in sett:
-            b = sett
-
-    return popt[0], np.sqrt(np.diag(pcov))[0]
 def unique_settings(data):
     all_setts = []
     for d in data:
@@ -102,13 +90,16 @@ def unique_settings(data):
             unique_setts.append(sett)
     return unique_setts
 
+val = plot_DC(['gM', 'qH', 'b8', 'r0.1'], data, ax)
+
 # print(unique_settings(data))
 # steepness = [[find_a(uniq, data), uniq]for uniq in unique_settings(data)]
 # print(steepness)
 # print(find_a(setting[0], data))
 
-# ax.set_xlabel('', fontsize = 16)
-# ax.set_ylabel('', fontsize = 16)
-# ax.set_title('', fontsize = 16)
-# ax.legend()
-# plt.show()
+ax.set_xlabel('Tid(s)', fontsize = 16)
+ax.set_ylabel('Signal pr. pixel', fontsize = 16)
+ax.set_title('Dark current som funktion af tid', fontsize = 16)
+ax.legend()
+plt.show()
+fig.savefig('C:/Users/123ti/Albert_Tinus/Øvelser/Projekt/Latex/Plots/DarkCurrent')
