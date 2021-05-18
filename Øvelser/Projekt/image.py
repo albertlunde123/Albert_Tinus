@@ -102,12 +102,15 @@ def dark_mean(path):
     piccers = [pic.ravel() for pic in pics]
 
     means = np.zeros(len(piccers[0]))
+
     for i in range(len(piccers)):
         means += piccers[i]
-    means = means/10
-    std = np.std(pics, axis = 2, ddof = 1).ravel()
 
-    return sum([np.mean(means)/st**2 for pic,st in zip(pics, std)])/sum(1/std**2), sum(1/std**2)**(-0.5)
+    means = means/10
+
+    std = np.std(pics, axis = 0, ddof = 1).ravel()
+
+    return sum(means/std**2)/sum(1/std**2), sum(1/std**2)**(-0.5)
 
 # def dark_error(path):
 #     pics = tif_unfold(Image.open(path))

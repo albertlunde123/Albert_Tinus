@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import search_function as se
+import search_function1 as se
 import pandas as pd
 import scipy.stats as ss
 import scipy.optimize as scp

@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import os 
+import os
 import sys
-sys.path.append('C:/Users/123ti/Albert_Tinus/Øvelser/Scripts')
+# sys.path.append('C:/Users/123ti/Albert_Tinus/Øvelser/Scripts')
 import search_function1 as se
-print(os.getcwd())
-os.chdir('C:/Users/123ti/Albert_Tinus/Øvelser/Projekt')
+# print(os.getcwd())
+# os.chdir('C:/Users/123ti/Albert_Tinus/Øvelser/Projekt')
 import scipy.stats as ss
 import scipy.optimize as scp
 
@@ -41,12 +41,13 @@ def plot_DC(setting, ds, ax):
 
     guess = [0, 600]
     popt, pcov = scp.curve_fit(linear_fit, ts, se.noises(data), guess,
-                   # sigma = error,
+                   bounds = ((0, -np.inf), (np.inf, np.inf)),
+                   sigma = se.error(data),
                    absolute_sigma = True)
 
     ax.plot(t_fit, linear_fit(t_fit, *popt), 'k--')
 
-    ax.errorbar(ts, se.noises(data), color = 'r', fmt = 'o-') #, capsize = 4)
+    ax.errorbar(ts, se.noises(data), color = 'r', fmt = 'o-', markersize = 20) #, capsize = 4)
     ax.set_xlabel('Tid', fontsize = 16)
     ax.set_ylabel('Noise', fontsize = 16)
     ax.set_title('Dark Charge som funktion af tid', fontsize = 16)
@@ -90,16 +91,18 @@ def unique_settings(data):
             unique_setts.append(sett)
     return unique_setts
 
-val = plot_DC(['gM', 'qH', 'b8', 'r0.1'], data, ax)
+val = plot_DC(['gM', 'qH', 'b1', 'r1'], data, ax)
+
 
 # print(unique_settings(data))
-# steepness = [[find_a(uniq, data), uniq]for uniq in unique_settings(data)]
-# print(steepness)
+steepness = [[find_a(uniq, data), uniq]for uniq in unique_settings(data)]
+print(steepness)
 # print(find_a(setting[0], data))
 
-ax.set_xlabel('Tid(s)', fontsize = 16)
-ax.set_ylabel('Signal pr. pixel', fontsize = 16)
-ax.set_title('Dark current som funktion af tid', fontsize = 16)
+ax.set_xlabel('Tid(s)', fontsize = 26)
+ax.set_ylabel('Signal pr. pixel', fontsize = 26)
+ax.set_title('Dark current som funktion af tid', fontsize = 26)
 ax.legend()
 plt.show()
-fig.savefig('C:/Users/123ti/Albert_Tinus/Øvelser/Projekt/Latex/Plots/DarkCurrent')
+fig.savefig('Latex/Plots/DarkCurrent')
+# fig.savefig('C:/Users/123ti/Albert_Tinus/Øvelser/Projekta/Latex/Plots/DarkCurrent')

@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber Rapport"] 1621330536 "Rapport.bcf" "Rapport.bbl" "Rapport" 1621335540
-  "Rapport.bcf" 1621335439 101627 5996acbbc0a57aa5e59a44031d11c977 "pdflatex"
+["biber Rapport"] 1621330536 "Rapport.bcf" "Rapport.bbl" "Rapport" 1621342109
+  "Rapport.bcf" 1621342016 101627 5996acbbc0a57aa5e59a44031d11c977 "pdflatex"
   "bibliography.bib" 1621330489 153 2ae6281e2c8e1543ffc4218e6afe5cef ""
   (generated)
   "Rapport.blg"
   "Rapport.bbl"
-["pdflatex"] 1621335540 "Rapport.tex" "Rapport.pdf" "Rapport" 1621335540
+["pdflatex"] 1621342109 "Rapport.tex" "Rapport.pdf" "Rapport" 1621342109
   "../Plots/gain.png" 1620899663 81664 951791a7bf000c0316a1c748438d7c24 ""
   "../Plots/quality.png" 1620899692 67917 da3f5f64f9a588ccf75051b51caea998 ""
   "../Plots/read-out-rate.png" 1620899715 98003 20dd643bfe64e0f21571f7e83ca40e0b ""
@@ -263,15 +263,16 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1614346670 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1614346686 8257438 04c7c2a75a050d8d57dbec69848e99a9 ""
+  "Plots/DarkCurrent.png" 1621342109 68333 1b1b1b6b696bafe7e34afd5fe4549141 ""
   "Plots/bins.png" 1620905104 110570 f61f75ac30554735354e8c1bacd79ae3 ""
-  "Plots/dark_hældninger_1.png" 1621244186 48525 ca3f16ed8020d7a8dd9988424e3bfe81 ""
-  "Plots/dark_hældninger_2.png" 1621244186 46133 14a1cae1f10f78a8647177c3e283067d ""
-  "Rapport.aux" 1621335439 8575 8c5f69a5b9a66e45fe8a2813facf1d76 "pdflatex"
+  "Plots/dark_hældninger_1.png" 1621342013 49723 7a4e6493c23fcdd3ccc6967b54b8420e ""
+  "Plots/dark_hældninger_2.png" 1621342013 43770 6c6a1a5fcf7991ea019c56f042f07225 ""
+  "Rapport.aux" 1621342016 8786 c46e2b6e9ad48f8c261a9697c265685b "pdflatex"
   "Rapport.bbl" 1621330536 1685 10f95463fedae741b58c034264761360 "biber Rapport"
-  "Rapport.out" 1621335439 1494 c9f987a4801436fb5d95abe5726535f4 "pdflatex"
-  "Rapport.run.xml" 1621335439 2328 848c04401e8d5657a689303863c2815e "pdflatex"
-  "Rapport.tex" 1621335539 19746 0b50c927c4c8b215435cc717edc4c9f2 ""
-  "Rapport.toc" 1621335439 2762 f14e89149e7f74702ac80ae23fddf03b "pdflatex"
+  "Rapport.out" 1621342016 1494 c9f987a4801436fb5d95abe5726535f4 "pdflatex"
+  "Rapport.run.xml" 1621342016 2328 848c04401e8d5657a689303863c2815e "pdflatex"
+  "Rapport.tex" 1621339375 19899 81801eff5d1ba750e91f9c17fedaabbc ""
+  "Rapport.toc" 1621342016 2762 f14e89149e7f74702ac80ae23fddf03b "pdflatex"
   "figures/bins.pdf" 1620214304 1870 be2c385312be2918323a77b1f3764ab6 ""
   "figures/bins.pdf_tex" 1620214304 2049 a5ed05443fae0d4fdbed9f73e4697f50 ""
   "figures/read-out-noise.pdf" 1619552643 3081 60bc9344a1a14660fa136ab73d190990 ""
@@ -282,8 +283,8 @@
   (generated)
   "Rapport.toc"
   "Rapport.aux"
-  "Rapport.run.xml"
   "Rapport.out"
+  "Rapport.run.xml"
   "Rapport.log"
   "Rapport.bcf"
   "Rapport.pdf"
