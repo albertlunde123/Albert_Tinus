@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import search_function as sf
 import pandas as pd
-
+import os 
 fig, ax = plt.subplots(figsize = (16,8))
 
 df = pd.read_csv('../read-out-noise.csv', sep = ',')

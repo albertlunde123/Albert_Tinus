@@ -5,7 +5,7 @@ import pandas as pd
 
 fig, ax = plt.subplots(figsize = (16,8))
 
-df = pd.read_csv('../read-out-noise.csv', sep = ',')
+df = pd.read_csv('read-out-noise.csv', sep = ',')
 data = np.array(df.values)
 
 sf.plotter(['b1', 'b4', 'b8', 'b20'], ax)
