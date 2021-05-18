@@ -1,7 +1,7 @@
 To do
--Måske fit hældningerne til konstant fit
+-Måske fit hældningerne til konstant fit X
 -Kommentering på read-out noise
--Dark current/noise teori afsnit
+-Dark current/noise teori afsnit X
 -Kig på hældning i forhold til antal bins
 -Fodnoter
 -Litteraturliste

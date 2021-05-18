@@ -71,6 +71,8 @@ def read_out_noise(image1, image2):
 
 def series_noise(path):
 
+    factor = int(path.split('b')[-1].split('_')[0])**2
+
     pics = tif_unfold(Image.open(path))
     diff_ims = []
 
@@ -81,16 +83,37 @@ def series_noise(path):
 
     return [np.mean(diff_ims), np.std(diff_ims, ddof = 1)/np.sqrt(len(pics))]
 
+
+
+# def stds(pics):
+#     stds = []
+#     j = len(pics[0])
+#     for i in range(len(pics[0])):
+#         stds.append([np.std([pic[i] for pic in pics], ddof = 1)])
+#         j = j - 1
+#         print(j)
+#     return np.array(stds)
+
+# np.array(pics)
+
+
 def dark_mean(path):
     pics = tif_unfold(Image.open(path))
-    N = len(pics[0])
-    errs = np.array([np.std(pic.ravel(), ddof = 1)/np.sqrt(N) for pic in pics])
-    return sum([np.mean(pic.ravel())/err**2 for pic,err in zip(pics, errs)])/sum(1/errs**2)
+    piccers = [pic.ravel() for pic in pics]
 
-def dark_error(path):
-    pics = tif_unfold(Image.open(path))
-    N = len(pics[0].ravel())
-    errs = np.array([np.std(pic.ravel(), ddof = 1)/np.sqrt(N) for pic in pics])
-    err_CE = sum(1/errs**2)**(-0.5)
-    return err_CE
+    means = np.zeros(len(piccers[0]))
+    for i in range(len(piccers)):
+        means += piccers[i]
+    means = means/10
+    std = np.std(pics, axis = 2, ddof = 1).ravel()
+
+    return sum([np.mean(means)/st**2 for pic,st in zip(pics, std)])/sum(1/std**2), sum(1/std**2)**(-0.5)
+
+# def dark_error(path):
+#     pics = tif_unfold(Image.open(path))
+#     N = len(pics)
+#     pics = [pic.ravel() for pic in pics]
+#     stds = [np.std([pic[i] for pic in pics], ddof = 1) for i in range(len(pics[0]))]
+#     err_CE = sum(1/stds**2)**(-0.5)
+#     return err_CE
 

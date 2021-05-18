@@ -57,9 +57,8 @@ footskip=40pt,
 \RequirePackage{efbox}
 \titleformat{\chapter}[display]
 {\bfseries\Large\sf}
-{\filleft
-\textls{\MakeUppercase{\chaptertitlename}} \expandafter\textls\expandafter{\NUMBERstring{chapter}}}
-{5pt}
+{}
+{0pt}
 {\titlerule
 \vspace{1.5ex}%
 \filright}

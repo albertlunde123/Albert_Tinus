@@ -19,5 +19,5 @@ with open('dark-charge.csv', mode = 'w') as rod:
         print(len(os.listdir(path))-i)
         # x = image.series_noise(path + filename)
         x = image.dark_mean(path + filename)
-        y = image.dark_error(path + filename)
-        rod_writer.writerow([filename, x, y])
+        # y = image.dark_error(path + filename)
+        rod_writer.writerow([filename, x[0], x[1]])
