@@ -504,6 +504,9 @@ INPUT ./figures/bins.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmo10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmr8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmr8.tfm
+INPUT Plots/DNvsRONb1.png
+INPUT ./Plots/DNvsRONb1.png
+INPUT ./Plots/DNvsRONb1.png
 INPUT Plots/DarkCurrent.png
 INPUT ./Plots/DarkCurrent.png
 INPUT ./Plots/DarkCurrent.png
