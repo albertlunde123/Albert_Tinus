@@ -1,0 +1,152 @@
+%%%%%%%%%%%%%%%%%%%%
+%% SUPER PREAMBLE %%
+%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Fonts and stuff
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb} % math
+
+\usepackage{fancyhdr} % Header, Footer etc.
+\usepackage{adforn}
+\usepackage{efbox}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{Albert Lunde}
+\fancyfoot[R]{\efbox[margin = 10pt, topline = false, leftline = false]{\thepage\ of \pageref{LastPage}}}
+
+\renewcommand{\headrule}{%
+	\hrulefill
+}
+\renewcommand{\footrulewidth}{0pt}
+
+%% Margin Control %%
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% figure support
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage[dvipsnames]{xcolor}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikzsymbols} % Symbols
+\usepackage[framemethod=TikZ]{mdframed} % Boxes around theorem environments
+\usepackage{thmtools}
+
+
+% Exercise environment with surrounding box
+
+\declaretheoremstyle[
+name=\textcolor{green!50!black}{Exercise},
+    postheadspace = \newline,
+    spacebelow = 10pt,
+    mdframed={
+  backgroundcolor = green!15,
+  linecolor = green!50!black,
+  linewidth = 1pt,
+  rightline =  false,
+  topline = false,
+  bottomline = false,
+  skipabove=0pt,
+  skipbelow=20pt,
+  innerleftmargin=15pt,
+  innertopmargin=10pt,
+  innerrightmargin=15pt,
+  innerbottommargin=10pt}
+]{exercise}
+\declaretheorem[style=exercise,numbered=no]{exercise}
+
+\declaretheoremstyle[
+name=\textcolor{pink!60!purple}{Subexercise},
+    postheadspace = \newline,
+    spacebelow = 10pt,
+    mdframed={
+  backgroundcolor = pink!25,
+  linecolor = pink!60!purple,
+  linewidth = 1pt,
+  rightline =  false,
+  topline = false,
+  bottomline = false,
+  skipabove=0pt,
+  skipbelow=20pt,
+  innerleftmargin=15pt,
+  innertopmargin=10pt,
+  innerrightmargin=15pt,
+  innerbottommargin=10pt}
+]{subexercise}
+
+\declaretheoremstyle[
+    name=Note,
+    postheadspace = \newline,
+    postheadhook={\textcolor{black}{\rule[.6ex]{\linewidth}{1pt}}\\},
+    spacebelow = 10pt,
+    mdframed={
+  backgroundcolor = yellow!10,
+  skipabove=0pt,
+  skipbelow=20pt,
+  innerleftmargin=15pt,
+  innertopmargin=10pt,
+  innerrightmargin=15pt,
+  innerbottommargin=10pt}
+]{margin}
+\declaretheorem[style=subexercise,numbered=no]{subexercise}
+
+% Solution environment, with coffee cup
+
+% \newenvironment{solution}
+%  {\renewcommand\qedsymbol{\tikzsymbolsuse{Coffeecup}}\begin{proof}[Solution]}
+ % {\end{proof}}
+
+\newenvironment{solution}
+{%
+	\textbf{\textcolor{gray}{Solution:}}
+}%
+{%a
+	\hfill\textbf{\textcolor{red}{\tikzsymbolsuse{Coffeecup}}}
+}%
+
+% Subexercise enviroment
+%  \newenvironment{subexercise}[1]
+%  {
+% 	\begin{changemargin}{1.0cm}{1.0cm}
+% 	\textbf{(#1)}\em
+% 	}{
+	% \end{changemargin}
+	% } 
+
+ % \newenvironment{subexercise}[1]
+ % {\noindent
+	 % \textbf{(#1)} \quad \adforn{10} \quad \em
+ % }{}
+
+% Mathematical typesetting stuff.
+
+ \newcommand{\dd}{\mathrm{\textbf{d}}}
+
+ % Change font
+
+\usepackage{tgadventor}
+\usepackage{cmbright}
+\usepackage{bm}
+
+
+
+
+

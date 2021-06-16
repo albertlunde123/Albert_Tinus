@@ -1,0 +1,286 @@
+\input{../preamble.tex}
+\title{\vspace{-1cm}\efbox[margin = 15pt]{\textbf{Juni - 2020}}\vspace{-1cm}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\begin{exercise}[Opgave 1]
+	Vi betragter det elektrostatiske arrangement vist på Figur 1. En metalkugle med radius $a$ bærer en ladning $Q_1$. En sfærisk metalskal, koncentrisk med kugle og med indre og ydre radii $b$ og $c$, bærer en samlet ladning $Q_2$. Der er vakuum i områderne $a<r<b$ og $r>c$, hvor $r$ er afstanden til kuglens centrum. Den dielektriske permittivitet er lig $\epsilon_0$ overalt.\\
+	Ladningerne $Q_1$ og $Q_2$ afhænger af en positiv ladning $q$ og dit studienummers sidste tal $N\, \left( 0 \le N\le 9) $ på følgende måde,
+		\[
+		\begin{cases}
+			Q_1 = -q\, Q_2 = 2q \quad 0\le N\le 4\\
+			Q_1 = 2q\, Q_2 = -q \quad 5\le N\le 9
+		\end{cases}
+		.\] 
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{opgave1}
+    \caption{Opgave 1}
+    \label{fig:opgave1}
+\end{figure}
+\begin{subexercise}[a]
+	Bestem overfladeladningstæthederne i $r=a$, $r=b$ og $r=c$, som funktioner af $q$.\\
+	Bestem retningen og størrelsen af det elektriske felt i områderne $r<a$, $a<r<b$, $b<r<c$ og $r>c$.
+\end{subexercise}
+\begin{solution}
+	I punktet $a$, er der
+	 \[
+	\sigma_a = \frac{-q}{4\pi a^2} 
+	.\] 
+	Da ladningen i en leder sidder på dennes overflade.
+	\[
+	\sigma_b = \frac{q}{4\pi b^2}
+	.\] 
+	Da den totale ledning i den store leder skal være $0$.
+	 \[
+	\sigma_c = \frac{q}{4\pi c^2}
+	.\] 
+	Den totale ladning i den store leder er $2q$. Der sidder $q$ pa indersiden, sa de resterende $q$ ma sidde pa ydersiden. De elektrise felter er givet saledes;
+	\[
+		E =
+	\begin{cases}
+		0 & r<a \\
+		\frac{1}{4\pi\epsilon_0}\frac{q}{r^2} & a<r<b \\
+		0 & b<r<c \\
+		\frac{1}{4\pi\epsilon_0} \frac{q}{r^2} & r>c
+	\end{cases}
+	.\] 
+	Da det elektriske felt inde i en leder er $0$ og det elektriske omkring en sfare kan betragtes som en punktladning. 
+\end{solution}
+\\
+\begin{exercise}[Opgave 2]
+	Tre punkladninger ligger stationært i $(xy)$-planen som vist på Figur 2. Deres
+ladninger afhænger af en positiv ladning q og dit studienummers sidste
+tal $N$ på følgende måde:
+\begin{itemize}
+	\item  Hvis $N$ er lige, er $(q_1 , q_2 , q_3 ) = (2q, q, q)$
+	\item  Hvis N er ulige, er $(q_1 , q_2 , q_3 ) = (−q, q, q)$
+\end{itemize}
+Den dielektriske permittivitet er lig $\epsilon_0$ overalt.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{opgave2}
+    \caption{Opgave2}
+    \label{fig:opgave2}
+\end{figure}
+\begin{subexercise}[a]
+Bestem komposanterne $F_x$ og $F_y$ af den elektrostatiske kraft udøvet på $q_3$ af $q_1$ og $q_2$. \\
+Bestem det arbejde der kræves af en ekstern operator for at anbringe $q_3$ fra uendelig langt væk til der hvor den er.
+\end{subexercise}
+\begin{solution}
+Jeg bruger følgende formel til at bestemme den totale kraft,
+\[
+F = \frac{1}{4\pi\epsilon_0} \frac{\|q_1q_2\|}{r^2}
+.\] 
+Som er kraften på en punktladning $q_1$ fra $q_2$. Den totale kraft i hver retning være summen af kraften fra hver ladning.
+\[
+F_X = F_{q_1x} + \frac{1}{4\pi\epsilon_0}\frac{q^2}{b^2}
+.\]
+Alt kraft fra $q_2$ virker i x-retningen.
+\[
+F_X = \frac{q^2}{4\pi\epsilon_0a^2} \left( \cos\left( 315 \right) + 1 \right) 
+.\]
+Jeg har beregnet den totale kraft og splittet den op i dens bestanddele.
+\[
+	F_Y = \frac{q^2}{4\pi\epsilon_0a^2} \sin\left( 315 \right) 
+.\]
+Arbejdet der skal til for at flytte ladningen er,
+ \begin{align*}
+	W_{\infty \to a} = U_{\infty} - U_a = -U_a.
+.\end{align*}
+Dermed det negative af ladningens potentiale. Potentialet regnes på følgende måde.
+\[
+U = \frac{q_0}{4\pi\epsilon_0}\sum_i \frac{q_i}{r_i}
+.\]
+Dette giver, 
+\[
+W_{\infty\to a} = -U_a = -\frac{q^2}{4\pi\epsilon_0a^2}\left( \sqrt{2} +1 \right) 
+.\] 
+\end{solution}
+\newpage
+\begin{exercise}[Opgave 3]
+	Vi betragter kredsløbet vist på Figur 3, som består af en ideel emk kilde $\mathcal{E} $, to kapacitorer hver med kapacitans $C$, og tre modstande. Modstanden $R_0$ er lig $\left( N+1 \right) R$, hvor $N$ er dit studienummers sidste tal. Til tiden $t=0$ er kapacitoren afladt og sluttes, således at en strøm $i$ løber i kredsløbet.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave3}
+    \caption{opgave3}
+    \label{fig:opgave3}
+\end{figure}
+\begin{subexercise}[a]
+Bestem strømmen $i$
+ \begin{itemize}
+	 \item[(i)] lige efter kontakten sluttes og,
+	 \item [(ii)] når $t\to \infty$
+\end{itemize}
+Bestem den endelige ladning der sidder på hver kapacitors positive elektrode når $t\to \infty$.
+\end{subexercise}
+\begin{solution}
+Lige efter kontakten sluttes kan kapacitoren betragtes som en almindelig ledning. Strømmen er dermed blot,
+\[
+I = \frac{\mathcal{E} }{R} 
+.\] 
+Hvor $R$ er en ækvivalent resistor, med resistans,
+ \[
+R = 3R + \left( \frac{1}{R}+\frac{1}{R} \right) ^{-1} = \frac{7}{2}R
+.\]
+Dermed,
+\[
+I = \frac{2}{7}\frac{\mathcal{E} }{R}
+.\]
+Når $t\to \infty$ vil der ikke længere være strøm gennem kapacitorerne. Der vil kun være strøm gennem det yderste loop. Der løber dermed ingen strøm gennem den inderste resistor. Vi kan derfor konstruerer en ækvivalent resistor på samme måde som i den foregående opgave.
+\[
+I = \frac{\mathcal{E} }{4R}
+.\]
+Til at beregne ladningen på hver kapacitor bruger jeg,
+\[
+Q = CV
+.\] 
+Da vi et parallelt kredsløb med samme resistans, vil spændingsfaldet over capacitoren være identisk med spændsfaldet over den yderste del af kredsløbet.
+\[
+V = I \cdot R = \frac{\mathcal{E} }{4}
+.\] 
+Vi betragter en ækvivalent kapacitor $C_{eq}$. Denne har kapacitans
+\[
+C_{eq} = \left( \frac{1}{C}+\frac{1}{C} \right) ^{-1} = \frac{C}{2}
+.\]
+Ladningen på $C_{eq}$ er derfor,
+\[
+Q = \frac{C}{2}\frac{\mathcal{E} }{4} = \frac{C\mathcal{E} }{8}
+.\] 
+Da de reelle kapacitorer sidder i serie, vil de have den samme ladning
+\[
+Q_1, Q_2 = \frac{C\mathcal{E} }{8}
+.\]
+\end{solution}
+\\
+\begin{exercise}[Opgave 4]
+Vi betragter det magnetostatiske arrangement vist på Figur 4, hvori en konstant strøm $I$ løber i et kredsløb dannet af halvcirkelbue med radius $R$ og to lige ledninger med længde $R\sqrt{2}$ hver især. Den magnetiske permebealitet er lig $\mu_0$ overalt.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave4}
+    \caption{Opgave4}
+    \label{fig:opgave4}
+\end{figure}
+\begin{subexercise}[a]
+Bestem retning og størrelse af det magnetiske felt af kredsløbet i punktetmk $O$.\\
+Angiv retning og størrelse af det magnetiske dipolmoment  $\vec{\mathbf{u}} $.
+\end{subexercise}
+\begin{solution}
+Vi udregner det elektriske skabt af de forskellige dele af kredsløbet. Først regnes den cirkulære del. Følgende formel anvendes.
+\[
+\vec{\mathbf{B_c}} = \int \dd \vec{\mathbf{B_c}} = \frac{\mu_0}{4\pi}\frac{I}{R^2} \int_{0}^{\pi R} \dd \vec{\mathbf{l}} \times \hat{r}\, 
+.\]
+Dette integral løses og vi bemærker at $\dd \vec{\mathbf{l}} $ er ortogonal med $\hat{r}$
+\begin{align*}
+	\frac{\mu_0}{4\pi}\frac{I}{R^2} \int_{0}^{\pi R} \dd \vec{\mathbf{l}} \times \hat{r} = \frac{\mu_0}{4\pi}\frac{I}{R^2} \int_{0}^{\pi R} \dd \vec{\mathbf{l}} = \frac{\mu_0I}{4R}
+.\end{align*}
+Til denne lige del af kredsløbet bruges approksimationen,
+\[
+\vec{\mathbf{B}}  = \frac{\mu_0I}{2\pi R^2}
+.\]
+Da vi har 2 af disse ledere, hver i en afstand $R$, bliver det
+ \[
+\vec{\mathbf{B}} = \frac{u_0I}{\pi R} 
+.\]
+Det totale magnetfelt findes ved at summe disse,
+\[
+\vec{\mathbf{B}} = \frac{\mu_0I}{R}\left( \frac{1}{4} + \frac{1}{\pi} \right) 
+.\]
+Magnetfeltet peger ud af siden. Størrelsen af det magnetiske dipolmoment er,
+\[
+\mu = IA = R^2I\left( 1 + \frac{\pi}{2} \right)
+.\] 
+Dette peger også ud af siden.
+\end{solution}
+\newpage
+\begin{exercise}[Opgave 5.]
+En rektangulær sløje ligger stationært i $\left( xy \right) $-planen. Når $t\ge 0$ bliver den påsat et tidsafhængigt og inhomogent magnetisk felt givet ved
+\[
+\vec{\mathbf{B}} \left( t \right) = Ce^{\frac{t}{\tau}}\left( Nz \hat{i}+8x \hat{k} \right) 
+.\]
+Den magnetiske permeabilitet er $\mu_0$ og sløjfens modstand er $R$.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave5}
+    \caption{Opgave5}
+    \label{fig:opgave5}
+\end{figure}
+\begin{subexercise}[a]
+Angiv størrelse og retning af den inducerede strøm.
+\end{subexercise}
+\begin{solution}
+Den inducerede strøm i sløjfen er givet ved,
+\[
+\mathcal{E} = -\frac{\dd \Phi}{\dd  t}
+.\]
+Vi starter med at beregne den magnetiske flux. Først betragtes et lille areal segment
+\[
+\dd A = b \cdot \dd x
+.\]
+Da magnetfeltet ikke varierer over $y$, er magnetfeltet konstant over dette element. Fluxen gennem dette segment til tiden $t$, beregnes til at være,
+ \[
+\dd \Phi \left( t \right) = Ce^{\frac{t}{\tau}}8x \cdot \left( b\dd x \right)  
+.\]
+Hvor $\hat{i}$ delen af udtrykket kan udelades, da det kun er den ortogonale del af magnetfeltet som spiller en rolle. Den totale flux beregnes nu ved at integrerer dette over $x$.
+ \[
+\Phi\left( t \right) = \int_{0}^{a} Ce^{\frac{t}{\tau}}8x \cdot \left( b\dd x \right)  = 4Ce^{t / \tau}ba^2
+ \, 
+.\]
+Nu findes den tidsafledte,
+\[
+\mathcal{E} = -\frac{4}{\tau} Ce^{t / \tau}ba^2
+.\]
+Pr. lenz lov går magnetfeltet med uret.
+\end{solution}\\
+\begin{exercise}[Opgave 6]
+E-feltets størrelse og retning i en elektromagnetisk planbølge der udbreder
+sig i et dielektrika med brydningsindex $n_a$ og relativ permeabilitet $K_m = 1$ er
+givet ved $\vec{\mathbf{E}} _i\left( x,t \right) = \hat{j}\vec{\mathbf{E}} _i\cos\left( k_ax-\omega t \right) $. Dielektrika’et i den halvdel af rummet der er givet ved $x > 0$, erstattes nu af et nyt dielektrika med brydningsindex $n_b$.
+\begin{itemize}
+	\item $n_a = 4$
+	\item $n_b = 3$
+\end{itemize}
+Vi betragter den indkommende og den reflekterede bølge i dieletrikaet for $x < 0$, hvor brydningsindekset er $n_a$ .
+\end{exercise}
+\begin{subexercise}[i]
+Bestem permitiviteten, $\epsilon$, permeabiliteten, $\mu$, og bølgehastigheden, $v$, i dielektrikaet for $x>0$.
+\end{subexercise}
+\begin{solution}
+
+\end{solution}
+\begin{subexercise}[ii]
+Opskriv et udtryk for det magnetiske felt i den indkommende bølge i dielektrikaet
+\end{subexercise}
+\begin{solution}
+
+\end{solution}
+\begin{subexercise}[iii]
+En del af den indkommende bølge reflekteres ved overgangen mellem de to dielektrika i $x=0$ som angivet i formel 35.16. Opskriv udtryk for det elektriske og magnetiske felt i den reflekterede bølge, idet amplituderne udtrykkes ved $E_i$
+\end{subexercise}
+\begin{solution}
+
+\end{solution}
+\begin{subexercise}[iv]
+Bestem intensiteten af den indkommende, $I_i$ , den reflekterede, $I_r$ , og den totale elektromagnetiske bølge, $I_{tot}$ , for $x<0$.
+\end{subexercise}
+\begin{solution}
+
+\end{solution}
+\begin{exercise}[Opgave 7.]
+
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave7}
+    \caption{Opgave7}
+    \label{fig:opgave7}
+\end{figure}
+\end{document}
