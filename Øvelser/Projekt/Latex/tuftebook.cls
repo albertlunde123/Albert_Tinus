@@ -27,7 +27,7 @@ left=42pt,
 top=40pt,
 textwidth=340pt,
 marginparsep=20pt,
-marginparwidth=180pt,
+marginparwidth=280pt,
 textheight=730pt,
 footskip=40pt,
 }

@@ -1,0 +1,315 @@
+\input{../preamble.tex}
+\title{\vspace{-1cm}\efbox[margin = 15pt]{\textbf{Juni - 2015}}\vspace{-1cm}}
+\author{}
+\date{}
+
+\begin{document}
+\pagecolor{color1}
+\maketitle
+\thispagestyle{fancy}
+\begin{exercise}[Opgave 1]
+	Vi betragter to koncentriske metalkugleskaller i vakuum, som vist på figuren. Den indre skal $\left( a_1 < r <a_2 \right) $ bærer en ladning $Q_1$ og den ydre skal bærer en ladning $Q_2$. Vi antager at den dielektriske konstant $K$ er lig $1$ overalt, hvor der ikke er metal.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave1}
+    \label{fig:opgave1}
+\end{figure}
+\begin{subexercise}[a]
+Bestem størrelse og retning af det elektriske felt i områderne $r<a_1$, $a_1<r<a_2$, $a_2<r<b_1$, $b_1<r<b_2$ og $r>b_2$
+\end{subexercise}
+\begin{solution}
+	\begin{itemize}
+		\item[$r<a_1$:]
+			Indenfor for skallerne er det elektriske felt altid $0$.
+		\item[$a_1<r<a_2$:]
+			Det elektriske felt er altid $0$ inde i en konduktor.
+		\item[$a_2<r<b_1$:]
+			Udenfor skallen, kan denne betragtes som en punktladning centreret i origo med ladning $Q_1$. Det elektriske bliver således,
+			\[
+				\vec{\mathbf{E}} (r) = \frac{1}{4\pi\epsilon_0}\frac{Q_1}{r^2}\hat{r}
+			.\] 
+		\item[$b_1<r<b_2$:]
+			Det elektriske felt er altid $0$ inde i en konduktor.
+		\item[$r>b_2$:]
+			Nu påvirker begge skaller det elektriske felt. Så det elektriske felt bliver,
+			\[
+				\vec{\mathbf{E}} (r) = \frac{1}{4\pi\epsilon_0}\frac{Q_1+Q_2}{r^2}\hat{r}
+			.\] 
+	\end{itemize}
+\end{solution}
+\begin{subexercise}[b]
+	Bestem overfladeladningstæthederne på de fire overflader.
+\end{subexercise}
+\begin{solution}
+Hvis jeg ligger en gauss-sfære med overflade i midten af den inderste skal, skal den totale indeholdne ladning være $0$. Dette medfører at,
+ \[
+\sigma_{a_1} = 0
+.\] 
+Den resterende ladning $Q_1$ må derfor sidde på den ydre side. Dermed,
+\[
+\sigma_{a_2} = \frac{Q_1}{4\pi a_2^2}
+.\]
+Hvis jeg nu lægger min gauss-sfære så dennes overflade ligger i midten af den ydre skal, må der igen gælde at den totale indeholdne ladning er 0. Der skal derfor ligge $-Q_1$ på den indre side.
+\[
+\sigma_{b_1} = \frac{-Q_1}{4\pi b_1^2}
+.\]
+Den resterende ladning $Q_2 - (-Q_1) = Q_2+Q_1$ må derfor ligge på den ydre side.
+\[
+\sigma_{b_2} = \frac{Q_2+Q_1}{4\pi b_{2}^2}
+.\] 
+\end{solution}
+\begin{exercise}[Opgave 2]
+	Vi betragter to koaksiale cylinderer  som vist ooå figuren. Der løber konstante positive strøne $I_1$ og $I_2$ i områderne $0<r<a$ og $b<r<c$, henholdsvis. Der er vakuum i områderne  $a<r<b$ og $r>c$, og den relative magnetiske permittivitet $K_m$ er lig 1 overalt. Strømtætheden er givet som,
+	\[
+	J\left( r \right) = \begin{cases}
+		-\alpha r \quad &\left( 0<r<a \right) \\
+		0 \quad &\left( a<r<b \right) \\
+		\alpha r \quad &\left( b<r<c \right) \\ 
+		0 \quad &\left(r>c \right) 
+	\end{cases}
+	.\]
+	Hvor $\alpha $ er en positiv konstant.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave2}
+    \label{fig:opgave2}
+\end{figure}
+\begin{subexercise}[a]
+Bestem $I_1$ og $I_2$ udtrykt ved konstant $\alpha $ og dimensionerne $a$, $b$ og $c$.
+\end{subexercise}
+\begin{solution}
+Jeg betragter infinitesimale cirkelstykke, da jeg ved at strømtætheden gennem disse er konstant. Jeg beregner gennem et vilkårligt element og integrerer. Strømmen gennem et cirkelstykke i en afstand $r$ er lig,
+ \[
+dI\left( r \right) = J\left( r \right) 2\pi r \dd r
+.\] 
+Nu beregner jeg $I_1$ ved at integrer over $0 \to a$.
+\[
+I_1 = \int_0^{a} \dd I = -\alpha 2\pi \int_{0}^{a} r^2\, \dd r = -\alpha 2\pi \frac{1}{3}a^{3} = -\alpha\pi \frac{2}{3} a^3
+.\]
+Jeg beregner $I_2$ ved at integrerer over $b \to c$.
+\[
+	I_2 = \alpha 2\pi\int_{b}^{c} r^2\, \dd r = \alpha\pi \frac{2}{3}\left( c^{3} - b^3 \right) 
+.\] 
+\end{solution}
+\begin{subexercise}[b]
+Bestem størrelse og retning af det magnetiske felt i områderne $0<r<a$, $a<r<b$, $b<r<c$ og $r>c$. Hvordan skal dimensioner $a $, $b$ og $c$ vælges så det magnetiske felt er nul udenfor kablet?
+\end{subexercise}
+\begin{solution}
+Det magnetiske felt udenfor en leder er givet på følgende måde,
+\[
+B = \frac{\mu_0 I}{2\pi r}
+.\] 
+Retningen er $\vec{\mathbf{I}} \times \hat{r} = \frac{\vec{\mathbf{B}} }{\|B\|}$. Jeg skal altså blot bestemme størrelsen på strømmen i de gældende områder.
+\begin{itemize}
+	\item[$0<r<a$]
+		I denne region er mængden af strøm,
+		 \[
+		I\left( -\alpha\pi\frac{2}{3}r^3 \right) 
+		.\] 
+		Magnetfeltet bliver da,
+		\[
+		B = \frac{-\mu_0 \alpha}{3} r^2
+		.\]
+	\item[$a<r<b$]
+		I denne region er strømmen uafhængig af $r$. Magnetfeltets størrelse bliver,
+		\[
+		B = \frac{-\mu_0 \alpha}{3} \frac{a^3}{r}
+		.\] 
+	\item[$b<r<c$]
+		I denne region skal jeg både tage højde for strømmen igennem den inderste cylinder og den igennem den yderste cylinder. Strømmen igennem den yderste er,
+		 \[
+		\alpha\pi \frac{2}{3}\left( r^{3} - b^3 \right) 
+		.\] 
+		Den totale er dermed,
+		\[
+		I_{tot} = \alpha\pi \frac{2}{3}\left( r^{3} - b^3 \right)  -\alpha\pi \frac{2}{3} a^3 = \alpha \pi \frac{2}{3}\left( r^3-b^3-a^3 \right)  
+		.\] 
+		$B$-feltet er dermed,
+		 \[
+		B = \frac{\mu_0\alpha }{3}\frac{\left( r^3-b^3-a^3 \right) }{r}
+		.\] 
+	\item[$r>c$]
+		Her er $B$-feltet,
+		\[
+		B = \frac{\mu_0\alpha }{3}\frac{\left( c^3-b^3-a^3 \right) }{r}
+		.\]
+\end{itemize}
+Hvis $B$-feltet skal være $0$, må der gælde at,
+ \[
+c ^3 - b^3 - a^3 = 0
+.\] 
+\end{solution}
+\begin{exercise}[Opgave 3]
+To punktladninger i vakuum, hver med en negativ ladning $-Q$, er stationære på $y$-aksen ved $y = \pm a$. En tredje punktladning med positiv ladning $q$ og masse $m$, som til tiden $t=0$ befinder sig i hvile på $x$-aksen ved $x=-5a$, er tiltrukket af de to faste ladninger. Der ses bort fra de andre kræfter.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.6]{opgave3}
+    \label{fig:opgave3}
+\end{figure}
+\begin{subexercise}[a]
+Hvad er den tredje partikels hastighed, når den passerer origo?
+\end{subexercise}
+\begin{solution}
+	Jeg beregner den tredje partikels elektriske potentiale i dens nuværende position og ved origo. Energiforskellen vil blive omdannet til kinetisk energi. I startpositionen har partikel $q$ potentialet.
+	 \[
+		 U_0 = \frac{q}{4\pi\epsilon_0}\left( \frac{-2Q}{\sqrt{25a^2 + a^2} } \right) = \frac{q}{4\pi\epsilon_0}\left( \frac{-2Q}{\sqrt{26}a } \right) 
+	.\]
+	I slutpositionen har den potentialet,
+	\[
+	U_1 = \frac{q}{4\pi\epsilon_0}\left( \frac{-2Q}{a} \right) 
+	.\] 
+	Forskellen mellem disse størrelser, vil være tilvæksten i kinetisk energi.
+	\[
+	\Delta U = -\Delta K
+	.\]
+	Denne beregnes,
+	\[
+		\Delta U = U_1 - U_0 = \frac{q}{4\pi\epsilon_0}(-2Q)\left( \frac{\sqrt{26} -1 }{\sqrt{26}a }  \right) 
+	.\]
+	Da partiklen var i hvile inden må der også gælde at,
+	\[
+	\Delta K = \frac{1}{2}mv^2
+	.\] 
+	Jeg sætter det lig hinanden og isolerer på $v$.
+	 \begin{align*}
+		 \frac{1}{2}mv^2 &= \frac{qQ}{2\pi\epsilon_0a}\left( 1 - \frac{1}{\sqrt{26} } \right) \\
+		v &= \sqrt{\frac{qQ}{\pi\epsilon_0am}\left( 1 - \frac{1}{\sqrt{26} } \right) }  \\
+	.\end{align*}
+\end{solution}\\
+\begin{exercise}[Opgave 4]
+Vi betragter to uendelige, stationære ledninger, som vist på Figur 4. Ledning 1 er parallel med x-aksen og krydser (yz)-planen i punktet $(0, −a, −a)$. Ledning 2 er parallel med z-aksen og krydser (xy)-planen i punktet $(a, a, 0)$. En konstant strøm I løber i ledning 1 i den negative x-retning og i ledning 2 i den positive z-retning.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{opgave4}
+    \label{fig:opgave4}
+\end{figure}
+\begin{subexercise}[a]
+Vis at det magnetiske felt i origo kan skrives som $\vec{\mathbf{B}} _O = \beta I\left( \hat{i}-\hat{k} \right) $, hvor $\hat{i}$ og $\hat{k}$ er $x$- og $z$-aksers enhedsvektorer og angiv konstanten $\beta $. 
+\end{subexercise}
+\begin{solution}
+Magnetfeltet fra den der er parallel med $z$-aksen har en $x$-komponent og $y$-komponent. På vektorform ser den ud på følgende måde.
+ \[
+B_1 = \frac{mu_0I}{4\pi a}\begin{pmatrix}1 \\ -1 \\ 0\end{pmatrix} 
+.\]
+Jeg har gjort brug af at størrelsen af magnetfeltet er $\mu_0I / 2\sqrt{2} \pi$, og at splittes op med $\sqrt{2}$.
+Magnetfeltet fra den anden er.
+ \[
+B_1 = \frac{mu_0I}{4\pi a}\begin{pmatrix}0 \\ 1 \\ -1\end{pmatrix} 
+.\].
+Summen af disse er det resulterende magnetfelt
+\[
+\vec{\mathbf{B}}_{res} = \frac{mu_0I}{4\pi a} \begin{pmatrix}1 \\ 0 \\ -1  \end{pmatrix} = \frac{\mu_0 I}{4\pi a}\left( \hat{i}- \hat{k} \right)  
+.\] 
+\end{solution}
+\begin{subexercise}[b]
+En lille cirkulær strømkreds med areal $A$ ligger i origo i $\left( xy \right) $-planen. Vi antager, at det magnetiske felt $\vec{\mathbf{B}} _O = \beta I\left( \hat{i}-\hat{k} \right) $ er uniformt over hele strømkredsens udstrækning, da denne er meget lille. for $t>0$ reduceres strømmen i de to ledninger til $I\left( t \right) = I_0e^{-\alpha t}$, hvor $I_0$ og $\alpha $ er positive konstanter. Strømkredsens modstand er $R$.
+\end{subexercise}
+\begin{solution}
+Jeg behøver kun at betragte den del af magnetfeltet der er vinkelret på strømkredsen. Dette er netop,
+\[
+B = \beta I\left( t \right)  \left( -\hat{k} \right) 
+.\]
+Fluxen gennem strømkredsen bliver så,
+\[
+\Phi_B = -\beta I\left( t \right)  A
+.\] 
+Nu skal jeg differentierer dette udtryk mht. $t$.
+ \begin{align*}
+	\frac{\dd \Phi_B}{\dd t }= \alpha \beta I_0e^{-\alpha t}A
+.\end{align*}
+Den inducerede strøm er dermed,
+\[
+I'\left( t \right) = \frac{\alpha \beta I_0e^{-\alpha t}A}{R}
+.\] 
+Denne strøm er med uret.
+\end{solution}
+\begin{subexercise}[c]
+Bestem det magnetiske kraftmoment udøvet af $B$-feltet på strømkredsen og beregn strømkredsens magnetiske potentielle energi.
+\end{subexercise}
+\begin{solution}
+Jeg starter med at beregne kraftmomentet, jeg bruger at det magnetiske dipolmoment er givet som,
+\[
+\vec{\mu} = I'\left( t \right) A\hat{k}
+.\] 
+\begin{align*}
+	\tau &= \vec{\mu} \times \vec{\mathbf{B}} \\
+	&= \left( I'\left( t \right) A\hat{k} \right) \times \left( \beta I\left( t \right) \left( \hat{i}-\hat{k} \right)  \right)  \\
+	&= I'\left( t \right) A\hat{k} \times \beta I\left( t \right) \hat{i}\\
+	&= I'\left( t \right) I\left( t \right) A\beta \hat{j} \\
+.\end{align*}
+Til at bestemme den potentielle energi bruger jeg,
+\[
+U = -\mu \cdot  \vec{\mathbf{B}} 
+.\] 
+\end{solution}
+\begin{exercise}[Opgave 5]
+Vi betragter kredsløbet vist på Figur 5, som består af en ideel emf kilde $\mathcal{E} $, to modstande, en ideel spole og tre kapacitorer.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave5}
+    \caption{Opgave5}
+    \label{fig:opgave5}
+\end{figure}
+\begin{subexercise}[a]
+Reducer kredsløbet til et ækvivalent $RLC$-kredsløb. Tegn dette og angiv $R_eq$ og $C_eq$.
+\end{subexercise}
+\begin{solution}
+Jeg starter med at beregne de to størrelser,
+\[
+R_eq = \left( \frac{1}{R} + \frac{1}{R} \right) ^{-1} = \frac{R}{2}
+.\] 
+og kapacitansen er,
+\[
+C_eq = \left( \frac{1}{2C} + 1C \right)^{-1} = \frac{2}{3}C
+.\]
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{opgave5a}
+    \label{fig:opgave5a}
+\end{figure}
+\end{solution}
+\begin{subexercise}[b]
+	Kontakten sluttes ved tiden $t=0$. Strømmene $i_1$ og $i_2$ løber igennem kredsløbet som indikeret på figuren\\
+	Bestem $i_1$ og $i_2$ til tiden $t=0$, lige efter kontakten sluttes. Når $t \to \infty$ bliver strømmene $i_1$ og $i_2$ konstante. Bestem deres værdier.
+\end{subexercise}
+\begin{solution}
+Til tiden $t=0$ løber der ingen strøm igennem induktoren, da denne opfører sig som en resistor med uendelig resistans. Kapacitorerne opfører sig derimod som almindelig ledning. Strømmen $i_2$ er dermed blot lig den totale strøm i kredsløbet.
+\[
+	i_2 = \frac{\mathcal{E} }{R_{eq}} 
+.\]
+til tiden $t=\infty$ er situationen omvendt, induktoren er ledning og kapacitoren har uendelig resistans.
+ \[
+i_1 = \frac{\mathcal{E} }{R_{eq}}
+.\] 
+\end{solution}
+\begin{exercise}[Opgave 6]
+En kapacitor består af to parallelle plader. Pladernes udstrækning er
+langt større end deres indbyrdes afstand. Pladerne befinder sig i vakuum og
+kan bevæge sig uden friktion langs x-aksen. De er forbundet til to ledende
+fjedre, se Figur 6. Punkterne $a$ og $b$ er stationære. Vi antager at Hookes lov
+gælder for fjedrene, og at de har samme fjederkonstant k. I udgangssituatio-
+nen er fjedrene i hvile, afstanden mellem pladerne er d og kapacitoren, med
+kapacitans $C$, er afladt. På et tidspunkt forbindes kapacitoren til en ideel
+emf kilde med elektromotorisk kraft $\mathcal{E} $ ved at slutte kontakten. Når systemet
+senere er faldet til ro med kapacitoren opladt, er afstanden mellem pladerne
+halveret.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave6}
+    \label{fig:opgave6}
+\end{figure}
+\begin{subexercise}[a]
+Angiv kapacitorens kapacitans når systemet er faldet til ro, udtrykt ved
+kapacitorens oprindelige kapacitans $C$. Hvad er pladernes ladning i denne
+situation?
+\end{subexercise}
+\begin{solution}
+
+\end{solution}
+\end{document}

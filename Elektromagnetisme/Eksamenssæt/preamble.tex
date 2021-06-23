@@ -37,6 +37,11 @@
 \usepackage{transparent}
 \usepackage[dvipsnames]{xcolor}
 
+\definecolor{color1}{HTML}{F1F7EE}
+\definecolor{color2}{HTML}{B0BEA9}
+\definecolor{color3}{HTML}{92AA83}
+\definecolor{color4}{HTML}{E0EDC5}
+
 \newcommand{\incfig}[2][1]{%
     \def\svgwidth{#1\columnwidth}
     \import{figures/}{#2.pdf_tex}
@@ -54,17 +59,19 @@
 % Exercise environment with surrounding box
 
 \declaretheoremstyle[
-name=\textcolor{green!50!black}{Exercise},
+name=\textcolor{color4}{Exercise},
     postheadspace = \newline,
+    preheadhook = \color{color2},
     spacebelow = 10pt,
+    % bodyfont = \normalfont\color{beige},
     mdframed={
-  backgroundcolor = green!15,
-  linecolor = green!50!black,
-  linewidth = 1pt,
+  backgroundcolor = color3,
+  linecolor = color4,
+  linewidth = 10pt,
   rightline =  false,
   topline = false,
   bottomline = false,
-  skipabove=0pt,
+  skipabove=20pt,
   skipbelow=20pt,
   innerleftmargin=15pt,
   innertopmargin=10pt,
@@ -74,17 +81,18 @@ name=\textcolor{green!50!black}{Exercise},
 \declaretheorem[style=exercise,numbered=no]{exercise}
 
 \declaretheoremstyle[
-name=\textcolor{pink!60!purple}{Subexercise},
+name=\textcolor{color4}{Subexercise},
     postheadspace = \newline,
     spacebelow = 10pt,
+    % bodyfont = \color{independence},
     mdframed={
-  backgroundcolor = pink!25,
-  linecolor = pink!60!purple,
-  linewidth = 1pt,
+  backgroundcolor = color2,
+  linecolor = color4,
+  linewidth = 10pt,
   rightline =  false,
   topline = false,
   bottomline = false,
-  skipabove=0pt,
+  skipabove=20pt,
   skipbelow=20pt,
   innerleftmargin=15pt,
   innertopmargin=10pt,
@@ -118,7 +126,7 @@ name=\textcolor{pink!60!purple}{Subexercise},
 {%
 	\textbf{\textcolor{gray}{Solution:}}
 }%
-{%a
+{%
 	\hfill\textbf{\textcolor{red}{\tikzsymbolsuse{Coffeecup}}}
 }%
 

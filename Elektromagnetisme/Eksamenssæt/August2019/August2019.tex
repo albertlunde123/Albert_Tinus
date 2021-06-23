@@ -1,0 +1,245 @@
+\input{../preamble.tex}
+\title{\vspace{-1cm}\efbox[margin = 15pt]{August - 2019}\vspace{-1cm}}
+\author{}
+\date{}
+
+\begin{document}
+\pagecolor{color1}
+\maketitle
+\thispagestyle{fancy}
+\begin{exercise}[Opgave 1]
+Vi betragter det elektrostatiske arrangement vist på Figur 1. En metalkugle
+med radius $a$ og centereret i origo bærer en ladning $Q (Q > 0)$. En metalskal,
+koncentrisk med kuglen og med indre radius b og ydre radius c, bærer en
+samlet ladning $−2Q$. Der er vakuum i områdene $a < r < b$ og $r > c$, hvor $r$
+er afstanden til origo, og den dielektriske permittivitet er lig  0 overalt.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{opgave1}
+    \label{fig:opgave1}
+\end{figure}
+\begin{subexercise}[a]
+(a) Angiv overfladeladningstætheden på overfladene $r = a$, $r = b$ og $r = c$.
+Bestem retningen og størrelsen af det elektriske felt i områderne $r < a$,
+$a < r < b$, $b < r < c$ og $r > c$.
+\end{subexercise}
+\begin{solution}
+	Alt ladning sidder på overfladen,
+	\[
+	\sigma_a = \frac{Q}{4\pi a^2}
+	.\] 
+	Ladningen på indersiden af den yderste sfære skal modsvarer ladningen i den inderste sfære. Da $Q_enc$ skal være 0.
+	 \[
+	\sigma_b = \frac{-Q}{4\pi b^2}
+	.\] 
+	Den resterende ladning sidder i $c$.
+	 \[
+	\sigma_c = \frac{-Q}{4\pi c^2}
+	.\]
+	Det elektriske felt er radiært, eller med andre ord,
+	\[
+	\vec{\mathbf{E}}\left( r \right) = E\left( r \right) \hat{r} 
+	.\] 
+	$E$-feltet inde i en leder er altid $0$, mens E-feltet udenfor en sfære eller sfærisk skal er identisk med $E$-feltet fra en punktpartikel.
+	\[
+	\vec{\mathbf{E}} \left( r \right) = 
+	\begin{cases}
+		0 \quad & r<a \\
+		\frac{1}{4\pi \epsilon_0}\frac{Q}{r^2} \quad & a<r<b \\
+		0 \quad & b<r<c \\
+		\frac{1}{4\pi \epsilon_0}\frac{-Q}{r^2} \quad & r>c \\
+	\end{cases}
+	.\] 
+\end{solution}
+\begin{exercise}[Opgave 2]
+En tynd ladet skive med radius $R$ bærer på den ene side en overfladeslad-
+ningstæthed $\sigma = \alpha r$, hvor $\alpha $ er en positiv konstant og $r$ afstanden til skivens
+centrum $O$ (Figur 2). Den dielektriske permittivitet er lig $\epsilon_0$ overalt.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.6]{opgave2}
+    \label{fig:opgave2}
+\end{figure}
+\begin{subexercise}[a]
+	Bestem den totale ladning båret af skiven, såvel som det elektriske potential i skivens centrum (udtrykt ved $\alpha $, $R$ og $\epsilon_0$ ).
+\end{subexercise}
+\begin{solution}
+Jeg betragter $dQ$-elementer i en afstand $r$ og integrerer fra $0 \to R$. Ladningen i ét element,
+\[
+dQ = 2\pi r \rho\left( r \right) \dd r
+.\]
+Nu integrerer jeg,
+\[
+Q = 2\pi \alpha \int_{0}^{R} r^2 \, \dd r= \frac{2\pi \alpha }{3} r^3
+.\] 
+Til at bestemme det elektriske potentiale, bruger jeg følgende formel fra bogen, som stammer fra eksempel 23.11,
+\[
+V = \frac{1}{4\pi\epsilon_0}\frac{Q}{\sqrt{x^2+a^2} }
+.\]
+Som er det elektriske i en afstand $x$ fra en ring med ladning $Q$. Jeg betragter nu ringe med radius $r$ og sætter $x=0$, da jeg er interesseret i at finde potentialet i origo. Mine $\dd V$ elementer bliver dermed,
+\[
+\dd V = \frac{1}{4\pi\epsilon_0} \frac{\dd Q}{r} = \frac{1}{4\pi\epsilon_0} \frac{2\pi \alpha r^2 \dd r}{r}
+.\] 
+Jeg integrerer dette fra $0\to R$.
+\[
+V = \frac{1}{2} \frac{\alpha }{\epsilon_0}\int_{0}^{R} r\, \dd r = \frac{\alpha }{4\epsilon_0}R^2
+.\] 
+\end{solution}
+\begin{exercise}[Opgave 3]
+Vi betragter det elektriske kredsløb vist på Figur 3. Kredsløbet består af en
+variabel emk kilde, der leverer en periodisk spænding $v(t) = V \cos(\omega t)$, hvor
+V er spændingens maksimale værdi og $\omega$ vinkelfrekvensen. Kilden er koblet
+til to modstande med modstand $2R$, to kapacitorer med kapacitans $C /2$ og
+en ideel induktor med induktans$ L$. Vi ser bort fra fælles induktans effekter.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave3}
+    \caption{Opgave3}
+    \label{fig:opgave3}
+\end{figure}
+\begin{subexercise}[a]
+Forsimpl kredsløbet, angiv dens impedans og bestem $V_C /V$ , hvor $V_C$ er
+den maksimale værdi af spændingen over kapacitorerne, $v_C (t)$. Hvilken
+slags frekvensfilter fås ved at måle spændingen over kapacitorerne?
+\end{subexercise}
+\begin{solution}
+Det forsimplede kredsløb, indeholder én kapacitor og én resistor. De ækvivalente størrelser er,
+\begin{align*}
+	C_{eq} &= \frac{C}{2} + \frac{C}{2} = C \\
+	R_{eq} &= \left( \frac{1}{2R} + \frac{1}{2R} \right) ^{-1} = R 
+.\end{align*}
+Impedansen, findes ved af hjælp af formel (31.23),
+\[
+Z = \sqrt{R^2+\left[ \omega L - \left( 1 / \omega C \right)  \right]^2 }  
+.\] 
+\end{solution}
+Jeg bruger nu følgende formler til at bestemme $V_C / V$,
+\begin{align*}
+V_C &=  \frac{I}{\omega C} \\
+I &= \frac{V}{Z}
+.\end{align*}
+og får at,
+\[
+\frac{V_C}{V} = \frac{1}{\omega C Z}
+.\] 
+\begin{exercise}[Opgave 4]
+Vi betragter det magnetostatiske arrangement vist på Figur 4a. En uendelig
+lang og tynd ledning, hvori en konstant strøm $I$ løber i den positive z-retning,
+ligger langs z-aksen. En rektangulær sløjfe med sidelændger $w$ og $h$, hvori en
+konstant strøm $I_0$ løber i retningen mod uret, ligger stationært i (yz)-planen.
+Den magnetiske permeabilitet er lig $\mu_0$ overalt.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{opgave4}
+    \caption{Opgave4}
+    \label{fig:opgave4}
+\end{figure}
+\begin{subexercise}[a]
+Bestem retningen og størrelsen af den magnetiske kraft udøvet på sløjfen
+af ledningen.
+\end{subexercise}
+\begin{solution}
+Den magnetiske kraft på en leder er givet ved,
+\[
+\vec{\mathbf{F}} = \vec{\mathbf{I}} L \times \vec{\mathbf{B}} 
+.\]
+En uendelig ledning med strøm $I$ inducerer et magnetfelt af størrelsen,
+ \[
+B = \frac{\mu_0 I}{2\pi r}
+.\]
+I dette tilfælde peger det inducerede magnetfelt den positive $x$-retning. Jeg bemærker at pr. symmetri er kraften på de 2 horisontale sider i kredsløb identiske med modsat fortegn. Disse går dermed ud. Kraften på de 2 vertikale sider peger hver deres vej. Den inderste bliver påvirket af en kraft i $y$-retningen mens den yderste er i $-y$-retningen. Den resulterende kraft bliver dermed,
+ \[
+	 \vec{\mathbf{F}} = I'L\left( \frac{\mu_0 I}{2\pi} \right) \left( \frac{1}{d}-\frac{1}{d+w} \right) 
+.\] 
+\end{solution}
+\begin{subexercise}[b]
+Vi betragter nu et lignende arrangement, men hvor der kun løber en konstant
+strøm $I$ i ledningen og hvor sløjfen roterer med konstant vinkelhastighed ω
+omkring dens symmetriakse parallel med z-aksen (stiplet linje i Figur 4a),
+således at vinklen mellem sløjfens plan og y-aksen til tiden $t$ er $\omega t$ (se
+Figur 4b). Vi antager, at sløjfens dimensioner $h$ og $w$ er meget små i forhold
+til afstanden til ledningen $d$ og kan betragte det magnetiske felt fra ledningen
+til at være homogent ved sløjfen. Vi ser bort fra selvinduktans effekter og
+sløjfens modstand er $R$. \\
+Bestem retningen og størrelsen af den inducerede strøm i sløjfen til tiden $t$ hvor $t\in \left[ 0, \frac{\pi}{2\omega} \right] $
+\end{subexercise}
+\begin{solution}
+Vi er interesseret i at bestemme den magnetiske flux til tiden $t$, da der netop gælder at,
+ \[
+\mathcal{E} = -\frac{\dd \Phi_B}{\dd t}
+.\]
+Den magnetiske flux er,
+\[
+\Phi_B = \int B\cdot dA
+.\]
+Da kredsløbet rotererer er den ortogonale del af arealet til tiden $t$,
+\[
+A\left( t \right) = \cos\left( \omega t \right) wh
+.\]
+Den magnetiske flux er dermed,
+\[
+\Phi_B = \frac{\mu_0 I}{2\pi d} \cos\left( \omega t \right) wh
+.\] 
+Den tidsafledte bliver,
+\[
+	\frac{\dd \Phi_B}{\dd t} = -\frac{mu_0 I\omega w h}{2\pi d}\sin \left( \omega t \right)
+.\] 
+Strømmen bliver dermed,
+\[
+I= \frac{mu_0 I\omega w h}{2\pi d}\frac{\sin \left( \omega t \right) }{R}
+.\] 
+\end{solution}
+\begin{exercise}[Opgave 6]
+Lys med bølgelængden $\lambda = 500 \text{ nm}$ sendes ind mod en skærm med to spalter
+placeret i en indbyrdes afstand $d = 500 \text{ $\mu $m}$ (Fig. 6). En afbildningsskærm
+er anbragt bag den første i afstanden $R$ = 1 m.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{opgave6}
+    \label{fig:opgave6}
+\end{figure}
+\begin{subexercise}[a]
+	Løs følgende,
+	\begin{itemize}
+		\item Opskriv et udtryk for den resulterende intensitet på afbildningsskær-
+men som funktion af positionen $y$ på skærmen, idet det oplyses at
+intensiteten ved $y_0$, er 1 mW. Der kan ses bort fra diffraktions
+effekter pga. den endelige udstrækning af de to spalter.
+		\item  Skitser intensiteten som funktion af $y$ og opgiv positionen af det 5.maximum, $y_{1,5max}$ , og det 6. minimum, $y_{1,6min}$ , fra centerlinjen ved $y=0$.
+		\item Bestem den bølgelængde $\lambda_2$ for hvilken det 5. interferens maximum, $y_{2,5max}$ er sammenfaldende med $y _{1,6min}$
+	\end{itemize}
+
+\end{subexercise}
+\begin{solution}
+Funktionen bestemmes med formel,
+\[
+I = I_0 \cos ^2 \frac{\phi}{2}
+.\]
+hvor,
+\[
+\phi = \frac{2\pi d}{\lambda}\sin \theta 
+.\]
+Da vi har med små vinkler at gøre er,
+\[
+\sin \theta = \frac{y}{R} 
+.\]
+Dette sættes ind og jeg får,
+\[
+I\left( y \right)  = I_0 \cos ^2 \left( \frac{\pi d y}{\lambda R} \right) 
+.\]
+Med et script bestemmes alle minima og maksima i intensiteten med formelen,
+\[
+y_m = \frac{Rm \lambda}{d}
+.\]
+I den sidste opgave sættes,
+\[
+y_{2,5max} = y_{1,6min}
+.\] 
+og der isoleres for $\lambda_2$
+\end{solution}
+\end{document}

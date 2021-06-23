@@ -35,4 +35,93 @@ Vi fandt desuden en ækvivalent resistor.
 \begin{solution}
 Kapacitorerene var henholdsvis parallelle plader separeret og coaxiale cylindre. Vi brugte formel 24.19 til at bestemme kapacitansen af den første, og eksempel 24.4 til at bestemme kapacitansen af den sidste.
 \end{solution}
+\begin{exercise}[Opgave 2 - Marts 2017]
+Vi betragter det elektriske kredsløb vist på Figur 2, hvor $\mathcal{E} $ er en ideel emf, $R$ og $R_0$ modstande og $C$ kapacitorer. Kapacitorerne er afladt til tiden $t<0$.
+og kontakten sluttes til tiden $t=0$. Strømmene $i$, $i_1$ , $i_2$ og $i_3$ løber somindikeret på figuren.
+\end{exercise}
+\begin{figure}[ht]
+    \centering
+    \incfig{marts2017}
+    \caption{Marts2017}
+    \label{fig:marts2017}
+\end{figure}
+\begin{subexercise}[a]
+Bestem strømmene $i$, $i_1$, $i_2$ and $i_3$ til $t=0$ og $t\to \infty$
+\end{subexercise}
+\begin{solution}
+Til $t=0$ er kapacitorerne almindelige ledninger, jeg skal derfor bare bestemme den ækvivalente resistor.
+ \[
+R_{eq} = \frac{R+3R_0}{3}
+.\] 
+Dermed er den samlede strøm,
+\[
+I = \frac{3\mathcal{E} }{R+3R_0}
+.\] 
+Strømmen splittes ligeligt på imellem ledningerne,
+\[
+i_1 = i_2 = i_3 = \frac{\mathcal{E} }{R+3R_0}
+.\] 
+Til $t\to \infty$ løber der ingen strøm igennem kapacitorerne dermed er,
+\[
+i_1 = i_2 = 0
+.\] 
+Det betyder at, $i = i_3$. Denne strøm bliver,
+\[
+i = \frac{\mathcal{E} }{R + R_0}
+.\] 
+\end{solution}
+\begin{subexercise}[b]
+Argumenter for at $i_1\left( t \right) =  i_2\left( t \right) $ for alle $t>0$.\\
+Vis ved hjælp af Kirchoffs regler til tiden $t>0$ at
+ \[
+\frac{\dd i_1}{\dd \tau} + \frac{i_1}{\tau} = 0
+.\] 
+og angiv konstanten $\tau$ som funktion af $C$, $R$ og $R_0$.\\
+Bestem $i_1\left( t \right) $ til tiden $t>0$.
+\end{subexercise}
+\begin{solution}
+Den første påstand indses ved at betragte det mellemste loop,
+\begin{align*}
+	-i_1R - \frac{q}{V} + \frac{q}{V} + -i_2R = 0
+.\end{align*}
+Jeg opstiller forskellige ligninger og udnytter at,
+\[
+i = \frac{\dd q}{\dd t}
+.\]
+Lignignen som jeg tager første udgangspunkt i er,
+\[
+\mathcal{E} - iR_0 - i_1R - \frac{q}{V} = 0
+.\] 
+Som svarer spændingen over det inderste loop. Jeg ved desuden at,
+\[
+i = i_1 + i_2 + i_3 = 2i_1 + i_3
+.\] 
+Jeg betragter nu et loop som indeholder $i_1$ og $i_3$,
+\begin{align*}
+	-i_1R -\frac{q}{V} + i_3R &= 0  \\
+	i_3R &= i_1R + \frac{q}{V} \\
+	i_3 &= i_1 + \frac{q}{VR}
+.\end{align*}
+Dette sætter jeg ind,
+\[
+i = 3i_1 + \frac{q}{VR}
+.\] 
+Nu kan jeg igen sætte ind,
+\begin{align*}
+	\mathcal{E} - \left( 3i_1 + \frac{q}{CR} \right) R_0 - i_1R-\frac{q}{V}&=0 \\
+	\mathcal{E} - 3i_1R_0 - \frac{qR_0}{CR}-i_1R-\frac{q}{V}&= 0 \\
+	\mathcal{E} - \frac{qR_0}{CR}-\frac{q}{C} &=  3i_1R_0 + i_1R \\
+        \mathcal{E} - \left( \frac{R_0}{CR} + \frac{1}{C} \right)q = i_1\left( 3R_0 + R \right)\\
+	\mathcal{E} - \frac{R_0+R}{CR}q = i_1\left( 3R_0+R \right) 
+.\end{align*}
+Differentier begge sider,
+\[
+-\left(\frac{R_0+R}{CR}  \right) i_1 = \frac{\dd i_1}{\dd t}\left( 3R_0+R \right) 
+.\]
+Og sidst men ikke mindst,
+\[
+\frac{\dd i_1}{\dd t} + i_1\left( \frac{3R_0+R}{R_0+R}CR \right) = 0,
+.\] 
+$i_1\left( t \right) $ bestemmes ved at betragte denne differentialligning, som kan løses da start-betingelsen $i_1\left( 0 \right) $ kendes.
+\end{solution}
 \end{document}
