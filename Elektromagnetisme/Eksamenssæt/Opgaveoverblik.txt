@@ -2,26 +2,61 @@ Oversigt over opgaver:
 
 Faradays lov:
 -Juni2020(Opgave 5): Induceret strøm i sløjfe
+-Juni2018(Opgave 3): Induceret strøm, med stang der bevæger sig med hastighed v
+-juni2017(Opgave 3.b): stang der bevæger sig med en to-dimensionel hastighed
+-juni2016(Opgave 6) Rund sløjfe med aftagende B-felt
+-August2019(Opgave 4.b) Roterende sløjfe
 
 Amperes lov:
 
-Gauss lov:
+Gauss lov + Potentialler:
 -Juni2020(Opgave 1) metalskaller med ladning samt eletrisk felt overalt i rummet.
+-Juni2018(Opgave 1) Elektrisk felt i kugle, plus potentiale forskel
+-Juni2017(Opgave 1) Potential lavet af skive i punkt
+-Juni2017(Opgave 2) Elektrisk felt i cylinder
+-Juni2016(Opgave 3) Elektrisk felt pga kugle
+-August2019(Opgave 1) Angiv overfladetæthed på kugle, samt elektrisk felt
+-August2019(Opgave 2) Ladning af skive, samt potential i centrum
 
 Kredsløb:
 -Juni2020(Opgave 3) RC kredsløb
+-Juni2018(Opgave 2) RC kredsløb
+-Juni2017(Opgave 4) RL kredsløb
+-Juni2016(Opgave 4) RL kredsløb
+-August2019(Opgave 3) RCL kredsløb
 
 Magnetfelt/dipolmoment pga ledning:
 -Juni2020(Opgave 4) Beregne det magnetiske felt i origo pga ledningsdele
+-Juni2017(Opgave 3) Lang ledning og cirkulær ledning
+-Juni2017(Opgave 6) Magnetisk kraft i sløjfe
+-Juni2016(Opgave 2) magnetisk felt pga 4 ledninger, samt ledningernes indbyrdes kraftpåvirkning
+-August2019(Opgave 4)Magnetisk kraft på sløjfe
 
 Bølgediffraktion/inteferens:
 -Juni2020(Opgave 7)
+-Juni2018(Opgave 5)
+-August2019(Opgave 6) ingen diffraktion
 
 Bølger i medier:
 -Juni2020(Opgave 6) 
 
-Elektrostatisk kraft:
+Elektrostatisk kraft + felt pga punkter:
 -Juni2020(Opgave 2) ladningers indbyrdes påvirkning
+-Juni2017(Opgave 5) elektrisk felt pga punkter
+-juni2016(Opgave 1) elektrisk kraft pga ladet cirkelbue
 
 Skøre opgaver:
+-juni2017(Opgave 6.b)Gensidig induktans
+-juni2016(Opgave 5)Capasitor med dielektrika
+
 Arealer af diverse figurer:
+Omkreds af cirkel:2*pi*r
+Areal af cirkel: pi*r^2
+Overfladeareal af kugle: 4*pi*r^2
+rumfang kugle: 4/3*pi*r^3
+overflade areal cylinder(krum overflade): 2*pi*r*L
+Areal af cirkelbue: r^2*theta/2
+
+Fif:
+-Bevægelse i retning af større elektrisk felt øger potentialet
+-Der er en potential energi associeret med et hvert objekt der har en ladningstæthed
