@@ -1,0 +1,27 @@
+Oversigt over opgaver:
+
+Faradays lov:
+-Juni2020(Opgave 5): Induceret strøm i sløjfe
+
+Amperes lov:
+
+Gauss lov:
+-Juni2020(Opgave 1) metalskaller med ladning samt eletrisk felt overalt i rummet.
+
+Kredsløb:
+-Juni2020(Opgave 3) RC kredsløb
+
+Magnetfelt/dipolmoment pga ledning:
+-Juni2020(Opgave 4) Beregne det magnetiske felt i origo pga ledningsdele
+
+Bølgediffraktion/inteferens:
+-Juni2020(Opgave 7)
+
+Bølger i medier:
+-Juni2020(Opgave 6) 
+
+Elektrostatisk kraft:
+-Juni2020(Opgave 2) ladningers indbyrdes påvirkning
+
+Skøre opgaver:
+Arealer af diverse figurer:
