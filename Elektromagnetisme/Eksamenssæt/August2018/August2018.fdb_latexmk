@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1624102129 "August2018.tex" "August2018.pdf" "August2018" 1624102130
+["pdflatex"] 1624102129 "August2018.tex" "August2018.pdf" "August2018" 1625923584
   "../preamble.tex" 1623960530 3512 3cd2c06304c425ac3ad36dc4f38114be ""
   "/etc/texmf/web2c/texmf.cnf" 1614156342 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -209,6 +209,6 @@
   "figures/opgave4.pdf" 1624101624 3154 c7b9443156ef130efaf4a3c482d6a7a9 ""
   "figures/opgave4.pdf_tex" 1624101624 3140 d7c61f5e7f38b32175f0286fb1b35fb1 ""
   (generated)
-  "August2018.log"
   "August2018.pdf"
+  "August2018.log"
   "August2018.aux"
