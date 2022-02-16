@@ -1,0 +1,9 @@
+
+Baggrundsmåling:
+278 mV
+Laserintensitet:
+4.79 V 
+Laserintensitet med dielektrika
+4.56 V
+
+

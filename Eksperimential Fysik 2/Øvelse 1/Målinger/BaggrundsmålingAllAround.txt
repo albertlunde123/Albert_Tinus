@@ -1,0 +1,9 @@
+Baggrundslysmåling
+
+Vinkel, intensitet
+0, 206.6 mV
+30, 191 mV
+60, 187 mV
+90, 185 mV
+120, 184 mV
+150, 189 mV
