@@ -5,7 +5,7 @@ import os
 
 fig, ax = plt.subplots()
 
-def fit(t, *p)
+def fit(t, *p):
     a = p[0]
     b = p[1]
     return a*t + b
