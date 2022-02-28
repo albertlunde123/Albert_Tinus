@@ -14,6 +14,9 @@ def fit(t, *p):
 # def linearize(data):
 #     return np.sin(data)
 
+os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
+# print(os.getcwd())
+
 
 deg_to_rad = 2*3.14/360
 
@@ -46,7 +49,8 @@ def propagation_function(x, f, popt, pcov):
 def plot_propagation(x, f, popt, pcov, ax):
     error = propagation_function(x, f, list(popt), pcov)
     ax.fill_between(x, f(x, *popt) + error,
-                    f(x, *popt) - error, alpha = 0.3)
+                    f(x, *popt) - error, alpha = 0.3,
+                    color = '#d989a6')
 
 def plot_data(data, ax, err): #, labels, title):
 
@@ -54,6 +58,7 @@ def plot_data(data, ax, err): #, labels, title):
     ind_vinkel = np.sin(data[:,0])
     ind_err =  np.cos(ind_vinkel)*err
 
+    # ud_vinkel = ind_vinkel - np.sin(data[:,1])
     ud_vinkel = ind_vinkel - np.sin(data[:,1])
     ud_err =  np.cos(ud_vinkel)*err*np.sqrt(2)
 
@@ -63,7 +68,7 @@ def plot_data(data, ax, err): #, labels, title):
                 fmt = 'o',
                 xerr = ud_err,
                 yerr = ind_err,
-                color = 'blue')
+                color = 'white')
 
     guess_params = [1,0]
     # lav fittet
@@ -77,13 +82,33 @@ def plot_data(data, ax, err): #, labels, title):
     t_fit =np.linspace(ud_vinkel[0], ud_vinkel[-1], 100)
 
     # plot fittet
-    ax.plot(t_fit, fit(t_fit, *popt), color = 'k', linewidth = 2)
+    ax.plot(t_fit, fit(t_fit, *popt), color = '#d989a6', linewidth = 2)
 
     plot_propagation(t_fit, fit, popt, pcov, ax)
-
+    return [popt, np.diag(np.sqrt(pcov))]
     # print(popt[0])
     # print(np.sqrt(np.diag(pcov)))
 
 
-plot_data(data, ax, err)
+ax.spines['bottom'].set_color('white')
+ax.spines['top'].set_color('white')
+ax.spines['left'].set_color('white')
+ax.spines['right'].set_color('white')
+
+ax.set_title('Graph of angles of incidence and refraction', color = 'white')
+ax.set_xlabel('$\\sin \\theta_R $', color = 'white')
+ax.set_ylabel('$\\sin \\theta_I$ ', color = 'white')
+ax.tick_params(axis='x', colors='white')
+ax.tick_params(axis='y', colors='white')
+
+fig.patch.set_facecolor('#313847')
+ax.set_facecolor('#313847')
+
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+
+
+fits = plot_data(data, ax, err)
+
+ax.text(0.05, 0.75, f"$n = {np.round(fits[0][0], 2)} \\pm {np.round(fits[1][0], 2)}$", color = 'white')
 plt.show()

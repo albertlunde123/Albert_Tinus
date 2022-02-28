@@ -1,9 +1,13 @@
 
 Baggrundsmåling:
-278 mV
-Laserintensitet:
-4.79 V 
+201 mV
+Laserintensitet p-polarisering:
+5.131 V 
+Laserintensitet s-polarisering:
+5.139 V 
 Laserintensitet med dielektrika
-4.56 V
+4.646 V
+
+
 
 
