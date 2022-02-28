@@ -56,6 +56,16 @@ The visible light emitted from natural light source such as a light bulb or a la
     \caption{The proportion of light that is transmitted and reflected is described by Fresnel's relations. For both $S$- and $P$-polarized light, a greater proportion is transmitted for most angles. Notice, that when the dielectrica has a circular, the light can pass through without changing direction} 
     \label{fig:fresnel1}
 \end{marginfigure}
+\subsubsection{Fresnel's Relations}
+The angles of reflection and refraction are only part of the story. We are also interested in knowing how much of the incident light is reflected and transmitted. These intensities are given by the Fresnel relations, of which there are four. These relations describe the intensities of reflected and transmitted light for parallel and perpendicular polarized light. They have the following form;
+\begin{align*}
+	R_p &= \frac{\tan^2 \left( \theta_1 - \theta_2  \right) }{\tan^2 \left( \theta_1 + \theta_2  \right) }\\
+	T_p &= \frac{sin(2\theta_1) sin(2\theta_2)}{sin^2(\theta_1+\theta_2)\cdot cos^2(\theta_1-\theta_2)}\\
+	R_s &= \frac{\sin^2\left( \theta_1 - \theta_2 \right) }{\sin^2\left( \theta_1 + \theta_2 \right) } \\
+	T_s &= \frac{sin(2\theta_1)sin(2\theta_2)}{sin^2(\theta_1 + \theta_2)}
+.\end{align*}
+
+If the energy is conserved then the sum of the intensity of all the different kinds of light should be equal to the intensity of the laser.
 \subsubsection{Brewster's angle}
 At a specific angle determined by the index of refraction of the two materials, the reflected light is polarized in the perpendicular direction of the plane of incidence. The relation is given in Brewster's law for the polarizing angle:
 \begin{align*}
@@ -72,16 +82,7 @@ Another angle of interest is the critical angle, which can be derived from Snell
 \end{align*}
 
 At this angle no light is transmitted through the material. Instead the refracted light would move parallel with the demarcation line of the two materials. If the angle gets larger then total internal reflection occurs.
-\subsubsection{Fresnel's Relations}
-The angles of reflection and refraction are only part of the story. We are also interested in knowing how much of the incident light is reflected and transmitted. These intensities are given by the Fresnel relations, of which there are four. These relations describe the intensities of reflected and transmitted light for parallel and perpendicular polarized light. They have the following form;
-\begin{align*}
-	R_p &= \frac{\tan^2 \left( \theta_1 - \theta_2  \right) }{\tan^2 \left( \theta_1 + \theta_2  \right) }\\
-	T_p &= \frac{sin(2\theta_1) sin(2\theta_2)}{sin^2(\theta_1+\theta_2)\cdot cos^2(\theta_1-\theta_2)}\\
-	R_s &= \frac{\sin^2\left( \theta_1 - \theta_2 \right) }{\sin^2\left( \theta_1 + \theta_2 \right) } \\
-	T_s &= \frac{sin(2\theta_1)sin(2\theta_2)}{sin^2(\theta_1 + \theta_2)}
-.\end{align*}
 
-If the energy is conserved then the sum of the intensity of all the different kinds of light should be equal to the intensity of the laser.
 \begin{align*}
     T_p+T_s+R_p+R_s=I_{Laser}
 \end{align*}
@@ -90,8 +91,11 @@ If the energy is conserved then the sum of the intensity of all the different ki
     \caption{At the \textit{critical angle} no light is transmitted. All of the light is reflected along the line separating the two materials. }
     \label{fig:fresnel3}
 \end{marginfigure}
-\end{figure}
-\subsection{Experimental setup}
+\chapter*{Experimental setup}
+\begin{marginfigure}
+    \incfig{setup}
+    \caption{The setup used in the experiment.}
+\end{marginfigure}
 The setup of the experiment is shown in the following figure:[Made by projectAlbert]. Imagetext[Setup]
 \\
 
@@ -120,8 +124,48 @@ In the experiment we want to examine different phenomena. These are:
 In order to test Fresnel's Relations we must know the index of refraction for the dielectric. Snell's law states that the index of refraction can be found from relation between the incidence and transmission angles. We therefore note transmission angle, for different angles of incidence. 
 \\
 
-When testing the conservation of the total intensity we can turn the dielectric and then measure the s- and p-polarized intensity for the transmitted and the reflected light. If the conservation is true, their sum should be constant. By noting the angles of incidence and transmission, we also use these measurements to test the Fresnel equation for e.g. the intensity of the p-polarized transmitted light. 
-\subsection{Results}
+When testing the conservation of the total intensity we can turn the dielectric and then measure the s- and p-polarized intensity for the transmitted and the reflected light. If the conservation is true, their sum should be constant. By noting the angles of incidence and transmission, we also use these measurements to test the Fresnel equation for e.g. the intensity of the p-polarized transmitted light. a
+\chapter*{Results}
+What follows is a presentation of our data and results.
+\subsubsection{Snell's Law}
+Figure presents our data for Snell's law, we have plotted the sine of the incident angle againts the sine of the transmitted angle. Snells's law then predicts that the data is linear, with a steepness corresponding to,
+\[
+	\alpha = \frac{n_2}{n_1}
+.\] 
+\begin{figure}[h]
+	\sidecaption{Graph depicting angles of incidence and refraction. The colored in area represents the uncertainty of the fit. The fit and uncertainty was decided using scipy's curve-fit function.}
+	\includegraphics[width=\textwidth]{../snells-law}
+	\label{fig:}
+\end{figure}
+As the plot shows, our data matches this quite well. We measure the value $n$ to be $1.77 \pm 0.08$, which is in the vicinity of what we would expect. We will be using this value and uncertainty in the remainder of the experiment, as Fresnel's relations rely upon it.
+\subsubsection{Intensities}
+Our data measuring the intensities also seems to follow the predicted curves reasonably well. We used the fact that,
+\[
+\theta_T = \arcsin \left( \frac{n_1}{n_2} \right) \theta_I
+.\] 
+To plot the theoretical curves for the Fresnel relations. Since we have measured the index of refraction with some uncertainty, this leads to an uncertainty in the predicted, which we have calculated using error propagation. We have also translated our uncertainty in angle to uncertainty in intensity using this same method. 
+\begin{figure}[h]
+	\centering
+	\sidecaption{This graph shows the measured intensities of transmitted and reflected  p-polarized light at different angles $\theta_I$. Alongside this data is shown the curve predicted by Fresnels relations, the areas colored in represent the uncertainty in this theoretical curve. The uncertainty stems from our measurement of the refraction index. The data seems to follow the general shape of the curve.}
+	\includegraphics[width=\textwidth]{../RpTp}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\sidecaption{Plot of the S-polarized intensities. Once again, the data seems to follow curve reasonably. Interestingly the Fresnel relations for s-polarized light are more sensitive to the error in $n$.}
+	\includegraphics[width=\textwidth]{../RsTs}
+\end{figure}
+\\
+Note, that the lack of points at low angles of incidence is intentional. We chose to measure more points, where the curve should be steep and sensitive to change. 
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../PSum}
+	\label{fig:}
+\end{figure}
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../SSum}
+\end{figure}
+\newpage
 \subsection{Error propagation}
 Measurements that contains errors that should be considered include:
 \begin{itemize}
