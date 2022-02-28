@@ -478,6 +478,9 @@ INPUT ./figures/fresnel2.png
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT ./figures/fresnel3.pdf_tex
 INPUT ./figures/fresnel3.pdf_tex
+INPUT ./figures/fresnel3.pdf
+INPUT ./figures/fresnel3.pdf
+INPUT ./figures/fresnel3.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmo10.tfm
 INPUT master.aux
 INPUT ./master.out

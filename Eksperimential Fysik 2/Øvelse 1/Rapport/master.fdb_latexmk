@@ -1,10 +1,10 @@
 # Fdb version 3
-["biber master"] 1645040311 "master.bcf" "master.bbl" "master" 1645083812
-  "master.bcf" 1645083812 101233 914d47dadfea17e66e7e2f2a643161ea "pdflatex"
+["biber master"] 1645087935 "master.bcf" "master.bbl" "master" 1645088168
+  "master.bcf" 1645088168 101233 914d47dadfea17e66e7e2f2a643161ea "pdflatex"
   (generated)
   "master.blg"
   "master.bbl"
-["pdflatex"] 1645083811 "master.tex" "master.pdf" "master" 1645083812
+["pdflatex"] 1645088167 "master.tex" "master.pdf" "master" 1645088168
   "/etc/texmf/web2c/texmf.cnf" 1635159711 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -258,22 +258,23 @@
   "figures/fresnel1.pdf" 1645039888 1232 c9588f42bf0f46071b2df4c0e05ff521 ""
   "figures/fresnel1.pdf_tex" 1645039888 2057 a5957f594b6ab7149f20286c43b519c2 ""
   "figures/fresnel2.png" 1645045671 41712 9515f5543ec4e0ab5ca2cba5e8ef5ada ""
-  "figures/fresnel3.pdf_tex" 1645083808 1977 041b29585c9bf20730e03796446c174e ""
+  "figures/fresnel3.pdf" 1645088166 2047 a49fdb27d3f9e737f8e69f12a8d7d654 ""
+  "figures/fresnel3.pdf_tex" 1645088166 2057 69aefe797801892fdad6937ca53c0f92 ""
   "figures/polarized.pdf" 1645031155 4567 ca754bf924a88291ac8d7c7f05d242d7 ""
   "figures/polarized.pdf_tex" 1645031155 2060 e7c5b916d8ca9bb70df82455392463ce ""
   "figures/snell.pdf" 1645027824 1235 b9dee518ad380d4d3540245cb6deba2d ""
   "figures/snell.pdf_tex" 1645027964 2761 f9d4feeac98bb8f5faf4a19a4b353bed ""
   "inputs/preamble.tex" 1645025938 5444 5b92dae640608002b7987c42bab18f78 ""
   "inputs/tuftebook.cls" 1645026065 5939 9621f865dee56dd007dd5cdedf790b8e ""
-  "master.aux" 1645083812 4581 cab7d71dd330382545c7efaae87193b8 "pdflatex"
-  "master.bbl" 1645040311 466 f7f239c736cf01ac6ce7bd829f9b3c7b "biber master"
-  "master.out" 1645083812 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "master.run.xml" 1645083812 2327 46f137712688400c3b5deff63799de37 "pdflatex"
-  "master.tex" 1645083807 5300 94696a01fcba86678f8d454de1a8fdcb ""
+  "master.aux" 1645088168 4830 0232a454b7723a8e54366d92736d99eb "pdflatex"
+  "master.bbl" 1645087936 466 f7f239c736cf01ac6ce7bd829f9b3c7b "biber master"
+  "master.out" 1645088168 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "master.run.xml" 1645088168 2327 46f137712688400c3b5deff63799de37 "pdflatex"
+  "master.tex" 1645087933 5416 aaaa9799c1677b9a0b03053c3f538d77 ""
   (generated)
-  "master.pdf"
-  "master.aux"
-  "master.bcf"
   "master.run.xml"
   "master.log"
   "master.out"
+  "master.pdf"
+  "master.aux"
+  "master.bcf"
