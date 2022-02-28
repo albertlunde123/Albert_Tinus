@@ -4,7 +4,7 @@ import scipy.optimize as scp
 from scipy.stats import chi2
 import os
 
-fig, ax = plt.subplots(figsize = (9, 7))
+# fig, ax = plt.subplots(figsize = (9, 7))
 
 os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
 # print(os.getcwd())
@@ -37,7 +37,40 @@ err = 0.5*deg_to_rad
 # Vi kan eventuelt også benytte os af det teoretiske brydningsindeks
 # vi har bestemt.
 
-n = np.arcsin(2/3)
+print(np.arcsin(1/1.77))
+print(np.arcsin(0.08))
+
+def propagation_function(x, f, popt, pcov):
+    f_error = 0
+
+# Standard afvigelser gemmes
+
+    err =  list(np.sqrt(np.diagonal(pcov)))
+    for i in range(len(err)):
+
+# funktionen med standard afvigelsen på den i'te parameter konstrueres
+
+        j = popt[:i] + [popt[i] + err[i]] + popt[i+1:]
+        f_error += (f(x, *j)-f(x, *popt))**2
+
+    return  np.sqrt(f_error)
+
+def plot_propagation(x, f, popt, pcov, ax):
+    error = propagation_function(x, f, list(popt), pcov)
+    ax.fill_between(x, f(x, *popt) + error,
+                    f(x, *popt) - error, alpha = 0.3,
+                    color = '#d989a6')
+
+def prop(f, popt, popt_err):
+    f_error = 0
+
+    err = popt_err
+    for i in range(len(err)):
+
+        j = popt[:i] + [popt[i] + err[i]] + popt[i+1:]
+        f_error += (f(*j)-f(*popt))**2
+
+    return  np.sqrt(f_error)
 
 # De forskellige intensitets funktioner.
 
@@ -46,7 +79,7 @@ def Rp(theta, n):
     b = np.tan(theta + n*theta)**2
     return a/b
 
-def Rs(theta):
+def Rs(theta, n):
     a = np.sin(theta - n*theta)**2
     b = np.sin(theta + n*theta)**2
     return a/b
@@ -77,22 +110,28 @@ def chi_sq(t, x, err, f, n, df):
 
 #     theta = np.linspace(0, 0.5*np.pi, 200)
 
-def plot_chi(x, y, err, ax, f, n):
+def plot_chi(x, y, err, ax, f, n, n_err, color, color_fill):
 
     # fejlpropagering med f
     
     y_err = np.array([])
     for xs in x:
         ye = np.sqrt((f(xs, n) - f(xs + err, n))**2)
-        y_err.append(ye)
+        y_err = np.append(y_err, ye)
 
-    print(y_err)
     # plot data med fejl på x og y
-    ax.errorbar(x, y, fmt = 'o', xerr = err, yerr = y_err)
+    ax.errorbar(x, y, fmt = 'o', xerr = err, yerr = y_err, color = color)
 
     # plot teoretiske funktion
-    thetas = np.linspace(0, 1.6, 100)
-    ax.plot(thetas, f(thetas, n), '-') 
+    thetas = np.linspace(0, 1.55, 100)
+    err = [prop(f, [theta, n], [0, 0.2]) for theta in thetas]
+    
+    ax.fill_between(thetas, f(thetas, n) + err,
+                    f(thetas, n) - err, 
+                    alpha = 0.3,
+                    color = color_fill)
+    
+    ax.plot(thetas, f(thetas, n), '-', color = color) 
 
     # Lav chi2
     #chi = chi_sq(x, y, y_err, f, n, len(y))
@@ -101,7 +140,7 @@ def plot_chi(x, y, err, ax, f, n):
 
 # Denne funktion plotter 2 datasæt, og fitter det til en konstant.
 
-def plot_curvefit(x1, x2, y1, y2, err, ax, f1 , f2, n):
+def plot_curvefit(x1, x2, y1, y2, err, ax, f1 , f2, n, color):
 
     # konstant funktion.
         
@@ -110,70 +149,69 @@ def plot_curvefit(x1, x2, y1, y2, err, ax, f1 , f2, n):
         b = p[1]
         return a*t + b
 
-    y_err1 = np.array([])
-    for xs in x1:
-        ye = np.sqrt((f1(xs, n) - f1(xs + err, n))**2)
-        y_err1 = np.append(y_err1, ye)
-
-    y_err2 = np.array([])
-    for xs in x2:
-        ye = np.sqrt((f2(xs, n) - f2(xs + err, n))**2)
-        y_err2 = np.append(y_err2, ye)
-
     combined_set = conjoiner(np.transpose(np.array([x1, y1])), np.transpose(np.array([x2, y2])), 1, 1)
     
-    ax.errorbar(x1, y1, xerr = err, yerr = y_err1, fmt = 'o')
-    ax.errorbar(x2, y2, xerr = err, yerr = y_err2, fmt = 'o')
+    comb_err = np.array([])
+    for xs in combined_set[:, 0]:
+        ye = np.sqrt((f1(xs, n) - f1(xs + err, n))**2 + (f2(xs, n) - f2(xs + err, n))**2)
+        comb_err = np.append(comb_err, ye)
 
-    ax.plot(combined_set[:, 0], combined_set[:,1] + combined_set[:,2], 'o')
+    ax.errorbar(combined_set[:, 0], 
+        combined_set[:,1] + combined_set[:,2], 
+        yerr = comb_err, 
+        fmt ='o',
+        color = color)
 
-    combined_err_set = conjoiner(np.transpose(np.array([x1, y_err1])), np.transpose(np.array([x2, y_err2])), 1, 1)
-    combined_err = combined_err_set[:,1] + combined_err_set[:,2]
+    # combined_err_set = conjoiner(np.transpose(np.array([x1, y_err1])), np.transpose(np.array([x2, y_err2])), 1, 1)
+    # combined_err = combined_err_set[:,1] + combined_err_set[:,2]
     
     guess_params = [0, 1]
     popt, pcov = scp.curve_fit(fit, combined_set[:,0], 
             combined_set[:, 1] + combined_set[:, 2],
             guess_params, 
-            sigma = combined_err)
+            sigma = comb_err)
 
     # plot teoretiske funktion
-    thetas = np.linspace(0, 1.6, 100)
-    ax.plot(thetas, fit(thetas, *popt), '-') 
+    thetas = np.linspace(combined_set[:, 0][0], combined_set[:, 0][-1], 100)
     
 
-plot_curvefit(vinkler, vinkler2, laser_intensitet, laser_intensitet2, err, ax, Tp, Ts, n)
-theta = np.linspace(0, 0.5*np.pi, 200)
+    # plot_propagation(thetas, fit, popt, pcov, ax)
+    ax.plot(thetas, fit(thetas, *popt), '-', color = 'white') 
+    
 
-# ax.plot(theta, Rp(theta, n), '-', linewidth = 9, color = '#edcfa4')
-# ax.plot(theta, Tp(theta, n), '-', linewidth = 9, color = '#d989a6')
+# plot_curvefit(vinkler, vinkler2, laser_intensitet, laser_intensitet2, err, ax, Tp, Ts, n)
+# theta = np.linspace(0, 0.5*np.pi, 200)
 
-ax.spines['bottom'].set_color('white')
-ax.spines['top'].set_color('white')
-ax.spines['left'].set_color('white')
-ax.spines['right'].set_color('white')
+# # ax.plot(theta, Rp(theta, n), '-', linewidth = 9, color = '#edcfa4')
+# # ax.plot(theta, Tp(theta, n), '-', linewidth = 9, color = '#d989a6')
 
-ax.tick_params(axis='x', colors='white')
-ax.tick_params(axis='y', colors='white')
+# ax.spines['bottom'].set_color('white')
+# ax.spines['top'].set_color('white')
+# ax.spines['left'].set_color('white')
+# ax.spines['right'].set_color('white')
 
-fig.patch.set_facecolor('#313847')
-ax.set_facecolor('#313847')
+# ax.tick_params(axis='x', colors='white')
+# ax.tick_params(axis='y', colors='white')
 
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
+# fig.patch.set_facecolor('#313847')
+# ax.set_facecolor('#313847')
 
-# ax.text(0.1, 0.1, "$R_p$", fontsize = 35, color = 'white')
-# ax.text(0.1, 0.85, "$T_p$", fontsize = 35, color = 'white')
-# ax.text(0.82, 0.16, "$\\theta_B$", fontsize = 35, color = 'white')
-# ax.arrow(0.85, 0.12, 0, -0.05, color = 'white', width = 0.008)
+# plt.xticks(fontsize=12)
+# plt.yticks(fontsize=12)
 
-ax.set_ylim(0, 1.3)
-ax.set_xlim(1.2, 1.625)
+# # ax.text(0.1, 0.1, "$R_p$", fontsize = 35, color = 'white')
+# # ax.text(0.1, 0.85, "$T_p$", fontsize = 35, color = 'white')
+# # ax.text(0.82, 0.16, "$\\theta_B$", fontsize = 35, color = 'white')
+# # ax.arrow(0.85, 0.12, 0, -0.05, color = 'white', width = 0.008)
 
-# ax.set_xlabel('$\\theta$', fontsize = 25, color = 'white')
-# ax.set_ylabel('Intensity', rotation = 90, fontsize = 25, color = 'white')
-ax.yaxis.labelpad = 20
-ax.xaxis.labelpad = 16
+# ax.set_ylim(0, 1.3)
+# ax.set_xlim(1.2, 1.625)
 
-# plt.savefig('fresnel2.png')
-plt.show()
+# # ax.set_xlabel('$\\theta$', fontsize = 25, color = 'white')
+# # ax.set_ylabel('Intensity', rotation = 90, fontsize = 25, color = 'white')
+# ax.yaxis.labelpad = 20
+# ax.xaxis.labelpad = 16
+
+# # plt.savefig('fresnel2.png')
+# plt.show()
 
