@@ -23,11 +23,14 @@
 
 \pagecolor{nord}
 
+\addbibresource{bibliography.bib}
+
 
 \begin{document}
 
-\chapter*{Teori}
-\subsubsection*{Snell's Law}
+\includepdf[pages=-, fitpaper=true]{inputs/frontmatter.pdf}
+\section*{Teori}
+\subsubsection{Snell's Law}
 When light passes through a dielectrica, the angle of reflection is equal to the angle of incidence, whereas the angle refraction is given by Snell's law;
 \begin{marginfigure}
     \incfig{snell}
@@ -91,15 +94,14 @@ At this angle no light is transmitted through the material. Instead the refracte
     \caption{At the \textit{critical angle} no light is transmitted. All of the light is reflected along the line separating the two materials. }
     \label{fig:fresnel3}
 \end{marginfigure}
-\chapter*{Experimental setup}
+\section*{Experimental setup}
 \begin{marginfigure}
     \incfig{setup}
     \caption{The setup used in the experiment.}
 \end{marginfigure}
-The setup of the experiment is shown in the following figure:[Made by projectAlbert]. Imagetext[Setup]
+An illustration of the setup is shown in Figure 6.
 \\
-
-\subsubsection*{Material List}
+\subsection*{Material List}
 \begin{itemize}
     \item Red Laser
     \item 2x Polarizer
@@ -111,7 +113,7 @@ The setup of the experiment is shown in the following figure:[Made by projectAlb
 \end{itemize}
 The light from the laser moves through a polarizer set at an angle of 45\textdegree. This implies that the intensity of s- and p-polarized is equal. From the light impacts the dielectric where it is reflected and refracted. The light detector is moved to catch either the reflected or refracted. In front of the detector is a lens, which focuses the light, and anothera polarizer, which selects either s- or p-polarized light. The slit in front of the detector, changes the detectors sensitivity. In practice we move the turntable, keeping the dielectric fixed, until the intensity measured by the detector reaches a maximum. We then record the intensity, angle of incidence and angle of transmission/refraction.
 
-\subsection{Course of action}
+\subsection*{Course of action}
 In the experiment we want to examine different phenomena. These are:
 \begin{itemize}
     \item Index of refraction.
@@ -124,8 +126,28 @@ In the experiment we want to examine different phenomena. These are:
 In order to test Fresnel's Relations we must know the index of refraction for the dielectric. Snell's law states that the index of refraction can be found from relation between the incidence and transmission angles. We therefore note transmission angle, for different angles of incidence. 
 \\
 
-When testing the conservation of the total intensity we can turn the dielectric and then measure the s- and p-polarized intensity for the transmitted and the reflected light. If the conservation is true, their sum should be constant. By noting the angles of incidence and transmission, we also use these measurements to test the Fresnel equation for e.g. the intensity of the p-polarized transmitted light. a
-\chapter*{Results}
+When testing the conservation of the total intensity we can turn the dielectric and then measure the s- and p-polarized intensity for the transmitted and the reflected light. If the conservation is true, their sum should be constant. By noting the angles of incidence and transmission, we also use these measurements to test the Fresnel equation for e.g. the intensity of the p-polarized transmitted light. 
+\subsection*{Error propagation}
+Measurements that contains errors that should be considered include:
+\begin{itemize}
+    \item The angle 
+    \item The background noise
+    \item The width of the slit
+\end{itemize}
+ The most influential error in this experiment, is the one associated with the measurement of the angle. The protractor has a scale of 1 degreee, so the error must be $\pm 0.5$ \textdegree. Which when you propagate it. There is no reason to include the error of the sensor because when it was held steady it yielded an error of 0. The circular slit was used for all experiments and by using trigonometry we could determine that the error in the light actually hitting the center of the detector was negligible compared to the error in the protractor. The background noise was measured to be around 0.1 V for all angles and therefore also considered to be negligible compared to the intensity of the laser. When propagating the angle trough the function we used the functional method for the complex expressions and the analytic method for the less complex equations.
+ \\
+ 
+ Functional method:\sidenote{Measurements and Uncertainties, Ifan G. Hughes}
+ \begin{align*}
+     \alpha^A_Z & =f(\Bar{A}+\alpha_A,\Bar{B})-f(\Bar{A},\Bar{B}) ...\\
+     &  (\alpha_Z)^2 = (\alpha^A_Z)^2 + (\alpha^B_Z)^2 ...
+ \end{align*}
+ 
+ Analytic method:
+ \begin{align*}
+     (\alpha_Z)^2=(\frac{\partial Z}{\partial A})^2(\alpha_A)^2 ...
+ \end{align*}
+\section*{Results}
 What follows is a presentation of our data and results.
 \subsubsection{Snell's Law}
 Figure presents our data for Snell's law, we have plotted the sine of the incident angle againts the sine of the transmitted angle. Snells's law then predicts that the data is linear, with a steepness corresponding to,
@@ -154,28 +176,30 @@ To plot the theoretical curves for the Fresnel relations. Since we have measured
 	\sidecaption{Plot of the S-polarized intensities. Once again, the data seems to follow curve reasonably. Interestingly the Fresnel relations for s-polarized light are more sensitive to the error in $n$.}
 	\includegraphics[width=\textwidth]{../RsTs}
 \end{figure}
-\\
 Note, that the lack of points at low angles of incidence is intentional. We chose to measure more points, where the curve should be steep and sensitive to change. 
-\begin{figure}[htpb]
+\subsubsection{Conservation of intensity}
+Lastly, we tested our hypothesis that,
+\[
+T_p + R_p = \text{constant} \quad \text{and} \quad T_s + R_s = \text{constant}
+.\]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../PSum}
-	\label{fig:}
+	\sidecaption{Fit of the sums of the intensities for p-polarized light. The data was fit to a linear function, and the fit did not yield a slope in the vicinity of 0.}
+	\includegraphics[width=\textwidth]{../PSum}
 \end{figure}
-\begin{figure}[htpb]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../SSum}
+	\sidecaption{The data for s-polarized light. This data does not seem to be constant either.}
+	\includegraphics[width=\textwidth]{../SSum}
 \end{figure}
+For some reason, our data was unable to prove this. The intensities of the transmitted and reflected light seem to be somewhat out of sync. Due to background noise, only very few datapoints can be mutually accurate for both the transmitted and reflected intensities (an accurate datapoint necessitates a high intensity). We have chosen not to plot the error of the fit, as the magnitude of this error obscures the plot 
 \newpage
-\subsection{Error propagation}
-Measurements that contains errors that should be considered include:
-\begin{itemize}
-    \item The angle 
-    \item The background noise
-    \item The width of the slit
-\end{itemize}
- The most influential error in this experiment, is the one associated with the measurement of the angle. The protractor has a scale of 1 degreee, so the error must be $\pm 0.5$ \textdegree. Which when you propagate it. There is no reason to include the error of the sensor because when it was held steady it yielded an error of 0. The circular slit was used for all experiments and by using trigonometry we could determine that the error in the light actually hitting the center of the detector was negligible compared to the error in the protractor. The background noise was measured to be around 0.1 V for all angles and therefore also considered to be negligible compared to the intensity of the laser.
-\subsection{Discussion}
 
-We had some general issues while doing this experiment that ended up influencing the amount of data we were able to collect and how familiar we became with the general setup of the experiment. The first week of the exercise we both had Corona and the second week we had a lot of issues with different components of the experiment not working properly. So probably we could have produced some better data if we did not have these problems. 
-\subsection{Conclusion}
+\subsection*{Discussion}
+As we have said before, the most influential inherent uncertainty in this experiments, comes from measuring the angles of incidence and transmission. The uncertainty is in itself not particularly disturbing. For a demonstration of Snell's law, the protactor is sufficiently precise. However, when demonstrating more complex relations, the uncertainty is propagated and therefore starts to obscure the connections. In particular, the measurements of conservations of intensity would benefit from a protractor with higher resolution. \\
+Another problem, was our inability to give a conclusive estimate for the error in the intensity. This is crippling, as the statistical methods we have been taught, rely upon an accurate assessment of the errors in the dependent variables (curve-fit and chi-squared). The error we could measure was, was in the indepencent variable (the angle). Our solution to this problem, was to propagate the error measured in the independent varable, and use this as an estimate for the error in intensity. This is however, \textit{only} a good estimate when the propagating function describes a \textit{true} relation. So this method should not be considered good general practice. In the future, we should familiarize ourselves with a larger variety of statistical methods and not always resort to propagation. \\
+We had some general issues while doing this experiment that ended up influencing the amount of data we were able to collect and how familiar we became with the general setup of the experiment. The first week of the exercise we both had Corona and the second week we had issues with different components of the experiment malfunctioning. Given more time, we would certainly have been able to take more and better data.f
+\subsection*{Conclusion}
+Let us consider the different parts of the experiment. Our data seems to follow Snell's law, with predictable reasonable deviations. Our data also seems to follow the Fresnel relations reasonably well. However, the lack of points at low intensities, as well as the larger uncertainties, do mean that we are less confident that the relation holds. Our lack of points measuring the sum of intensities, as well the huge errors stemming from combining the datasets, mean that we can not conclude with any confidence with any confidence that this is conserved. Nor that it is not conserved. In order to say anything meaningful, we would have to collect more data.
+\printbibliography
 \end{document}
