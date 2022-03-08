@@ -7,7 +7,7 @@ import scipy.optimize as scp
 from scipy.stats import chi2
 import os
 
-os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
+# os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
 
 import fresnels_relations as fre
 
@@ -60,10 +60,10 @@ props1 = dict(boxstyle = 'square, pad=0.5',
 # ax.text(0.05, 0.94, "Transmitted", color = 'white', bbox = props)
 # ax.text(0.05, 0.038, "Reflected", color = '#313847', bbox = props1)
 
-ax.set_xlabel("$\\theta_{incident} $ in rad", color = 'white', fontsize = 16)
-ax.set_ylabel("Intensity", color = 'white', fontsize = 16)
+ax.set_xlabel("$\\theta_{incident} $ in rad", color = 'white', fontsize = 20)
+ax.set_ylabel("Intensity", color = 'white', fontsize = 20)
 
-ax.set_title("Sum of P-polarized light", fontsize = 16, color = 'white')
+ax.set_title("Sum of P-polarized light", fontsize = 20, color = 'white')
 
 
 

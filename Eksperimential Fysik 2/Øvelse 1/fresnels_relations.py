@@ -6,7 +6,7 @@ import os
 
 # fig, ax = plt.subplots(figsize = (9, 7))
 
-os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
+# os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
 # print(os.getcwd())
 
 
@@ -113,25 +113,26 @@ def chi_sq(t, x, err, f, n, df):
 def plot_chi(x, y, err, ax, f, n, n_err, color, color_fill):
 
     # fejlpropagering med f
-    
+
     y_err = np.array([])
     for xs in x:
         ye = np.sqrt((f(xs, n) - f(xs + err, n))**2)
         y_err = np.append(y_err, ye)
 
     # plot data med fejl på x og y
-    ax.errorbar(x, y, fmt = 'o', xerr = err, yerr = y_err, color = color)
+    ax.errorbar(x, y, fmt = 'o', xerr = err, yerr = y_err, color = color,
+                markersize = 9)
 
     # plot teoretiske funktion
-    thetas = np.linspace(0, 1.55, 100)
+    thetas = np.linspace(0, 1.57, 100)
     err = [prop(f, [theta, n], [0, 0.2]) for theta in thetas]
-    
+
     ax.fill_between(thetas, f(thetas, n) + err,
-                    f(thetas, n) - err, 
+                    f(thetas, n) - err,
                     alpha = 0.3,
                     color = color_fill)
-    
-    ax.plot(thetas, f(thetas, n), '-', color = color) 
+
+    ax.plot(thetas, f(thetas, n), '-', color = color)
 
     # Lav chi2
     #chi = chi_sq(x, y, y_err, f, n, len(y))
@@ -143,41 +144,42 @@ def plot_chi(x, y, err, ax, f, n, n_err, color, color_fill):
 def plot_curvefit(x1, x2, y1, y2, err, ax, f1 , f2, n, color):
 
     # konstant funktion.
-        
+
     def fit(t, *p):
         a = p[0]
         b = p[1]
         return a*t + b
 
     combined_set = conjoiner(np.transpose(np.array([x1, y1])), np.transpose(np.array([x2, y2])), 1, 1)
-    
+
     comb_err = np.array([])
     for xs in combined_set[:, 0]:
         ye = np.sqrt((f1(xs, n) - f1(xs + err, n))**2 + (f2(xs, n) - f2(xs + err, n))**2)
         comb_err = np.append(comb_err, ye)
 
-    ax.errorbar(combined_set[:, 0], 
-        combined_set[:,1] + combined_set[:,2], 
-        yerr = comb_err, 
+    ax.errorbar(combined_set[:, 0],
+        combined_set[:,1] + combined_set[:,2],
+        yerr = comb_err,
         fmt ='o',
+        markersize = 9,
         color = color)
 
     # combined_err_set = conjoiner(np.transpose(np.array([x1, y_err1])), np.transpose(np.array([x2, y_err2])), 1, 1)
     # combined_err = combined_err_set[:,1] + combined_err_set[:,2]
-    
+
     guess_params = [0, 1]
-    popt, pcov = scp.curve_fit(fit, combined_set[:,0], 
+    popt, pcov = scp.curve_fit(fit, combined_set[:,0],
             combined_set[:, 1] + combined_set[:, 2],
-            guess_params, 
+            guess_params,
             sigma = comb_err)
 
     # plot teoretiske funktion
     thetas = np.linspace(combined_set[:, 0][0], combined_set[:, 0][-1], 100)
-    
+
 
     # plot_propagation(thetas, fit, popt, pcov, ax)
-    ax.plot(thetas, fit(thetas, *popt), '-', color = 'white') 
-    
+    ax.plot(thetas, fit(thetas, *popt), '-', color = 'white')
+
 
 # plot_curvefit(vinkler, vinkler2, laser_intensitet, laser_intensitet2, err, ax, Tp, Ts, n)
 # theta = np.linspace(0, 0.5*np.pi, 200)

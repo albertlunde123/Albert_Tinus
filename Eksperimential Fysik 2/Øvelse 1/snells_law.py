@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import scipy.optimize as scp
 import os
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize = (10, 7))
 
 def fit(t, *p):
     a = p[0]
@@ -14,7 +14,7 @@ def fit(t, *p):
 # def linearize(data):
 #     return np.sin(data)
 
-os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
+# os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
 # print(os.getcwd())
 
 
@@ -68,7 +68,8 @@ def plot_data(data, ax, err): #, labels, title):
                 fmt = 'o',
                 xerr = ud_err,
                 yerr = ind_err,
-                color = 'white')
+                color = 'white',
+                markersize = 10)
 
     guess_params = [1,0]
     # lav fittet
@@ -95,9 +96,9 @@ ax.spines['top'].set_color('white')
 ax.spines['left'].set_color('white')
 ax.spines['right'].set_color('white')
 
-ax.set_title('Graph of angles of incidence and refraction', color = 'white')
-ax.set_xlabel('$\\sin \\theta_R $', color = 'white')
-ax.set_ylabel('$\\sin \\theta_I$ ', color = 'white')
+ax.set_title('Graph of angles of incidence and refraction', color = 'white', fontsize = 20)
+ax.set_xlabel('$\\sin \\theta_R $', color = 'white', fontsize = 16)
+ax.set_ylabel('$\\sin \\theta_I$ ', color = 'white', fontsize = 16)
 ax.tick_params(axis='x', colors='white')
 ax.tick_params(axis='y', colors='white')
 
@@ -108,7 +109,18 @@ plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
 
 
+props = dict(boxstyle = 'square, pad=0.5',
+            facecolor = '#e1341e',
+            edgecolor = '#313847'
+)
+
 fits = plot_data(data, ax, err)
 
-ax.text(0.05, 0.75, f"$n = {np.round(fits[0][0], 2)} \\pm {np.round(fits[1][0], 2)}$", color = 'white')
+ax.text(0.07, 0.75,
+        f"$n = {np.round(fits[0][0], 2)} \\pm {np.round(fits[1][0], 2)}$",
+        color = 'white',
+        fontsize = 16,
+        bbox = props)
+
+plt.savefig('snells-law.png')
 plt.show()

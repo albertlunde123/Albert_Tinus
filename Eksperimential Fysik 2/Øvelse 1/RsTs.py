@@ -6,11 +6,11 @@ import scipy.optimize as scp
 from scipy.stats import chi2
 import os
 
-os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
+# os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse 1\\')
 
 import fresnels_relations as fre
 
-fig, ax = plt.subplots(figsize = (9, 7))
+fig, ax = plt.subplots(figsize = (10, 7))
 
 # Vi bruger Serie2 og Serie3 dataet.
 
@@ -26,8 +26,8 @@ Rp_intens = Rp_data[:,2]/2.869
 err = 0.5*fre.deg_to_rad
 
 # fre.plot_chi(Tp_vinkler, Tp_intens, err, ax, fre.Tp, 0.61, '#edcfa4')
-fre.plot_chi(Tp_vinkler, Tp_intens, err, ax, fre.Ts, 0.60, 0.08, '#e1341e', '#fff000')
-fre.plot_chi(Rp_vinkler, Rp_intens, err, ax, fre.Rs, 0.60, 0.08,'#fff000', '#e1341e')
+fre.plot_chi(Tp_vinkler, Tp_intens, err, ax, fre.Ts, 0.60, 0.08, '#e1341e', 'white')
+fre.plot_chi(Rp_vinkler, Rp_intens, err, ax, fre.Rs, 0.60, 0.08,'#fff000', 'white')
 
 theta = np.linspace(0, 0.5*np.pi, 200)
 
@@ -43,6 +43,7 @@ ax.tick_params(axis='x', colors='white')
 ax.tick_params(axis='y', colors='white')
 
 ax.set_ylim(-0.1, 1.1)
+ax.set_xlim(0.4, 1.62)
 
 fig.patch.set_facecolor('#313847')
 ax.set_facecolor('#313847')
@@ -57,13 +58,13 @@ props1 = dict(boxstyle = 'square, pad=0.5',
             edgecolor = '#313847'
 )
 
-ax.text(0.05, 0.94, "Transmitted", color = 'white', bbox = props)
-ax.text(0.05, 0.038, "Reflected", color = '#313847', bbox = props1)
+ax.text(0.45, 0.94, "Transmitted", color = 'white', bbox = props, fontsize = 16)
+ax.text(0.45, 0.038, "Reflected", color = '#313847', bbox = props1, fontsize = 16)
 
-ax.set_xlabel("$\\theta_{incident} $ in rad", color = 'white', fontsize = 16)
-ax.set_ylabel("Intensity", color = 'white', fontsize = 16)
+ax.set_xlabel("$\\theta_{incident} $ in rad", color = 'white', fontsize = 20)
+ax.set_ylabel("Intensity", color = 'white', fontsize = 20)
 
-ax.set_title("Intensities of S-polarized light", fontsize = 16, color = 'white')
+ax.set_title("Intensities of S-polarized light", fontsize = 20, color = 'white')
 
 
 
@@ -79,7 +80,7 @@ plt.yticks(fontsize=12)
 
 # ax.set_xlabel('$\\theta$', fontsize = 25, color = 'white')
 # ax.set_ylabel('Intensity', rotation = 90, fontsize = 25, color = 'white')
-ax.yaxis.labelpad = 20
+ax.yaxis.labelpad = 30
 ax.xaxis.labelpad = 16
 
 plt.savefig('RsTs.png')

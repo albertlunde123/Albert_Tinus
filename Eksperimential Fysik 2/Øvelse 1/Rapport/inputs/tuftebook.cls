@@ -56,13 +56,12 @@ footskip=40pt,
 \RequirePackage{fmtcount}
 \titleformat{\chapter}[display]
 {\bfseries\Large\sf}
-{\filleft
-\textls{\MakeUppercase{\chaptertitlename}} \expandafter\textls\expandafter{\NUMBERstring{chapter}}}
-{1.5ex}
+{}
+{0pt}
 {\titlerule
-\vspace*{1.1ex}%
+\vspace{1.5ex}%
 \filright}
-[\vspace*{1.5ex}%
+[\vspace{1.5ex}%
 \titlerule]
 
 % \setcounter{secnumdepth}{-1}% no numbering at all
