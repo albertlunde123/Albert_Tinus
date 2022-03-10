@@ -16,7 +16,7 @@ In this section we will examine the necessary in understanding the michelson-mor
 \[
 	\bm{E_i} = E_0 \cos\left( \omega t - kx \right) 
 .\] 
-\begin{marginfigure}
+\begin{marginfigure}:q
     \centering
     \incfig{fig1}
     \caption{When the light is the incident light hits the beamsplitter, part of it is reflected and the remainder transmitted. Each lightbeam then travels a distance before hitting a mirror. The difference between these distances affects their relative phasedifference. We call it $\Delta s$.}
@@ -35,7 +35,7 @@ For our two waves we obtain,
 	\left|\bm{E_1}\right| = \sqrt{RT} \cdot E_0 \cdot \cos\left( \omega t + \rho _1 \right) \\
 	\left|\bm{E_2}\right| = \sqrt{RT} \cdot E_0 \cdot \cos\left( \omega t + \rho _2 \right) 
 \end{align*}
-Where we have used the fact that transmission and reflection does not impact the frequency of light.
+Where we have used the fact that transmission and reflection does not impact the frequency of light
 If the optics are aligned correctly, we will the be able to measure the overlapping wave on our detector. This wave is given as the sum of $\bm{E_1}$ and $\bm{E_2}$. It's intensity is,
 \[
 I = c\epsilon_0 \left| \bm{E_1}+\bm{E_2} \right| ^2 = c\epsilon_0RT \left( \cos\left( \omega t +\rho_1 \right) +\cos\left( \omega t +\rho_2 \right)   \right)^2
@@ -52,5 +52,11 @@ This gives us,
 Now let $ \Delta \rho = \rho_1 - \rho_2$ and also assume that the coeffections of transmissions and reflection equal $0.5$. We then obtain,
  \[
 I = \frac{1}{4}c\epsilon_0 E_0^2 \left( 1 + \cos \Delta \rho  \right) 
-.\] 
+.\]
+\subsection*{Piezoelectric}
+We make use of af piezoelectric ring chip, which has the property that it expands when the potential over it increases. This allows us to slightly increase and decrease the path difference the path difference $\Delta s$ in a controlled fashion. The relationship between the potential applied over the piezoelectric and the expansion is nearly linear, as seen in \textbf{fig. 2}. As a result, the path difference should be proportional to the voltage
+\[
+V \propto \Delta s
+\]
+It is particularly smart to change the voltage linearly (in time). The path difference will then change linearly as well (approximately). A measurement of the intensity, should then change sinusoidally in time.
 \end{document}
