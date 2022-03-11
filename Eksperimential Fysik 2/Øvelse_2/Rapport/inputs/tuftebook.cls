@@ -3,7 +3,7 @@
 % Load the amsmath and the mhchem package before loading microtype
 \RequirePackage{amsmath}% better math handling
 \LoadClassWithOptions{book}% this is derived from the book class
-\RequirePackage{sidenotes}% put annotations, tables and figures in the margin
+\RequirePackage{inputs/sidenotes}% put annotations, tables and figures in the margin
 \captionsetup{font=footnotesize, skip=4pt}
 \RequirePackage[maxfloats=45]{morefloats}% a lot of marginals need more float 'memory'
 % VERY IMPORTANT: use latest version of marginfix!
