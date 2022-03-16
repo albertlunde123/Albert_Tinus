@@ -1,10 +1,10 @@
 # Fdb version 3
-["biber master"] 1646937969 "master.bcf" "master.bbl" "master" 1646997057
-  "master.bcf" 1646997056 101195 4e6f9754a7197e2e6c138267ee8d8a30 "pdflatex"
+["biber master"] 1646937969 "master.bcf" "master.bbl" "master" 1647348476
+  "master.bcf" 1647098062 101195 4e6f9754a7197e2e6c138267ee8d8a30 "pdflatex"
   (generated)
   "master.blg"
   "master.bbl"
-["pdflatex"] 1646997055 "master.tex" "master.pdf" "master" 1646997057
+["pdflatex"] 1647098060 "master.tex" "master.pdf" "master" 1647348476
   "/etc/texmf/web2c/texmf.cnf" 1646921376 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -36,6 +36,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmi10.pfb" 1136849748 34889 a5ba8b20a45b3437534c87396d980b48 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmi8.pfb" 1136849748 34876 8d4b38ed6a8c31221cdb5873a0ca9f5c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrsy10.pfb" 1136849748 41093 104c39afc438ce3e69f72093c24579bd ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrsy8.pfb" 1136849748 41671 840970fb437fbd0481bc0a18eff9ce7a ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -253,21 +254,22 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1646937724 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1646937737 8260525 2068734ce3144a3c58a5c46ac6277592 ""
+  "figures/contraction.png" 1647256315 43439 52f1ad66150407cafa165e65b41fec54 ""
   "figures/fig1.pdf" 1646752268 2171 e5e26c0beb909c1ace07a2735bce5b24 ""
   "figures/fig1.pdf_tex" 1646752268 2320 855e3507b23f9ea82f31d349cde2adab ""
   "inputs/piezo.PNG" 1646818500 85399 ba1d456d15ea22b2c77df4900985ffa0 ""
   "inputs/preamble.tex" 1646752268 5410 515f2be700809b0b041108238b223ce9 ""
   "inputs/sidenotes.sty" 1646936703 4921 2b48167deca9472a166c14cd2a3c5f64 ""
   "inputs/tuftebook.cls" 1646936258 5835 a020e07027f7bed5f19674b7ba696561 ""
-  "master.aux" 1646997056 2406 376171a72311bf4945e9496c02abf458 "pdflatex"
+  "master.aux" 1647098062 3151 1920c2d4991fb21528f040512718c31a "pdflatex"
   "master.bbl" 1646937970 0 d41d8cd98f00b204e9800998ecf8427e "biber master"
-  "master.out" 1646997056 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "master.run.xml" 1646997056 2244 480dc0c266ff5ba3a2141053295dc298 "pdflatex"
-  "master.tex" 1646997053 5721 1c09e9fb586bfde7d973cfeab0c4c845 ""
+  "master.out" 1647098062 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "master.run.xml" 1647098062 2244 480dc0c266ff5ba3a2141053295dc298 "pdflatex"
+  "master.tex" 1647098057 7256 1ed542d2a314ee2db0ac31c7a30d7a3c ""
   (generated)
-  "master.aux"
-  "master.out"
-  "master.bcf"
-  "master.log"
-  "master.pdf"
   "master.run.xml"
+  "master.pdf"
+  "master.log"
+  "master.aux"
+  "master.bcf"
+  "master.out"

@@ -11,8 +11,10 @@
 
 \begin{document}
 \let\cleardoublepage\clearpage
+\section*{Introduction}
+In this experiment, we construct a Michelson-Morley interferometer. Our construction a piezoelectric element, which allows for some novel analysis of the setup. We use the setup to test whether a wave-description of light is accurate. 
 \section*{Theory}
-In this section we will examine the necessary in understanding the michelson-morley interferometer. At its most basic level, we are interested in understanding what happens when light waves collide. In this experiment we will be assuming that the colliding are identical in all aspects expect phase. Their wavelengths and frequencies are identical. Let us assume that our light wave moves along the optical axis, it may then described as,
+In this section we will examine the necessary concepts in understanding the michelson-morley interferometer. At its most basic level, we are interested in understanding what happens when light waves collide. In this experiment we will be assuming that the colliding are identical in all aspects expect phase. Their wavelengths and frequencies are identical. Let us assume that our light wave moves along the optical axis, it may then described as,
 \[
 	\bm{E_i} = E_0 \cos\left( \omega t - kx \right) 
 .\] 
@@ -53,24 +55,34 @@ Now let $ \Delta \rho = \rho_1 - \rho_2$ and also assume that the coeffections o
  \[
 I = \frac{1}{4}c\epsilon_0 E_0^2 \left( 1 + \cos \Delta \rho  \right) 
 .\]
-\section*{Piezoelectric}
-We make use of af piezoelectric ring chip, which has the property that it expands when the potential over it increases. This allows us to slightly increase and decrease the path difference the path difference $\Delta s$ in a controlled fashion. The relationship between the potential applied over the piezoelectric and the expansion is nearly linear, as seen in \textbf{fig. 2}. As a result, the path difference should be proportional to the voltage
 \begin{marginfigure}
 	\centering
 	\includegraphics[width=\textwidth]{inputs/piezo}
-	\caption{}
+	\caption{Graph describing til Piezoelement contraction, taken from the Piezo spec-sheet.}
 	\label{fig:}
 \end{marginfigure}
+\section*{Piezoelectric}
+We make use of af piezoelectric ring chip, which has the property that it expands when the potential over it increases. This allows us to slightly increase and decrease the path difference the path difference $\Delta s$ in a controlled fashion. The relationship between the potential applied over the piezoelectric and the expansion is nearly linear, as seen in \textbf{fig. 2}. As a result, the path difference should be proportional to the voltage
 \[
 V \propto \Delta s
 \]
-It is particulary smart to change the potential over the piezoelement linearly. By doing this we are able to get displacement from the piezoelement spec-sheet \textbf{fig 2}. We fit these datapoints to determine the relationships between contraction and expansion, $S_C$ and $S_E$, these functions will give half of the path change. By extensions the phase change will be,
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1.1\textwidth]{figures/contraction}
+	\caption{Graph of the Piezo-contraction, where $k_C = 2.81\cdot 10^{-3}$,  $a_C = 2.68 \cdot 10^{-8}$. and \\$k_E = 1.40 \cdot 10^{-3}$, $a_E = 2.14 \cdot 10^{-8}$}
+	\label{fig:}
+\end{marginfigure}
+It is particulary smart to change the potential over the piezoelement linearly. By doing this we are able to get displacement from the piezoelement spec-sheet \textbf{fig 2}. The spec-sheet provides a picture of the curve relating potential to displacement. From this picture we were able to extraxt datapoints. The spec-sheet lists the maximum displacement as $2.6 \mu m \pm 15\%$. We have used this $15\%$ as an estimate for the error in our datapoints. We fit these datapoints to determine functional expressions describing the contraction and expansion, $S_C$ and $S_E$. These functions will give half of the path change, as a function of potential. By extensions the phase change will be,
  \[
 \Delta \rho_{E /C} \left( V \right) =  \frac{4\pi}{\lambda}S_{E /C}\left( V \right) 
 .\] 
-An analysis of the spec-sheets yielded the functions $S_E$ and  $S_C$ depicted in \textbf{fig 3.} 
+An analysis of the spec-sheets yielded the functions $S_E$ and  $S_C$ depicted in \textbf{fig 3.}. These functions will be used when we fit our data the intereferometer.
 \section*{Course of action}
 For this experiment, we took great care in setting up the interferometer correctly, as the quality of our data solely on this. The laser initially strikes two mirrors, which are used to direct it and correct it horizontally. It then strikes the beam splitter, which is aligned perpendicularly to the ray. The light is then split in two beams of equal intensity. One is transmitted while the other is reflected. These beams then strike mirrors, which send them back towards the beam splitter, where they are gathered and directed towards a detector. Before striking the detector, they pass through a concave lens. This spreads the light more evenly over the sensors in the detector. On one of the mirrors, is mounted a piezoelectric element. Applying a voltage over this element allows us to vary the path distance as the piezoelectric expands and contracts. 
 \section*{Results}
 In our experiment we measure the induced voltage in the detector as a function of the changing potential over a piezoelectric element. We are interested in relating this changing voltage to the phase change, and thereby ultimately to the path change. In order to figure out how. As the piezoelectric, behaves differently for increasing and decreasing voltagewe have split our data accordingly. For both datasets, we have fit our data to functions of the form,
+\[
+	I_{E /C} \left( V \right) = A \cos \left( B + \Delta \rho_{E /C}\left( V \right)  \right) +D
+.\] 
+Where $A$ represents the amplitude of the measured signal and $B, D$ are constant offsets. We are not interested in examining how the detector converts light intensity to signal. We merely check that a constant $A$ is a good description of the fit. We are instead interested in checking whether the base $\cos\left( \Delta \rho  \right) $ is a good description of the data. 
 \end{document}
