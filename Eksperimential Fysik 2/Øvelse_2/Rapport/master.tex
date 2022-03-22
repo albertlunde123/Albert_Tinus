@@ -8,39 +8,40 @@
 
 \usepackage{cmbright}
 \usepackage{bm}
+\addbibresource{bibliography.bib}
 
 \begin{document}
-\let\cleardoublepage\clearpage
+\includepdf[pages=-, fitpaper=true]{inputs/frontmatter.pdf}
 \section*{Introduction}
-In this experiment, we construct a Michelson-Morley interferometer. Our construction a piezoelectric element, which allows for some novel analysis of the setup. We use the setup to test whether a wave-description of light is accurate. 
+In this experiment, we construct a Michelson-Morley interferometer. Our construction a piezoelectric element, which allows for some novel analysis of the setup. We use the setup to test whether a wave-description of light is accurate.
 \section*{Theory}
 In this section we will examine the necessary concepts in understanding the michelson-morley interferometer. At its most basic level, we are interested in understanding what happens when light waves collide. In this experiment we will be assuming that the colliding are identical in all aspects expect phase. Their wavelengths and frequencies are identical. Let us assume that our light wave moves along the optical axis, it may then described as,
 \[
 	\bm{E_i} = E_0 \cos\left( \omega t - kx \right) 
 .\] 
-\begin{marginfigure}:q
+\begin{marginfigure}
     \centering
     \incfig{fig1}
     \caption{When the light is the incident light hits the beamsplitter, part of it is reflected and the remainder transmitted. Each lightbeam then travels a distance before hitting a mirror. The difference between these distances affects their relative phasedifference. We call it $\Delta s$.}
     \label{fig:fig1}
 \end{marginfigure}
-Where $\omega$ is the frequency, $k$ the wave number and $E_0$ the amplitude of the wave.When the wave is measured, it has been transmitted and reflected once. We therefore multply the wave amplitude by the coefficients of transmission and reflection, given by the Fresnel Relations.\cite{grif}
+Where $\omega$ is the frequency, $k$ the wave number and $E_0$ the amplitude of the wave.When the wave is measured, it has been transmitted and reflected once. We therefore multply the wave amplitude by the coefficients of transmission and reflection, given by the Fresnel Relations.\cite{Grif}
  \[
 	 \left|\bm{E_i}\right| = \sqrt{RT} \cdot E_0 \cdot \cos\left( \omega t + \rho _i \right) 
 .\] 
-Where $\rho_i$ is the phase of our wave, at the point where our detector lies. This phase is clearly related to the path length in the following way,
+Where $\rho_i$ is the phase of our wave, at the point where our detector lies. This phase is clearly related to the path length in the following way, assuming that the wavelength is constant (e.g. the light moves in a single medium)
 \[
 \rho _i  =  \frac{2\pi}{\lambda} S_i
 .\]
-For our two waves we obtain,
+Let us now assume that one of the beams is passed through a transmission filter, with coefficient of transmission $\beta$. For our two waves we obtain,
 \begin{align*}
-	\left|\bm{E_1}\right| = \sqrt{RT} \cdot E_0 \cdot \cos\left( \omega t + \rho _1 \right) \\
+	\left|\bm{E_1}\right| = \sqrt{\beta RT} \cdot E_0 \cdot \cos\left( \omega t + \rho _1 \right) \\
 	\left|\bm{E_2}\right| = \sqrt{RT} \cdot E_0 \cdot \cos\left( \omega t + \rho _2 \right) 
 \end{align*}
 Where we have used the fact that transmission and reflection does not impact the frequency of light
 If the optics are aligned correctly, we will the be able to measure the overlapping wave on our detector. This wave is given as the sum of $\bm{E_1}$ and $\bm{E_2}$. It's intensity is,
 \[
-I = c\epsilon_0 \left| \bm{E_1}+\bm{E_2} \right| ^2 = c\epsilon_0RT \left( \cos\left( \omega t +\rho_1 \right) +\cos\left( \omega t +\rho_2 \right)   \right)^2
+I = c\epsilon_0 \left| \bm{E_1}+\bm{E_2} \right| ^2 = c\epsilon_0RT \left(\beta \cos\left( \omega t +\rho_1 \right) +\cos\left( \omega t +\rho_2 \right)   \right)^2
 .\] 
 In practice, we are only able to measure the temporal averaging of this, as the frequency is a small quantity. The average of a periodic function with period $\tau$ is,
 \[
@@ -48,12 +49,12 @@ In practice, we are only able to measure the temporal averaging of this, as the 
 .\]
 This gives us,
 \begin{align*}
-\left<I \right> &=  \frac{1}{2\pi} \int_{0}^{2\pi} \left[ \cos\left( \omega t + \rho_1 \right) + \cos\left( \omega t + rho_2 \right)   \right] ^2 d \left( \omega t \right)  \\
-&=  1+ \cos\left( \rho _1 - \rho_2  \right)  
+\left<I \right> &=  \frac{1}{2\pi} \int_{0}^{2\pi} \left[\beta \cos\left( \omega t + \rho_1 \right) + \cos\left( \omega t + rho_2 \right)   \right] ^2 d \left( \omega t \right)  \\
+&= \frac{\beta^2 + 1}{2}+ \beta\cos\left( \rho _1 - \rho_2  \right)  
 .\end{align*}
 Now let $ \Delta \rho = \rho_1 - \rho_2$ and also assume that the coeffections of transmissions and reflection equal $0.5$. We then obtain,
  \[
-I = \frac{1}{4}c\epsilon_0 E_0^2 \left( 1 + \cos \Delta \rho  \right) 
+I = \frac{1}{4}c\epsilon_0 E_0^2 \left( \frac{\beta^2 +1}{2} +\beta \cos \Delta \rho  \right) 
 .\]
 \begin{marginfigure}
 	\centering
@@ -61,28 +62,68 @@ I = \frac{1}{4}c\epsilon_0 E_0^2 \left( 1 + \cos \Delta \rho  \right)
 	\caption{Graph describing til Piezoelement contraction, taken from the Piezo spec-sheet.}
 	\label{fig:}
 \end{marginfigure}
-\section*{Piezoelectric}
-We make use of af piezoelectric ring chip, which has the property that it expands when the potential over it increases. This allows us to slightly increase and decrease the path difference the path difference $\Delta s$ in a controlled fashion. The relationship between the potential applied over the piezoelectric and the expansion is nearly linear, as seen in \textbf{fig. 2}. As a result, the path difference should be proportional to the voltage
-\[
-V \propto \Delta s
-\]
+\subsection*{Piezoelectric}
+We make use of af piezoelectric ring chip, which has the property that it expands when the potential over it increases. This allows us to slightly increase and decrease the path difference the path difference $\Delta s$ in a controlled fashion. The relationship between the potential applied over the piezoelectric and the expansion is nearly linear, as seen in \textbf{fig. 2}. 
 \begin{marginfigure}
 	\centering
 	\includegraphics[width=1.1\textwidth]{figures/contraction}
 	\caption{Graph of the Piezo-contraction, where $k_C = 2.81\cdot 10^{-3}$,  $a_C = 2.68 \cdot 10^{-8}$. and \\$k_E = 1.40 \cdot 10^{-3}$, $a_E = 2.14 \cdot 10^{-8}$}
 	\label{fig:}
 \end{marginfigure}
-It is particulary smart to change the potential over the piezoelement linearly. By doing this we are able to get displacement from the piezoelement spec-sheet \textbf{fig 2}. The spec-sheet provides a picture of the curve relating potential to displacement. From this picture we were able to extraxt datapoints. The spec-sheet lists the maximum displacement as $2.6 \mu m \pm 15\%$. We have used this $15\%$ as an estimate for the error in our datapoints. We fit these datapoints to determine functional expressions describing the contraction and expansion, $S_C$ and $S_E$. These functions will give half of the path change, as a function of potential. By extensions the phase change will be,
+It is particulary smart to change the potential over the piezoelement linearly. By doing this we are able to get displacement from the piezoelement spec-sheet \textbf{fig 2}. The spec-sheet provides a picture of the curve relating potential to displacement. From this picture we were able to extraxt datapoints. The spec-sheet lists the maximum displacement as $2.6 \mu m \pm 15\%$. We have used this $15\%$ as an estimate for the error in our datapoints. We fit these datapoints to determine functional expressions describing the contraction and expansion, $S_C$ and $S_E$. These functions will give half of the path change, as a function of potential.We found the best description of the displacement to be a function of the form,
+\[
+\Delta s \left( V \right)  = aV e^{-kV}
+\]
+By extensions the phase change will be,
  \[
 \Delta \rho_{E /C} \left( V \right) =  \frac{4\pi}{\lambda}S_{E /C}\left( V \right) 
 .\] 
-An analysis of the spec-sheets yielded the functions $S_E$ and  $S_C$ depicted in \textbf{fig 3.}. These functions will be used when we fit our data the intereferometer.
+An analysis of the spec-sheets yielded the functions $S_E$ and  $S_C$ depicted in \textbf{fig 3.}. We will compare these functions when we fit our data obtained from the intereferometer.
+\subsection*{Density filter}
+In the second part of the experiment, we make use of a linear density filter from Thorlabs. This filter enables us adjust the transmission from one of the beams. According to Thorlabs the transsmission coefficient is related to the angle by the following the function,
+\[
+\beta\left( \theta  \right) = 10^{-0.00741 \cdot \theta }
+.\] 
 \section*{Course of action}
-For this experiment, we took great care in setting up the interferometer correctly, as the quality of our data solely on this. The laser initially strikes two mirrors, which are used to direct it and correct it horizontally. It then strikes the beam splitter, which is aligned perpendicularly to the ray. The light is then split in two beams of equal intensity. One is transmitted while the other is reflected. These beams then strike mirrors, which send them back towards the beam splitter, where they are gathered and directed towards a detector. Before striking the detector, they pass through a concave lens. This spreads the light more evenly over the sensors in the detector. On one of the mirrors, is mounted a piezoelectric element. Applying a voltage over this element allows us to vary the path distance as the piezoelectric expands and contracts. 
+\begin{marginfigure}
+	\includegraphics[width=1.1\textwidth]{figures/setup}
+	\caption{Illustration of the setup.}
+\end{marginfigure}
+		For this experiment, we took great care in setting up the interferometer correctly, as the quality of our data relied solely on this. The (632 nm) laser initially strikes two mirrors, which are used to direct it and correct it horizontally. It then strikes the beam splitter, which is aligned perpendicularly to the ray. The light is then split in two beams of equal intensity. One is transmitted while the other is reflected. These beams then strike mirrors, which send them back towards the beam splitter, where they are gathered and directed towards a detector. Before striking the detector, they pass through a concave lens. This spreads the light more evenly over the sensors in the detector. On one of the mirrors, is mounted a piezoelectric element. Applying a voltage over this element allows us to vary the path distance as the piezoelectric expands and contracts. Lastly, we have placed the density filter in front of one of the mirrors. This allows us to gradualy change the intensity in one of the beams.
 \section*{Results}
+\subsection*{Piezo}
 In our experiment we measure the induced voltage in the detector as a function of the changing potential over a piezoelectric element. We are interested in relating this changing voltage to the phase change, and thereby ultimately to the path change. In order to figure out how. As the piezoelectric, behaves differently for increasing and decreasing voltagewe have split our data accordingly. For both datasets, we have fit our data to functions of the form,
 \[
 	I_{E /C} \left( V \right) = A \cos \left( B + \Delta \rho_{E /C}\left( V \right)  \right) +D
 .\] 
-Where $A$ represents the amplitude of the measured signal and $B, D$ are constant offsets. We are not interested in examining how the detector converts light intensity to signal. We merely check that a constant $A$ is a good description of the fit. We are instead interested in checking whether the base $\cos\left( \Delta \rho  \right) $ is a good description of the data. 
+Where $A$ represents the amplitude of the measured signal and $B, D$ are constant offsets. We have found that,
+\[
+\delta \rho \left( V \right) = aV^{-kV}
+\] makes for a description makes for a good description. We are not interested in examining how the detector converts light intensity to signal. We merely check that a constant $A$ is a good description of the fit. We are instead interested in checking whether the base $\cos\left( \Delta \rho  \right) $ is a good description of the data. Fig \textbf{4} and \textbf{5} contain examples of some data. We refrain from displaying all of our data. The results presented in the figure are quite representative of all our data.
+
+\begin{marginfigure}[-450pt]
+	\includegraphics[width=1.1\textwidth]{../example_contract}
+	\caption{Data obtained from measuring the signal as the piezo-element is driven with linealy changing potential. The data has been sorted, leaving only the points pertaining to piezo-contraction.}
+\end{marginfigure}
+\begin{marginfigure}[-250pt]
+	\includegraphics[width=1.1\textwidth]{../example_expanse}
+	\caption{Data obtained from piezo-contraction}
+\end{marginfigure}
+For each dataset, we make note of the estimated coefficients for $a$ and $k$. Fig  \textbf{6} is a plot of one of these functions. 
+\begin{marginfigure}[-100pt]
+	\includegraphics[width=1.1\textwidth]{figures/comparison}
+	\caption{Comparison of our estimated function for the piezo-element to the theoretical function determined from the spec-sheet. In this case we have estimated $a_E = 1.7 \cdot 10^{-8}$, $k_E = 0.002$,  $a_C = 1.9 \cdot 10^{-8}$, $k_C = 0.004$}
+\end{marginfigure}
+\subsection*{Density filter}
+We have measured the induced signal for varying degrees on the density filter. We have then used the amplitude of the measured wave as an estimate for the transmission-coefficient of the given angle. We have done this by normalizing the data at $\theta = 55$, we have set this value equal to the value from the spec-sheet. We have then scaled the rest of our data points in the same way. Remember, that the changing transmission-coefficient should in theory be the only factor impacting the intensity of the induced signal. Fig \textbf{7} shows our data, which seems to lie systematically below the data.
+\begin{marginfigure}[-10pt]
+	\includegraphics[width=1.1\textwidth]{../transmission}
+	\caption{Comparison between measured transmission coefficients and one obtained from the density filter spec-sheet.}
+\end{marginfigure}
+\section*{Discussion}
+We shall now examine our results more thoroughly, and try to determine why and how our data deviates from the expected results. We have systematically measured a slope that falls below the expected. It is difficult to guess why this might be, but since the slope is directly related to the frequency of the measured sine-wave, it should be related to this. The most logical explanation, would be some constant incorrect scaling of the frequency applied over the piezo-element. This would imply that the Piezo-driver amplified the signal in a different way than expected. Even though our data do not match the expecte results exactly, they do not diverge dramatically. Our measurement of the expansion coefficient is lower than our measurement of the contraction coefficient as expected. If we were to improve these measurements, it would require some testing of the equipment, to make sure that it behaves as expected.  \\
+Our measurements made with the density filter also suffer from a systematic error. All our measurements lie beneath the expected curve. As with the Piezo-element, our data does however seem to follow the general shape of the curve. It declines rapidly then tapers off, as expected. There are many potential reasons that our data does not fit exactly. We have assumed that the detector converts intensity to signal with a linear function, and the data does seem to suggest this. If however, it is not exactly linear, it would lead to some systematic error. We have also assumed that opening the aperture on thedetector would yield a constant scaling of the signal measured. This could again lead asystematic error, as we opened the aperture once while taking data. 
+\section*{Conclusion}
+In this experiment, we have pretty clearly seen that a wave-description of light is accurate. Michelson-morley setup does produce a sinusoidally varying intensity, this much we can say with certainty. Our data is definitely sinusoidal. We can also say with certainty, that the Piezo-element does note expand and contract identically. We found that the expansion and contraction coefficients were significantly different. So, broadly speaking, the experiment was succesful. However, if we were to use this setup, as quality assurance of the Piezo-element, we would have to improve it. There were to many uncertainties to conclude anything so specific.
+\printbibliography
 \end{document}
