@@ -36,7 +36,7 @@ def fit(V, *p):
 # Plot the data and the fit.
 def plot_fit_data(data, ax, k, i, color):
     # Data to be plotted.
-    data = data[sorter(data[:, 2], i), :]
+    data = data[sorter(data[:, 1], i), :]
     data = data[sorter2(data[:, 1]), :]
 
     data = data[data[:, 2].argsort()]
@@ -182,7 +182,7 @@ def best_fit_coeff(data, j):
     k = 0.1*10**-3
     pcovs = []
     popts = []
-    for i in range(1000):
+    for i in range(100):
         popt, pcov = plot_fit_data(data, 0, k+i*10**(-5), j, 0)
         pcovs.append(pcov)
         popts.append(popt)
