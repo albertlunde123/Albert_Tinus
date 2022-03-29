@@ -71,18 +71,31 @@ Where $k, \rho $ are constants.
 \subsection*{Pressure dependency}
 When a light beam passes through an object with a refractive index n, the optical path length of that beam is given by:
 \[
-L=n \cdot s
+OP=n \cdot L
 .\] 
-Where L is the optical path length and s is the geometrical path length. If the object is filed with a gas the index of refraction is affected by the pressure of the gas, which then also affects the optical path length. 
+Where OP is the optical path length and L is the geometrical path length. If the object is filed with a gas the index of refraction is affected by the pressure of the gas, which then also affects the optical path length. 
 \[
-\Delta L = \Delta n \cdot s
+\Delta OP = \Delta n \cdot L
 .\] 
 When it comes to air the refractive index is very close to one and for low pressures it is proportional to the change in pressure.
 \[
-n = 1 + kp
+n = n_{air} + kp
 .\] 
-where k is a constant. The change in pressure is then related to the optical path length by.
+where k is a constant. 
 \[
-\Delta p = e
+\Delta n =k\Delta p
 .\] 
+The change in pressure is then related to the optical path length by.
+\[
+\Delta OP = k\Delta p\cdot L
+.\] 
+This can then be related to the phase shift.
+\[
+\Delta \rho = \frac{2\pi}{\lambda}k\Delta p\cdot L
+.\] 
+The wavelength in the media is also dependent on the index of refraction but it such a small factor so an approximation is made.
+\[
+\Delta \rho \approx \frac{2\pi}{\lambda_0}k\Delta p\cdot L
+.\] 
+
 \end{document}
