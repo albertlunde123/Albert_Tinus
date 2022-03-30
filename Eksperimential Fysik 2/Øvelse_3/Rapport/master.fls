@@ -486,6 +486,8 @@ INPUT ./figures/pola2.pdf
 INPUT ./figures/pola2.pdf
 INPUT ./figures/pola2.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebbx10.tfm
+INPUT ./figures/waveplate.pdf_tex
+INPUT ./figures/waveplate.pdf_tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmo10.tfm
 INPUT master.aux
 INPUT ./master.out
