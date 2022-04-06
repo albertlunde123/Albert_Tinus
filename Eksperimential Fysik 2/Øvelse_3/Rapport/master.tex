@@ -84,9 +84,22 @@ Where OP is the optical path length and L is the geometrical path length. If the
 .\] 
 When it comes to air the refractive index is very close to one and for low pressures it is proportional to the change in pressure.
 \[
-n = n_{air} + kp
+n_{air} = 1 + k p
 .\] 
 where k is a constant. 
+This can be shown be considering the Lorentz-Lorenz equation and the ideal gas equation.
+\begin{align*}
+\frac{n^2-1}{n^2+2} &=\frac{4}{3}\pi \frac{n_{mol}}{V}\alpha_{mol}
+\\
+pV &= nRT
+\end{align*}
+Here $n_{mol}$ is the amount of molecules, $\alpha_{mol}$ is the polarisability of the molecules, P is pressure, V is volume, R is the universal gas-constant and T is the temperature.
+$n^2$ is very close to 1 for many gases, so we can rewrite the equations as:
+\[
+n \approx \sqrt{\frac{\pi p\alpha_{mol}}{RT}+1}
+.\] 
+In this experiment it is only the pressure which varies and the change is very small, so a Taylor expansion of this equation with respect to pressure results in a linear relationship. \\
+We can now justify the change in the refractive index to be:
 \[
 \Delta n =k\Delta p
 .\] 

@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import scipy.stats as ss 
 
 fig, ax = plt.subplots()
 
@@ -65,7 +66,7 @@ def local_maxima(dat):
     dat = dat[extreme_thinner(dat[:, 0]), :]
     dat = dat[continuity(dat[:, 1]), :]
 
-    print(len(dat[:, 0]))
+    #print(len(dat[:, 0]))
 
     # We start by thinning the data a bit. We shall reomve any consecutively
     # identical points
@@ -80,7 +81,7 @@ def local_maxima(dat):
 
     threshold = (np.max(data) - np.min(data))
     x_thresh = abs(threshold_data[0] - threshold_data[1])*10
-    print(x_thresh)
+    #print(x_thresh)
 
     # the following function checks whether a point is greater than its
     # neighbors
@@ -115,7 +116,7 @@ def local_maxima(dat):
 
     return dat[loc_max, :]
 
-print(ave_dist)
+#print(ave_dist)
 
 def break_point(data, end):
     breaker = 0
@@ -135,11 +136,58 @@ lms = local_maxima(data[:breaker, :])
 print(len(lms))
 
 
-ax.plot(lms[:, 0], lms[:, 1], 'ro')
+#ax.plot(lms[:, 0], lms[:, 1], 'ro')
 
-ax.plot(data[:breaker,0],data[:breaker,1], 'k-')
-ax.plot(data[breaker:,0],data[breaker:,1], 'b-')
+#ax.plot(data[:breaker,0],data[:breaker,1], 'k-')
+#ax.plot(data[breaker:,0],data[breaker:,1], 'b-')
 
+#plt.show()
+
+#The next function uses all the other functions to return a list
+#with the phasechanges for each measuremen
+def findAllPhaseChanges(filenames):
+    phases = []
+    end = 600
+    ave_dist = 0.005
+    for filename in filenames:
+        data = np.loadtxt(path + filename, skiprows = 3)
+        skipper = int(round(len(data[:,0])/1000, 0))
+        data = data[::skipper, :]
+        
+        breaker = break_point(data, end)
+        lms = local_maxima(data[:breaker, :])
+        phases.append(len(lms))
+    return phases 
+
+
+        
+    
+
+
+#We try to find the constant k that relates the change in pressure
+# to the change in phase
+
+wavelength = 632*10**-9
+lBeholder = 0.0565
+oneAtm = 101325
+pressureError = 2000
+phasechanges = findAllPhaseChanges(filenames)
+
+
+#We try to find the mean value of the phasechanges, and assume that
+#they are poisson distributed
+pMean = sum(phasechanges)/len(phasechanges)
+pError = np.sqrt(pMean)
+
+k = 2*np.pi*pMean*wavelength/(oneAtm*lBeholder*2*np.pi)
+
+bins = set(phasechanges)
+bins = list(bins)
+print(bins)
+bins = [20.5, 21.5, 22.5, 23.5, 24.5, 25.5, 26.5, 27.5]
+
+ax.hist(phasechanges, bins = bins, rwidth = 0.2, density = True)
+pRange = np.linspace(20, 28, 100)
+y = ss.poisson.pmf(pRange, mu = pMean)
+ax.plot(pRange,y)
 plt.show()
-
-
