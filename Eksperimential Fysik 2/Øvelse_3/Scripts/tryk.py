@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import scipy.stats as ss 
+from scipy.special import factorial
 
 fig, ax = plt.subplots()
 
@@ -185,9 +186,14 @@ bins = set(phasechanges)
 bins = list(bins)
 print(bins)
 bins = [20.5, 21.5, 22.5, 23.5, 24.5, 25.5, 26.5, 27.5]
-
 ax.hist(phasechanges, bins = bins, rwidth = 0.2, density = True)
-pRange = np.linspace(20, 28, 100)
-y = ss.poisson.pmf(pRange, mu = pMean)
-ax.plot(pRange,y)
+#pRange = np.linspace(10, 40, 100)
+
+#def poissonFunc(x):
+ #   return pMean**x*np.exp(-pMean)/factorial(x)
+
+#y = ss.poisson.pmf(pRange, mu = pMean)
+
+#y = [poissonFunc(x) for x in pRange]
+#ax.plot(pRange,y)
 plt.show()
