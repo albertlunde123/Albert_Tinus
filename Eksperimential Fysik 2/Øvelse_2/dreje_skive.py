@@ -17,6 +17,7 @@ def load_data(path):
 
 data = load_data('Vinkel_Data/Kurveformer/')
 
+
 # Nu skal vi lave en funktion som klistrer dataet sammen ved skiftet omkring 80
 # grader.
 
@@ -79,7 +80,7 @@ for key in list(data.keys()):
     if int(key) > 80:
         angles.append(float(key))
         amps.append(scaling*(max(data[key][:500,1]) - min(data[key][:500,1]))/2)
-
+print(angles)
 angles = (np.array(angles)-55)*(6.28/360)
 
 # Den teoretiske funktion ser ud på følgende måde.
@@ -92,11 +93,12 @@ def T(vink):
 
 print(10**(-0.04))
 vink = np.linspace(0, 6.28, 100)
-ax.plot(vink, T(vink), 'b-')
+ax.plot(vink, T(vink), 'b-', label = "Theoretical")
 
 x_err = np.array([5*3.14/360]*len(amps))
 y_err = np.array([0.04]*len(amps))
 
+x_err = np.array([0.5*6.28/360]*len(amps))
 ax.errorbar(angles,
             amps,
             xerr = x_err,
@@ -106,7 +108,7 @@ ax.errorbar(angles,
 
 def fit(vink, *p):
     a = p[0]
-    return 10**(-vink*a*360/6.28)
+    return 10**(-vink*a)
 
 guess = [0.02]
 
@@ -115,6 +117,7 @@ popt, pcov = scp.curve_fit(fit,
                            amps,
                            guess,
                            sigma = y_err)
+
 
 def propagation_function(x, f, popt, pcov):
     f_error = 0
@@ -138,12 +141,13 @@ def plot_propagation(x, f, popt, pcov, ax):
                     color = '#d989a6')
 plot_propagation(vink, fit, popt, pcov, ax)
 
-ax.plot(vink, fit(vink, *popt), 'k-')
-
+ax.plot(vink, fit(vink, *popt), 'k-', label = "Experimental")
+print(popt)
+print(pcov)
 
 ax.set_title('Plot of transmission-coefficient', fontsize = 20)
 ax.set_xlabel('$\\theta$', fontsize = 20)
 ax.set_ylabel('Transmission', fontsize = 20)
-
+ax.legend()
 plt.savefig('transmission.png')
 plt.show()
