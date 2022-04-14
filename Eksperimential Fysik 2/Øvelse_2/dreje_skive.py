@@ -143,7 +143,7 @@ plot_propagation(vink, fit, popt, pcov, ax)
 
 ax.plot(vink, fit(vink, *popt), 'k-', label = "Experimental")
 print(popt)
-print(pcov)
+print(np.sqrt(pcov))
 
 ax.set_title('Plot of transmission-coefficient', fontsize = 20)
 ax.set_xlabel('$\\theta$', fontsize = 20)

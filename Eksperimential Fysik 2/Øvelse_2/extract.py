@@ -15,8 +15,8 @@ ax.set_xlim(0, 150)
 Vs = np.linspace(0, 150, 100)
 
 conv = (632*10**(-9))/(4*np.pi)
-
-print(conv*0.35)
+print(conv*0.00612396)
+#print(conv*0.35)
 theoretical_vals = [[2.68*10**(-8),-2.81*10**(-3)],[2.14*10**(-8),-1.40*10**(-3)]]
 
 # experimental_vals = [[0.34*conv, -0.0015], [0.401*conv,-0.0043]]
@@ -24,6 +24,7 @@ theoretical_vals = [[2.68*10**(-8),-2.81*10**(-3)],[2.14*10**(-8),-1.40*10**(-3)
 
 experimental_vals = [[0.34*conv, -0.002], [0.38*conv, -0.004]]
 
+print(experimental_vals)
 for d in theoretical_vals:
     ax.plot(Vs, fit(Vs, *d), color = 'black')
 

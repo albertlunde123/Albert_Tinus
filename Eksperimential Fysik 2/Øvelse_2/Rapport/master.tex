@@ -92,7 +92,7 @@ In the second part of the experiment, we make use of a linear density filter fro
 		For this experiment, we took great care in setting up the interferometer correctly, as the quality of our data relied solely on this. The (632 nm) laser initially strikes two mirrors, which are used to direct it and correct it horizontally. It then strikes the beam splitter, which is aligned perpendicularly to the ray. The light is then split in two beams of equal intensity. One is transmitted while the other is reflected. These beams then strike mirrors, which send them back towards the beam splitter, where they are gathered and directed towards a detector. Before striking the detector, they pass through a concave lens. This spreads the light more evenly over the sensors in the detector. On one of the mirrors, is mounted a piezoelectric element. Applying a voltage over this element allows us to vary the path distance as the piezoelectric expands and contracts. Lastly, we have placed the density filter in front of one of the mirrors. This allows us to gradualy change the intensity in one of the beams.
 \section*{Results}
 \subsection*{Piezo}
-In our experiment we measure the induced voltage in the detector as a function of the changing potential over a piezoelectric element. We are interested in relating this changing voltage to the phase change, and thereby ultimately to the path change. In order to figure out how. As the piezoelectric, behaves differently for increasing and decreasing voltagewe have split our data accordingly. For both datasets, we have fit our data to functions of the form,
+In our experiment we measure the induced voltage in the detector as a function of the changing potential over a piezoelectric element. We are interested in relating this changing voltage to the phase change, and thereby ultimately to the path change. In order to figure out how. As the piezoelectric, behaves differently for increasing and decreasing voltage have split our data accordingly. For both datasets, we have fit our data to functions of the form,
 \[
 	I_{E /C} \left( V \right) = A \cos \left( B + \Delta \rho_{E /C}\left( V \right)  \right) +D
 .\] 
@@ -106,7 +106,7 @@ Where $A$ represents the amplitude of the measured signal and $B, D$ are constan
 	\caption{Data obtained from measuring the signal as the piezo-element is driven with linealy changing potential. The data has been sorted, leaving only the points pertaining to piezo-contraction.}
 \end{marginfigure}
 \begin{marginfigure}[-250pt]
-	\includegraphics[width=1.1\textwidth]{../example_expanse}
+	\includegraphics[width=1.1\textwidth]{../Piezo-expansion}
 	\caption{Data obtained from piezo-contraction}
 \end{marginfigure}
 For each dataset, we make note of the estimated coefficients for $a$ and $k$. Fig  \textbf{6} is a plot of one of these functions. 
@@ -125,23 +125,43 @@ We shall now examine our results more thoroughly, and try to determine why and h
 \[
 \Delta s \left( V \right)  = aV e^{-kV}
 \]
-By the use of CAS and the Piezo-element graph (\textbf{Figure 3}) given by ThorLab, the theoretical values was found to be
+By the use of CAS and the Piezo-element graph (\textbf{Figure 3}) given by ThorLab, the theoretical values was found to be:
 \begin{center}
 
 \textbf{Contraction: }[$k_C = 2.81\cdot 10^{-3}$,  $a_C = 2.68 \cdot 10^{-8}$], 
 \\
 \textbf{Expansion: }[$k_E = 1.40 \cdot 10^{-3}$, $a_E = 2.14 \cdot 10^{-8}$].
 \end{center}
- In both experiments we have measured a slope that falls below the expected. It is difficult to guess why this might be, but since the slope is directly related to the frequency of the measured sine-wave, it should be related to this. The most logical explanation, would be some constant incorrect scaling of the frequency applied over the Piezo-element. This would imply that the Piezo-driver amplified the signal in a different way than expected. Even though our data do not match the expecte results exactly, they do not diverge dramatically. Our measurement of the expansion coefficient is lower than our measurement of the contraction coefficient as expected. If we were to improve these measurements, it would require some testing of the equipment, to make sure that it behaves as expected.  \\
-In the experiment with the density filter we wanted to examine the transmission coefficient given by  Thorlab: 
- \[
+Using the error of 15 \% in the maximum displacement   as an estimate for the error in the Piezo-element we can fit the experimental data to the function. Using the same data from the comparison graph we found:
+\begin{center}
+\textbf{Contraction: }[$k_C = 4\cdot 10^{-3} \pm 0.11 \cdot 10^{-3}$,  $a_C = 1.9 \cdot 10^{-8} \pm 0.036 \cdot 10^{-8}$], 
+\\
+\textbf{Expansion: }[$k_E = 2 \cdot 10^{-3} \pm 0.13 \cdot 10^{-3}$, $a_E = 1.7 \cdot 10^{-8} \pm 0.038 \cdot 10^{-8}$].
+\end{center}
+
+It is clear that there is an offset present in the data because the fit is quite good with a low error but there is a visible difference compared to the theoretical fit. Both coefficients in the contradiction and expansion have a notable difference compared to the theoretical ones and our data yields a lower value for both slopes, which means the Piezo-element is not expanding and contracting as much as expected. It is hard to tell where this error comes from but an error that affected the interference pattern in the detector and thereby the path difference in the experiment is the vibrations and noise coming from the surroundings. It was clear that when the beams was nicely interfering in the detector a small disturbance coming from movement or people speaking could change the interference pattern. So ideally if the experiment was conducted in a more isolated area one would possibly get better results. Also one could expect the mirror connected to the Piezo-element to have an impact in how easy it was for the element to expand and contract.
+\medskip
+
+In the experiment with the density filter we wanted to examine the transmission coefficient given by  Thorlab:
+\[
 \beta(\theta)=10^{-0.00741\cdot \theta}
-.\]
+\]
 Since the intensity is depended on the transmission coefficient and considering that the only thing we changed between measurements was the angle on the filter, a good estimate for measuring the transmission coefficient was to relate the change in the amplitude of the signal directly to the transmission coefficient, so dividing the maximum amplitude with the current one. We could then fit to the function:
- \[
+\[
 \beta(\theta)=10^{-a\cdot \theta}
-.\]
-When fitting, the most obvious error was the one related to the measurement of the angle, where $\pm$ $0.5^{\circ}$ was a reasonable estimate. The fitting resulted in $[a=1.1254 \pm 0.0044$]. Compared to the constant given by the manufacturer, there is a big difference. Our measurements suffer from a systematic error, they lie beneath the expected curve and may even seem to follow a more exponential relation. The fit is pretty good though with a small error, so seems either we have a large contributing error or the relation given by the manufacturer may not be exact. There are many potential reasons that our data does not fit exactly. We have assumed that the detector converts intensity to signal with a linear function, and the data does seem to suggest this. If however, it is not exactly linear, it would lead to some systematic error. We have also assumed that opening the aperture on the detector would yield a constant scaling of the signal measured. This could again lead to a systematic error, as we opened the aperture once while taking data. 
+\]
+When fitting, the most obvious error was the one related to the measurement of the angle, where $\pm$ $0.5^{\circ}$ was a reasonable estimate. The fitting resulted in 
+\begin{center}
+[$a=1.1254 \pm 0.0661$]
+\end{center}
+Compared to the constant given by the manufacturer which was 0.00741, there is a big difference. Our measurements suffer from a systematic error, they lie beneath the expected curve and may even seem to follow a more exponential relation. The fit is pretty good though with a small error, so seems either we have a large contributing error or the relation given by the manufacturer may not be exact. \\
+This systematic error is closely related to the angle on the filter wheel and it actually turns out that if the data is normalized around 20 degrees instead of 55 the fit gets much better with 
+\begin{center}
+$[a=0.4432 \pm 0.043$].
+\end{center}
+ We do not exactly know the reason for this angle error. We might have used the device wrongly or there might be a contributing error in our code. This does though still indicate that there is a mismatch with the constant given by ThorLabs because the transmission constant seems to be decreasing more rapidly and looks more exponential. 
+ \\
+There are other potential reasons that our data does not fit exactly. We have assumed that the detector converts intensity to signal with a linear function, and the data does seem to suggest this. If however, it is not exactly linear, it would lead to some systematic error. We have also assumed that opening the aperture on the detector would yield a constant scaling of the signal measured. This could again lead to a systematic error, as we opened the aperture once while taking data. 
 \\
 Both experiments yielded good fits but also a constant offset, which may indicate a systematic error in either some of the equipment or the code used for the data analysis, so a repetition of the experiment should be considered.
 \section*{Conclusion}

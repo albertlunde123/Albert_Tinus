@@ -8,7 +8,7 @@ fig, ax = plt.subplots()
 # os.chdir('c:\\Users\\all\\Albert_Tinus\\Eksperimential Fysik 2\\Øvelse_2\\')
 
 data = np.loadtxt("Vinkel_Data/Kurveformer/65_2.txt", skiprows = 3)[:2000, [0,1,2]]
-
+data = data*1.2
 # Find data points that are either rising or falling.
 def sorter(data, k):
     returner = []
@@ -139,7 +139,7 @@ def plot_fit_data(data, ax, k, i, color):
                                 guess_c+abs(guess_c*0.00001),
                                 guess_d + abs(guess_d*0.0000001),
                                 k +abs(k*0.000000001))))
-
+    
     Vs = np.linspace(freq[0], freq[-1], 1000)
 
     if ax != 0:
@@ -147,7 +147,7 @@ def plot_fit_data(data, ax, k, i, color):
         ax.plot(Vs, fit(Vs, *popt), '--', color = 'black')
         ax.set_ylim(guess_c - guess_a*1.2, guess_a*1.2 + guess_c)
 
-    return popt, np.sum(np.sqrt(np.diag(pcov)))
+    return popt, np.sum(np.sqrt(np.diag(pcov))), np.sqrt(np.diag(pcov))
 
 # in theory, we should be able to extract the path distance from this.
 
@@ -183,7 +183,7 @@ def best_fit_coeff(data, j):
     pcovs = []
     popts = []
     for i in range(100):
-        popt, pcov = plot_fit_data(data, 0, k+i*10**(-5), j, 0)
+        popt, pcov, spred = plot_fit_data(data, 0, k+i*10**(-5), j, 0)
         pcovs.append(pcov)
         popts.append(popt)
     return popts[np.argmin(np.array(pcovs))][-1]
@@ -191,6 +191,8 @@ def best_fit_coeff(data, j):
 k = best_fit_coeff(data, 1)
 
 print(plot_fit_data(data, ax, k, 1, 'red'))
+
+print(150*1.7*10**(-8)*np.exp(-0.002*150))
 
 plt.savefig('example_expanse.png')
 plt.show()
