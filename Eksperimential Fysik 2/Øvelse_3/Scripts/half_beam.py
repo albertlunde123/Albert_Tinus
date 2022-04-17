@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 import scipy.optimize as scp
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize = (10,10))
 
 path = '../Data/Data1gang/'
 filenames = sorted(os.listdir(path))
@@ -67,6 +67,10 @@ b = guess[2]
 d = guess[3]
 
 print(a, b, c, d)
+
+errs = 2*np.pi/360
+errs_vec = np.zeros(len(angs)) + errs
+
 popt, pcov = scp.curve_fit(fit,
                            angs,
                            amps,
@@ -78,9 +82,28 @@ popt, pcov = scp.curve_fit(fit,
                                 (a + abs(a*0.00001),
                                 c + abs(c)*0.0000001,
                                 b + abs(b*0.00001),
-                                d + abs(d*0.0000001))))
+                                d + abs(d*0.0000001))),
+                           sigma = errs_vec)
 
 Vs = np.linspace(0, np.pi, 100)
-ax.plot(angs, amps, 'ko')
-ax.plot(Vs, fit(Vs, *popt), 'b-')
+ax.errorbar(angs, amps, xerr = errs, fmt = 'ko', markersize = 14)
+ax.plot(Vs, fit(Vs, *popt), 'b-', linewidth = 3)
+
+props = dict(boxstyle = 'square, pad=0.5',
+            facecolor = '#272822',
+            edgecolor = '#313847'
+)
+
+box_text = '$b = ' + str(round(popt[2], 1)) + ' \\pm ' +  str(round(np.diag(pcov)[1], 3)) + '$'
+
+ax.set_ylim(0, 1)
+
+ax.text(0, 0.94, box_text, color = 'white', bbox = props, fontsize = 26)
+
+ax.set_title('Plot of waveplate-angle and light intensity', fontsize = 26)
+ax.set_xlabel("$\\theta_{incident} $ in rad", fontsize = 26)
+ax.set_ylabel("Intensity", fontsize = 26)
+
+
+plt.savefig('../Rapport/inputs/waveplateres.png')
 plt.show()
