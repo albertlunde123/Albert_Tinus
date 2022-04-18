@@ -119,13 +119,13 @@ The wavelength in the media is also dependent on the index of refraction but it 
 \begin{marginfigure}[-50pt]
 	\centering
 	\incfig{fig1}
-	\caption{An illustration of the experimental method. The use of two beam-splitters allows us to pass the beams through the pressure chamber or waveplate once.}
+	\caption{An illustration of the experimental method. The use of two beam-splitters allows us to pass the beams through the pressure chamber or waveplate once. Of course we only vary one thing at a time, so both elements wont be in the set-up simultaneously.}
 	\label{fig:}
 \end{marginfigure}
 For the experiment we built a Michelson-Morley method. We were then only required to make minor adjustments to switch between each part of the experiment. First, the laser is passed through a beamsplitter, each beam then hits a mirrror. On one of the mirrors is mounted a piezo-electric. This allows us to change the path-length in a systematic fashion. The rays are then collected by another beam-splitter and aimed towards a detector. A sketch of this setup can be seen in the figure. \\
 For the first part of the experiment we placed a waveplate in front of one the mirrors. We were then able to change the polarization for one beam of light. We could then take measurements at different angles. 
 \\
-For the second part of the experiment, we had the piezoelectric turned off. We did this, as we were measuring a frequency change rather than intensity. We had a transparent gas-chamber placed in front of the beams of light. This gas-chamber was connected to a bicycle pump with which we could control the air-pressure. We then took a measurement where we varied the pressure throughout. 
+For the second part of the experiment, we had the piezoelectric turned off. We did this, as we were measuring a frequency change rather than intensity. We had a transparent gas-chamber placed in the path of either the transmitted beam or reflected beam as shown in the figure. This gas-chamber was connected to a bicycle pump with which we could change the air-pressure. A measurement would consist of slowly increasing the pressure from atmospheric pressure( $\approx$ 1 bar) to 2 bar in the chamber by the use of the pump. 
 \subsection*{Results}
 \subsubsection*{Waveplate}
 We took measurements for different angles of the waveplate. For each angle we measured the intensity of the light beam striking the detector. We then plot these against one another and fit the data to a sinusoidal function. We expected the data to have a frequency of $2$. Our data is displayed in figure,
@@ -134,7 +134,32 @@ We took measurements for different angles of the waveplate. For each angle we me
 	\includegraphics[width=1.1\textwidth]{inputs/waveplateres}
 	\caption{The data collected from the waveplate. Our datapoints are marked with black. The error on these points is small enough to be contained in the points. The fit is marked with the blue line. The error in the fit is small enough to be contained in the line}
 \end{marginfigure}
-Our data clearly follows a sinusoidal function, however the measured frequency $b = 4$ is twice what we would expect. Furthermore, our estimated error in this measurement is $0.001$, so we can quite certain that our data has a frequency in the vicinity of $4$ times the angle indicated on the waveplate. 
+Our data clearly follows a sinusoidal function, however the measured frequency $b = 4$ is twice what we would expect. Furthermore, our estimated error in this measurement is $0.001$, so we can quite certain that our data has a frequency in the vicinity of $4$ times the angle indicated on the waveplate.
+\subsection*{Pressure change} 
+We know from the theory section that changing the pressure results in a change in the path length which then results in a change in the interference pattern in the detector. No signal is equal to destructive interference and max signal is equal to constructive interference. The difference between two local maxima must then correspond to a full phase shift. One can then count the number of local maxima and subtract one to get the total number of phase shifts. Revisiting:
+\[
+\Delta \rho \approx \frac{2\pi}{\lambda_0}k\Delta p\cdot L
+.\] 
+The only unknown parameter is k which can be calculated and used to calculate the refractive index of air:
+\[
+n_{air} = 1 + k p
+.\] 
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1.1\textwidth]{inputs/trykMax}
+	\caption{Small segment of the full pressure graph. As the pressure increases with time the intensity varies which corresponds to change in the phase. The gap between two maxima correspond to one phase shift.}
+\end{marginfigure}
+In principle it is only possible to calculate the gradient from the two known pressure points. So to get better data we made multiple measurement of the total phase shifts. We assumed the total number of phase shift followed a Poisson-distribution because it is a count variable. This was then used to find the mean value and the error. 
+\begin{center}
+$\Delta p = 23.8 \pm 4.88$
+\end{center}
+
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1.1\textwidth]{inputs/pressureHist}
+	\caption{Shows how 15 repetitions of the experiment yielded different numbers of total phase shifts. }
+\end{marginfigure}
+
 \subsection*{Discussion}
 We first discuss the waveplate-experiment. Overall, this experiment went very well. We were able to obtain datapoints, that had very little error. The nature of the experiment also allowed us to take many datapoints, thereby giving us a detailed picture of the sinusoidal behavior we were measuring. In spite of this we did end up measuring a frequency twice as large as expected. The small error in this frequency $(0.001)$, suggests a systematic error. We believe this error be one of two possibilities. Either the waveplate is mislabelled or we have misread it. Our datas strong adherence to the sinusoidal function, is however a great indication that the theory is correct. This was in fact a very simple and effective setup, that does not require much improvement.
 \subsection*{Conclusion}

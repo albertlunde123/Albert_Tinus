@@ -137,63 +137,26 @@ lms = local_maxima(data[:breaker, :])
 print(len(lms))
 
 
-#ax.plot(lms[:, 0], lms[:, 1], 'ro')
+ax.plot(lms[:, 0], lms[:, 1], 'ro', label = 'Maxima')
 
-#ax.plot(data[:breaker,0],data[:breaker,1], 'k-')
-#ax.plot(data[breaker:,0],data[breaker:,1], 'b-')
 
-#plt.show()
+ax.plot(data[:breaker,0],data[:breaker,1], 'k-')
+ax.plot(data[breaker:,0],data[breaker:,1], 'b-')
 
+plt.rc("axes", labelsize=18, titlesize=22)
+plt.rc("xtick", labelsize=16, top=True, direction="in")
+plt.rc("ytick", labelsize=16, right=True, direction="in")
+plt.rc("legend", fontsize=16)
+
+ax.set_title('Phaseshift due to pressure change', fontsize = 18)
+ax.set_xlabel("Time(s)", fontsize = 18)
+ax.set_ylabel("Intensity(V)", fontsize = 18)
+ax.set_xlim(1,3)
+ax.set_ylim(0, 1.1)
+
+ax.legend(borderpad=0.2)
+
+plt.savefig('../Rapport/inputs/trykMax.png')
+plt.show()
 #The next function uses all the other functions to return a list
 #with the phasechanges for each measuremen
-def findAllPhaseChanges(filenames):
-    phases = []
-    end = 600
-    ave_dist = 0.005
-    for filename in filenames:
-        data = np.loadtxt(path + filename, skiprows = 3)
-        skipper = int(round(len(data[:,0])/1000, 0))
-        data = data[::skipper, :]
-        
-        breaker = break_point(data, end)
-        lms = local_maxima(data[:breaker, :])
-        phases.append(len(lms))
-    return phases 
-
-
-        
-    
-
-
-#We try to find the constant k that relates the change in pressure
-# to the change in phase
-
-wavelength = 632*10**-9
-lBeholder = 0.0565
-oneAtm = 101325
-pressureError = 2000
-phasechanges = findAllPhaseChanges(filenames)
-
-
-#We try to find the mean value of the phasechanges, and assume that
-#they are poisson distributed
-pMean = sum(phasechanges)/len(phasechanges)
-pError = np.sqrt(pMean)
-
-k = 2*np.pi*pMean*wavelength/(oneAtm*lBeholder*2*np.pi)
-
-bins = set(phasechanges)
-bins = list(bins)
-print(bins)
-bins = [20.5, 21.5, 22.5, 23.5, 24.5, 25.5, 26.5, 27.5]
-ax.hist(phasechanges, bins = bins, rwidth = 0.2, density = True)
-#pRange = np.linspace(10, 40, 100)
-
-#def poissonFunc(x):
- #   return pMean**x*np.exp(-pMean)/factorial(x)
-
-#y = ss.poisson.pmf(pRange, mu = pMean)
-
-#y = [poissonFunc(x) for x in pRange]
-#ax.plot(pRange,y)
-plt.show()
