@@ -2350,6 +2350,8 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="1">https://www.oxfordreference.com/view/10.1093/oi/authority.20110803100115114</bcf:citekey>
+    <bcf:citekey order="2">https://hypertextbook.com/facts/2005/MayaBarsky.shtml</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

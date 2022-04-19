@@ -87,7 +87,7 @@ When it comes to air the refractive index is very close to one and for low press
 n_{air} = 1 + k p
 .\] 
 where k is a constant. 
-This can be shown be considering the Lorentz-Lorenz equation and the ideal gas equation.
+This can be shown be considering the Lorentz-Lorenz equation\footcite{https://www.oxfordreference.com/view/10.1093/oi/authority.20110803100115114} and the ideal gas equation.
 \begin{align*}
 \frac{n^2-1}{n^2+2} &=\frac{4}{3}\pi \frac{n_{mol}}{V}\alpha_{mol}
 \\
@@ -153,6 +153,14 @@ In principle it is only possible to calculate the gradient from the two known pr
 \begin{center}
 $\Delta p = 23.8 \pm 4.88$
 \end{center}
+By also incorporating the error in the pressure this  yielded the k-value:
+\begin{center}
+$k=2.63 \cdot 10^{-9} \pm 0.75 \cdot 10^{-9}$
+\end{center}
+Now relating this to the refractive index of air we get:
+\begin{center}
+$n_{air} = 1.00027 \pm 0.000077$
+\end{center}
 
 \begin{marginfigure}
 	\centering
@@ -161,8 +169,17 @@ $\Delta p = 23.8 \pm 4.88$
 \end{marginfigure}
 
 \subsection*{Discussion}
-We first discuss the waveplate-experiment. Overall, this experiment went very well. We were able to obtain datapoints, that had very little error. The nature of the experiment also allowed us to take many datapoints, thereby giving us a detailed picture of the sinusoidal behavior we were measuring. In spite of this we did end up measuring a frequency twice as large as expected. The small error in this frequency $(0.001)$, suggests a systematic error. We believe this error be one of two possibilities. Either the waveplate is mislabelled or we have misread it. Our datas strong adherence to the sinusoidal function, is however a great indication that the theory is correct. This was in fact a very simple and effective setup, that does not require much improvement.
+\subsubsection*{Waveplate} Overall, this experiment went very well. We were able to obtain datapoints, that had very little error. The nature of the experiment also allowed us to take many datapoints, thereby giving us a detailed picture of the sinusoidal behavior we were measuring. In spite of this we did end up measuring a frequency twice as large as expected. The small error in this frequency $(0.001)$, suggests a systematic error. We believe this error be one of two possibilities. Either the waveplate is mislabelled or we have misread it. Our datas strong adherence to the sinusoidal function, is however a great indication that the theory is correct. This was in fact a very simple and effective setup, that does not require much improvement.
+\subsubsection*{Pressure change}
+Overall a lot of approximations were made for this experiment e.g that the wavelength does not change in the pressure chamber and that the refractive index of air changes linearly with pressure. However the final result of 
+\begin{center}
+$n_{air} = 1.00027 \pm 0.000077$
+\end{center}
+
+is not that far from the actual refractive index of air 1.000293. \footcite{https://hypertextbook.com/facts/2005/MayaBarsky.shtml} Of course the error on the refractive index is quite large but this is expected because we used a bicycle pump for the experiment that had an error of $\pm$ 0.2 bar. Furthermore we only calculated the constant k from 2  pressure points, the one at atmospheric pressure and the one at 2 bar. So to minimize the error and get a better result one would need a more precise tool to raise the pressure. This would both minimize the error in the actual pressure measurement but also allow one to make measurements at more pressure levels.
+
 \subsection*{Conclusion}
-Overall, this was a succesful experiment. The waveplate experiment demonstrated the strength of the setup, as we the errors we were dealing with were small compared to the tendencies we were trying to measure. It was an experiment where our experimental equipment was sufficiently precise, and able to measure over a wide enough range, to yield an exact result. \\
-In contrast the bicylcle pump experiment\ldots
+Overall, this was a successful experiment. The waveplate experiment demonstrated the strength of the setup, as we the errors we were dealing with were small compared to the tendencies we were trying to measure. It was an experiment where our experimental equipment was sufficiently precise, and able to measure over a wide enough range, to yield an exact result. \\
+The pressure experiment yielded a result that was fairly close to the actual refractive index of air but the error was quite large so to get a better result one would have to make the experiment with a better pressure tool.
+ 
 \end{document}

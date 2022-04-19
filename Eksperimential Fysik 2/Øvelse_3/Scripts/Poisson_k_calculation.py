@@ -45,21 +45,21 @@ pMean = sum(phasechanges)/len(phasechanges)
 pError = np.sqrt(pMean)
 
 k = 2*np.pi*pMean*wavelength/(oneAtm*lBeholder*2*np.pi)
-print(k)
+print(1+k*oneAtm)
+
+sigmaPhase = (2*np.pi*wavelength/(oneAtm*lBeholder*2*np.pi))**2*pError**2
+sigmaPressure = (2*np.pi*wavelength*pMean/(-oneAtm**2*lBeholder*2*np.pi))**2*(oneAtm*0.2)**2
+kError = np.sqrt(sigmaPhase + sigmaPressure)
+
+print(kError*oneAtm)
+
+#lets make a histogram
 bins = set(phasechanges)
 bins = list(bins)
 print(bins)
 bins = [ 21.5, 22.5, 23.5, 24.5, 25.5, 26.5]
 ax.hist(phasechanges, bins = bins, rwidth = 0.2, density = False)
-#pRange = np.linspace(10, 40, 100)
 
-#def poissonFunc(x):
- #   return pMean**x*np.exp(-pMean)/factorial(x)
-
-#y = ss.poisson.pmf(pRange, mu = pMean)
-
-#y = [poissonFunc(x) for x in pRange]
-#ax.plot(pRange,y)
 plt.rc("axes", labelsize=18, titlesize=22)
 plt.rc("xtick", labelsize=16, top=True, direction="in")
 plt.rc("ytick", labelsize=16, right=True, direction="in")
