@@ -54,8 +54,9 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{frontmatter.pdf}}%
-    \put(0.07402976,1.2773501){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Eksperimental Fysik 2 - Øvelse 2\\The Michelson-Morley Interferometer\end{tabular}}}}%
-    \put(0.07285631,1.13046154){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Tinus Blæsbjerg\\Albert Lunde\end{tabular}}}}%
+    \put(0.07402976,1.27735011){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Eksperimental Fysik 2 - Øvelse 2\\The Michelson-Morley Interferometer\end{tabular}}}}%
+    \put(0.07285631,1.13046156){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Tinus Blæsbjerg\\Albert Lunde\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{frontmatter.pdf}}%
+    \put(0.06270235,1.26151158){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Eksperimental Fysik 2 - Øvelse 3\end{tabular}}}}%
   \end{picture}%
 \endgroup%

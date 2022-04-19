@@ -492,6 +492,8 @@ INPUT ./figures/waveplate.pdf_tex
 INPUT ./figures/waveplate.pdf
 INPUT ./figures/waveplate.pdf
 INPUT ./figures/waveplate.pdf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmr8.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cmbright/ebmr8.tfm
 INPUT ./figures/fig1.pdf_tex
 INPUT ./figures/fig1.pdf_tex
 INPUT ./figures/fig1.pdf
@@ -506,6 +508,12 @@ INPUT ./figures/fig1.pdf
 INPUT inputs/waveplateres.png
 INPUT ./inputs/waveplateres.png
 INPUT ./inputs/waveplateres.png
+INPUT inputs/trykMax.png
+INPUT ./inputs/trykMax.png
+INPUT ./inputs/trykMax.png
+INPUT inputs/pressureHist.png
+INPUT ./inputs/pressureHist.png
+INPUT ./inputs/pressureHist.png
 INPUT master.aux
 INPUT ./master.out
 INPUT ./master.out
@@ -519,6 +527,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmb10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmi8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrsy10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrsy8.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfbbx10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfbmr10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfbmr8.pfb
