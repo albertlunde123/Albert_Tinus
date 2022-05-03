@@ -45,13 +45,13 @@ pMean = sum(phasechanges)/len(phasechanges)
 pError = np.sqrt(pMean)
 
 k = 2*np.pi*pMean*wavelength/(oneAtm*lBeholder*2*np.pi)
-print(1+k*oneAtm)
+print(k)
 
 sigmaPhase = (2*np.pi*wavelength/(oneAtm*lBeholder*2*np.pi))**2*pError**2
 sigmaPressure = (2*np.pi*wavelength*pMean/(-oneAtm**2*lBeholder*2*np.pi))**2*(oneAtm*0.2)**2
 kError = np.sqrt(sigmaPhase + sigmaPressure)
 
-print(kError*oneAtm)
+print(kError)
 
 #lets make a histogram
 bins = set(phasechanges)
