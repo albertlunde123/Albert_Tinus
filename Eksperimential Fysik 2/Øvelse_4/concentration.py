@@ -7,7 +7,7 @@ fig, ax = plt.subplots(figsize = (10,10))
 
 
 path = "data_4/"
-print(os.getcwd())
+#print(os.getcwd())
 filenames = sorted(os.listdir(path))
 #remove the one data file with the sun spectrum
 for f in filenames:
@@ -42,29 +42,53 @@ while i < 10:
 # print(len(absorbances))
 # plt.errorbar(np.linspace(1,14,14), absorbances, fmt ='o')
 
-def linFunc(x, a):
-    return x*a
+def linFunc(x, *p):
+    a = p[0]
+    b = p[1]
+    return x*a + b 
 
+def polyFunc(x, *p):
+    a = p[0]
+    b = p[1]
+    c = p[2]
+    return a*x**2+b*x+c
 
-popt, pcov = scp.curve_fit(linFunc, drops, absorbanceLists[0])
 plt.errorbar(drops, absorbanceLists[0], fmt = 'o')
+def drawFunc(func, xs, ys, guesses, name, fillColor):
+    popt, pcov = scp.curve_fit(func, xs, ys, guesses)
+    xs = np.linspace(1,14, 100)
+    # yerr = [np.sqrt(pcov[0][0])]*100
 
-xs = np.linspace(1,14, 100)
-# yerr = [np.sqrt(pcov[0][0])]*100
-print(np.sqrt(pcov))
-plt.plot(xs, linFunc(xs, popt[0]), label = 'Linear fit')
-ax.legend()
-plt.fill_between(xs, linFunc(xs, popt[0]), linFunc(xs, popt[0]+np.sqrt(pcov[0][0])), alpha = 0.3, color = 'orange')
-plt.fill_between(xs, linFunc(xs, popt[0]), linFunc(xs, popt[0]-np.sqrt(pcov[0][0])), alpha = 0.3, color = 'orange')
+    plt.plot(xs, func(xs, *popt), label = name)
+    ax.legend()
+    errs = np.sqrt(np.diagonal(pcov))
+    err = 0
+    i = 0
+    while i < len(errs):
+        newPopt = popt.copy()
+        newPopt[i] = popt[i]+errs[i]
+        i = i+1
+        err = (func(xs[3], *newPopt) - func(xs[3], *popt))**2
+        
+    plt.fill_between(xs, func(xs, *popt), func(xs, *popt-err), alpha = 0.2, color = fillColor)
+    plt.fill_between(xs, func(xs, *popt), func(xs, *popt+err), alpha = 0.2, color = fillColor)
+    return popt, np.sqrt(np.diagonal(pcov))
+    
+linParams, aError = drawFunc(linFunc,drops, absorbanceLists[0], [1,1], 'Linear fit', 'blue')
+polParams, bError = drawFunc(polyFunc, drops, absorbanceLists[0], [1,1,1], 'Polynomial fit', 'green')
+print(linParams)
+print(aError)
+print(polParams)
+print(bError)
 
 plt.rc("axes", labelsize=18, titlesize=22)
 plt.rc("xtick", labelsize=16, top=True, direction="in")
 plt.rc("ytick", labelsize=16, right=True, direction="in")
-plt.rc("legend", fontsize=16)
-ax.set_title('Absorbance of green food coloring concentration', fontsize = 24)
+plt.rc("legend", fontsize=16, loc = 'upper left')
+ax.set_title('Absorbance of green food coloring solution', fontsize = 24)
 ax.set_xlabel("Number of droplets", fontsize = 21)
 ax.set_ylabel("Absorbance", fontsize = 21)
-ax.text(0.6,1.1, r'a = 0.06$\pm$ 0.006', fontsize = 15)
+ax.legend()
 plt.savefig('droplets.png')
 plt.show()
 

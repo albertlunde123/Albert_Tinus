@@ -13,6 +13,7 @@
 \begin{document}
 % \includepdf[pages=-, fitpaper=true]{inputs/frontmatter.pdf}
 \section*{Introduction}
+In this experiment we look into the nature of how  electromagnetic waves are emitted and absorbed. Firstly we look at an absorption spectrum from the sun to examine what kind of materials it consists of and then we use Planck's law of black-body radiation to examine the temperature of the sun. Secondly we examine how the absorption of light depends on the concentration of a given substance - in this case green food colouring.
 \section*{Theory}
 \subsection*{Spectrometer}
 We shall first, in short, explain how a spectrometer works and what it is used. A spectrometer is a device that can measure the spectral composition of light. Fig. 1 shows the spectrum of hydrogen. The most common form of spectrometer, which is also what we have used, is a grating spectrometer. A grating spectrometer, separates the light by wavelength with a periodic grate, as illustrated in fig 2. Let us a consider a monochromatic component of light. As it is reflected off the grate it will only create construcive interference at specific angles. This angle is related to the wavelength by the follwing formula called the 'grating equation'
@@ -24,16 +25,56 @@ When electromagnetic waves travel in a media some of the electromagnetic energy 
 \[
 A = log_{10}(\frac{I_{In}}{I_{Out}})
 \]
-Where A is the absorbance, $I_{In}$ is the ingoing intensity and $I_{Out}$ is the outgoing intensity. The amount of light that gets absorbed depends on what media the light is travelling through and how far it needs to travel in the media. This relation is described by the Lambert-Beer law:
+Where A is the absorbance, $I_{In}$ is the ingoing intensity and $I_{Out}$ is the outgoing intensity. The fraction in the logarithm is equal to $\frac{1}{T}$, where T is the transmittance. The use of an logarithmic scale allows for a more compromised graph and also makes it easier to spot how many the percentile difference between two points. \\
+There also exists another equation for absorbance which is called the Lambert-Beer law. The amount of light that gets absorbed depends on what media the light is travelling through and how far it needs to travel in the media. The relation is:
 \[
 A = \epsilon c l
 \]  
-Where $\epsilon$ it the absorptivity of the material, c is the concentration of the media and l is the length the light has to travel in the media.
+Where $\epsilon$ it the absorptivity of the material, c is the concentration of the media and l is the length the light has to travel in the media. This relation is very useful because it can be used to display a linear relationship between the absorbance and the concentration of a liquid.
 \\
 Different materials absorbs differently in the visible spectrum e.g the sea is blue because it absorbs least light in the blue part of the spectrum. Sending light through a material can then be used to determine what the material is.
 \subsection*{Emission}
 All elements have different spectra. These are to the specific energy levels where they are able to absorb light (different wavelengths of light have different energy levels). These energy levels are the possible excited states that the elements electronic structure can be in. An element emits light, when its electron structure descends in energy. The energy of light emitted is then equal to the magnitude of the descent. As a consequence an element can only emit light with specific energies.
+\section*{Experimental set-up}
+\subsubsection*{Emission}
+The spectrometer given for the experiment could be used to measure the emission spectrum of any given light source. It was plugged into the computer where we could take a background measurement and subtract it from the actual measurement. An optical fibre cable could then be connected to the spectrometer to increase the range of the spectrometer. This was then used to measure the emission spectrum of the sun.
+\subsubsection*{Absorption}
+For this part of the exercise a lamp module tool was connected to the spectrometer. This tool had a small  empty space where one could place a container with a liquid. The lamp module would then send electromagnetic waves through the sample which could  be detected by the spectrometer on the other side of the sample. Depending on the concentration and substance different amounts of intensity would receive the spectrometer. For our experiment we had a container with water placed in the empty space of the lamp tool. Between each measurement we would then put a droplet of green fruit colouring in container.  
 \section*{Results}
+\subsection*{Absorption}
+From the theory section we knew that if the absorbance could be measured it could be related to the concentration of the substance by Lambert-Beer's law. The spectrometer connected with the lamb module tool could report what the absorbance of the sample was. Since we took a reference measurement of the absorption spectrum of water, all the measurement made became a relative absorbance with respect to water. This meant that the length of the container could be neglected in the calculations. Our goal was then to see how the the absorbance of the sample depended on the amount of fruit colouring drops in the sample. Since the absorbance is linearly dependent on the concentration of the solute we would expect a linear increase in the absorbance each time we increase the concentration by adding droplets. The hard part is that we cannot exactly know if the concentration increases linearly with the amounts of drops we put in the solution. We would need to have a bunch of different information we don't have. Eg. the molar mass, the volume of a droplet and either the density or the mass of the green food colouring. This will be discussed further in the discussion section. \\
+\begin{marginfigure}
+\includegraphics[scale=0.28]{absorbance.png}
+\caption{This is only a small sample from the whole dataset. The different colors represent different solutions. It can be seen that when the concentration increases then the absorbance increases as well}
+\end{marginfigure}
+Assuming the relationship between the absorbance and the amount of droplets was linear, a fit was made. Though it seems to appear that function is only linear in the beginning. The function $y = ax + b$ yielded coefficients of:
+\begin{center}
+a = 0.091 $\pm$ 0.0084 
+\smallskip
+
+b = -0.289 $\pm$ 0.071.
+\end{center}
+Though by just looking at the graph the fit seems more polynomial and appears that the absorbance increases more rapidly with the latter drops, so a polynomial fit was also made. The function $y = ax^2 + bx +c$ yielded coefficients of:
+\begin{center}
+a = 0.0078 $\pm$ 0.0007,
+\smallskip
+ 
+b = -0.025 $\pm$ 0.011,
+\smallskip 
+
+c = 0.021 $\pm$ 0.037
+\end{center}
+\begin{marginfigure}
+\centering
+\includegraphics[scale=0.28]{droplets.png}
+\caption{A plot showing how the absorbance of a solution of water and green food colouring depends on the amount of green food colouring droplets in the solution. A linear fit and a polynomial fit was made.\\ 
+\textbf{LinearFit($ax+b$):} a = 0.091 $\pm$ 0.0084, b = -0.289 $\pm$ 0.071. \\
+\textbf{PolynomialFit($ax^2 + bx +c$)}: a = 0.0078 $\pm$ 0.0007, b = -0.025 $\pm$ 0.011, c = 0.021 $\pm$ 0.037}
+\end{marginfigure}
+I can be seen that the first and second point on the graph is very close to the absorbance spectrum of water and the second point even has an absorbance below 0.0, which just indicates that the these two drops did not make a remarkable difference. This is not to unnatural since the natural fluctuation in the measurement of the spectrum makes it possible to actually measure an absorbance that is lower.
+
+
 \section*{Discussion}
 \section*{Conclusion}
+
 \end{document}
