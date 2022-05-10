@@ -39,7 +39,7 @@ All elements have different spectra. These are to the specific energy levels whe
 \subsubsection*{Emission}
 The spectrometer given for the experiment could be used to measure the emission spectrum of any given light source. It was plugged into the computer where we could take a background measurement and subtract it from the actual measurement. An optical fibre cable could then be connected to the spectrometer to increase the range of the spectrometer. This was then used to measure the emission spectrum of the sun.
 \subsubsection*{Absorption}
-For this part of the exercise a lamp module tool was connected to the spectrometer. This tool had a small  empty space where one could place a container with a liquid. The lamp module would then send electromagnetic waves through the sample which could  be detected by the spectrometer on the other side of the sample. Depending on the concentration and substance different amounts of intensity would receive the spectrometer. For our experiment we had a container with water placed in the empty space of the lamp tool. Between each measurement we would then put a droplet of green fruit colouring in container.  
+For this part of the exercise a lamp module tool was connected to the spectrometer. This tool had a small  empty space where one could place a container with a liquid. The lamp module would then send electromagnetic waves through the sample which could  be detected by the spectrometer on the other side of the sample. Depending on the concentration and substance different amounts of intensity would receive the spectrometer. For our experiment we had a container with water placed in the empty space of the lamp tool. Between each measurement we would then put a droplet of green fruit colouring in container using a plastic strip.  
 \section*{Results}
 \subsection*{Absorption}
 From the theory section we knew that if the absorbance could be measured it could be related to the concentration of the substance by Lambert-Beer's law. The spectrometer connected with the lamb module tool could report what the absorbance of the sample was. Since we took a reference measurement of the absorption spectrum of water, all the measurement made became a relative absorbance with respect to water. This meant that the length of the container could be neglected in the calculations. Our goal was then to see how the the absorbance of the sample depended on the amount of fruit colouring drops in the sample. Since the absorbance is linearly dependent on the concentration of the solute we would expect a linear increase in the absorbance each time we increase the concentration by adding droplets. The hard part is that we cannot exactly know if the concentration increases linearly with the amounts of drops we put in the solution. We would need to have a bunch of different information we don't have. Eg. the molar mass, the volume of a droplet and either the density or the mass of the green food colouring. This will be discussed further in the discussion section. \\
@@ -75,6 +75,23 @@ I can be seen that the first and second point on the graph is very close to the 
 
 
 \section*{Discussion}
+\subsection*{Absorption}
+This turned out to be quite a bad experiment for an obvious reason. We could not get our hands on a pipette so we had to use some kind of plastic strip which made it hard to control the amount of food colouring we put in the container. This can also be seen in the data where it is quite obvious that change in absorbance between two measurements are larger in the latter measurements than in the earlier measurements. This inconsistency would properly be resolved by using a pipette.  \\
+
+In this experiment we also increased the concentration of the solution by adding more droplets but can we even say that the concentration increases linearly with the amount of droplets? To know this we would need to know how the concentration changes when adding a droplet. The concentration is given by:
+\begin{center}
+$c = \frac{n}{V}$
+\end{center}
+Where c is the concentration in $\frac{mol}{L}$, n is the amount of solute in the solution given in mol and V is volume of the mixture in L. One can rewrite the equation to:
+\begin{center}
+$c = \frac{m}{MV}$
+\end{center}
+Where m is the mass in g and M is the molar mass in $\frac{g}{mol}$. It is properly not a bad approximation to assume that a droplet of the food colouring contributes with the same volume and same mass every time, so a linear increase is a reasonable approximation. Since the molar mass actually is accessible on the internet one could also calculate the absorptivity if the density of the of the food colouring could be determined. \\
+
+\subsubsection*{Linear fit}
+The a-coefficient is actually quite precise and has a relative small error compared to the b-coefficient which has quite a large error. Even though the a coefficient has a small error it is hard to argue from our data that there exists a linear relationship between the absorbance and the amount of droplets. Just by looking at the graph it does not look linear and this very much caused by the inconsistency between the early and late measurements. If this consistency had existed we would properly see a better fit and also a b-coefficient that would be more centred around 0. If one would conduct the experiment again with a pipette it is possible a linear relationship could be achieved.
+\subsubsection*{Polynomial fit}
+If we look at the polynomial fit it looks more accurate than the linear. Even though the b- and c-coefficient has quite a large error the a-coefficient is quite precise with a relative low error. We can not from theory explain why the fit looks more polynomial than linear. The must obvious reason is again the inconsistency by not using a pipette but it could be some other error that we have not identified.
 \section*{Conclusion}
 
 \end{document}
