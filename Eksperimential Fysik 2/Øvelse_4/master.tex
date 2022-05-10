@@ -86,7 +86,15 @@ Where c is the concentration in $\frac{mol}{L}$, n is the amount of solute in th
 \begin{center}
 $c = \frac{m}{MV}$
 \end{center}
-Where m is the mass in g and M is the molar mass in $\frac{g}{mol}$. It is properly not a bad approximation to assume that a droplet of the food colouring contributes with the same volume and same mass every time, so a linear increase is a reasonable approximation. Since the molar mass actually is accessible on the internet one could also calculate the absorptivity if the density of the of the food colouring could be determined. \\
+Where m is the mass in g and M is the molar mass in $\frac{g}{mol}$. It is properly not a bad approximation to assume that a droplet of the food colouring contributes with the same volume and same mass every time. Since the volume of the droplet is very small compared to the volume of the water we can approximate:
+\begin{center}
+$c=\frac{mx}{M\cdot(V_{water}+V_{droplet}x)}$
+\smallskip
+
+When $V_{droplet}$ << $V_{water}$: \:  $ c\approx \frac{mx}{M\cdot V_{water}}$
+\end{center}
+
+Where x is number of droplets. This shows a linear increase is a good approximation. Since the molar mass actually is accessible on the internet one could also calculate the absorptivity if the density of the of the food colouring could be determined. \\
 
 \subsubsection*{Linear fit}
 The a-coefficient is actually quite precise and has a relative small error compared to the b-coefficient which has quite a large error. Even though the a coefficient has a small error it is hard to argue from our data that there exists a linear relationship between the absorbance and the amount of droplets. Just by looking at the graph it does not look linear and this very much caused by the inconsistency between the early and late measurements. If this consistency had existed we would properly see a better fit and also a b-coefficient that would be more centred around 0. If one would conduct the experiment again with a pipette it is possible a linear relationship could be achieved.
