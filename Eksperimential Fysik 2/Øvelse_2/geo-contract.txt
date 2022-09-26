@@ -1,0 +1,120 @@
+ /* Geogebra to Asymptote conversion, documentation at artofproblemsolving.com/Wiki go to User:Azjps/geogebra */
+import graph; size(0cm); 
+real labelscalefactor = 0.5; /* changes label-to-point distance */
+pen dps = linewidth(0.7) + fontsize(10); defaultpen(dps); /* default pen style */ 
+pen dotstyle = black; /* point style */ 
+real xmin = -2.520491789466716, xmax = 18.907107745521156, ymin = -1.036220625424452, ymax = 11.634974451430846;  /* image dimensions */
+pen cqcqcq = rgb(0.7529411764705882,0.7529411764705882,0.7529411764705882); 
+ /* draw grid of horizontal/vertical lines */
+pen gridstyle = linewidth(0.7) + cqcqcq; real gridx = 1, gridy = 1; /* grid intervals */
+for(real i = ceil(xmin/gridx)*gridx; i <= floor(xmax/gridx)*gridx; i += gridx)
+ draw((i,ymin)--(i,ymax), gridstyle);
+for(real i = ceil(ymin/gridy)*gridy; i <= floor(ymax/gridy)*gridy; i += gridy)
+ draw((xmin,i)--(xmax,i), gridstyle);
+ /* end grid */ 
+
+Label laxis; laxis.p = fontsize(10); 
+xaxis(xmin, xmax, Ticks(laxis, Step = 1, Size = 2, NoZero),EndArrow(6), above = true); 
+yaxis(ymin, ymax, Ticks(laxis, Step = 1, Size = 2, NoZero),EndArrow(6), above = true); /* draws axes; NoZero hides '0' label */ 
+ /* draw figures */
+ /* dots and labels */
+dot((1.8257575990466828,1.7839508777673314),dotstyle); 
+label("$A$", (1.8784602131970305,1.9240804078146678), NE * labelscalefactor); 
+dot((2.1711758917646176,2.1111892603422167),dotstyle); 
+label("$C$", (2.2242897731548723,2.256076785374195), NE * labelscalefactor); 
+dot((2.462054454053405,2.383887912487954),dotstyle); 
+label("$D$", (2.5147866035194593,2.5189072509421546), NE * labelscalefactor); 
+dot((2.9347321177726844,2.7474861153489374),dotstyle); 
+label("$E$", (2.985114805062124,2.892403175696623), NE * labelscalefactor); 
+dot((3.334690140919767,3.1474441384960192),dotstyle); 
+label("$F$", (3.38627709461322,3.279732282849405), NE * labelscalefactor); 
+dot((3.6437486133516037,3.401962880498708),dotstyle); 
+label("$G$", (3.7044402897744346,3.5425627484173643), NE * labelscalefactor); 
+dot((3.9891669060695385,3.6928414427874947),dotstyle); 
+label("$H$", (4.050269849732277,3.833059578781951), NE * labelscalefactor); 
+dot((4.370945019073572,4.074619555791527),dotstyle); 
+label("$I$", (4.423765774486745,4.2065555035364195), NE * labelscalefactor); 
+dot((4.7345432219345565,4.292778477508118),dotstyle); 
+label("$J$", (4.783428516842901,4.427886421909437), NE * labelscalefactor); 
+dot((5.043601694366393,4.5472972195108055),dotstyle); 
+label("$K$", (5.101591712004115,4.690716887477397), NE * labelscalefactor); 
+dot((5.443559717513475,4.819995871656543),dotstyle); 
+label("$L$", (5.502754001555211,4.953547353045356), NE * labelscalefactor); 
+dot((5.752618189945312,5.074514613659232),dotstyle); 
+label("$M$", (5.807084014318112,5.216377818613315), NE * labelscalefactor); 
+dot((6.24347576380764,5.383573086091068),dotstyle); 
+label("$N$", (6.305078580657404,5.520707831376215), NE * labelscalefactor); 
+dot((6.7525132478130185,5.710811468665953),dotstyle); 
+label("$O$", (6.803073146996696,5.852704208935743), NE * labelscalefactor); 
+dot((7.225190911532297,6.001690030954739),dotstyle); 
+label("$P$", (7.287234530937676,6.14320103930033), NE * labelscalefactor); 
+dot((7.679688665108528,6.20166904252828),dotstyle); 
+label("$Q$", (7.729896367683713,6.336865592876721), NE * labelscalefactor); 
+dot((8.152366328827807,6.528907425103165),dotstyle); 
+label("$R$", (8.214057751624692,6.6688619704362475), NE * labelscalefactor); 
+dot((8.625043992547086,6.7288864366767065),dotstyle); 
+label("$S$", (8.684385953167356,6.8625265240126385), NE * labelscalefactor); 
+dot((9,7),dotstyle); 
+label("$T$", (9.057881877921824,7.139190171978911), NE * labelscalefactor); 
+dot((9.461319859127352,7.147024369966838),dotstyle); 
+label("$U$", (9.514376897066176,7.291355178360361), NE * labelscalefactor); 
+dot((10.061256893847975,7.437902932255624),dotstyle); 
+label("$V$", (10.123036922591977,7.581852008724948), NE * labelscalefactor); 
+dot((10.479394827138107,7.656061853972214),dotstyle); 
+label("$W$", (10.538032394541387,7.789349744699653), NE * labelscalefactor); 
+dot((10.988432311143486,7.874220775688804),dotstyle); 
+label("$Z$", (11.049860143278993,8.010680663072671), NE * labelscalefactor); 
+dot((11.442930064719715,8.019660056833198),dotstyle); 
+label("$A_1$", (11.49252198002503,8.162845669454121), NE * labelscalefactor); 
+dot((11.933787638582043,8.237818978549788),dotstyle); 
+label("$B_1$", (11.990516546364322,8.370343405428827), NE * labelscalefactor); 
+dot((12.588264403731815,8.583237271267722),dotstyle); 
+label("$C_1$", (12.640676119085064,8.716172965386667), NE * labelscalefactor); 
+dot((13.097301887737192,8.728676552412116),dotstyle); 
+label("$D_1$", (13.15250386782267,8.868337971768117), NE * labelscalefactor); 
+dot((13.733598742743915,9.001375204557853),dotstyle); 
+label("$E_1$", (13.788830258145099,9.14500161973439), NE * labelscalefactor); 
+dot((14.151736676034046,9.146814485702247),dotstyle); 
+label("$F_1$", (14.20382573009451,9.283333443717526), NE * labelscalefactor); 
+dot((14.55169469918113,9.255893946560542),dotstyle); 
+label("$G_1$", (14.604988019645607,9.393998902904036), NE * labelscalefactor); 
+dot((15.00619245275736,9.364973407418837),dotstyle); 
+label("$H_1$", (15.061483038789957,9.504664362090544), NE * labelscalefactor); 
+dot((15.515229936762738,9.492232778420181),dotstyle); 
+label("$I_1$", (15.573310787527562,9.629163003675368), NE * labelscalefactor); 
+dot((16.042447330911166,9.619492149421525),dotstyle); 
+label("$J_1$", (16.09897171866348,9.75366164526019), NE * labelscalefactor); 
+dot((16.478765174344346,9.801291250852017),dotstyle); 
+label("$K_1$", (16.527800373011207,9.933493016438268), NE * labelscalefactor); 
+dot((16.860543287348378,9.892190801567263),dotstyle); 
+label("$L_1$", (16.915129480163987,10.030325293226463), NE * labelscalefactor); 
+dot((9.749026123150458,7.306847734099711),dotstyle); 
+label("$M_1$", (9.804873727430763,7.4435201847418115), NE * labelscalefactor); 
+dot((10.29496498417674,7.525223278510222),dotstyle); 
+label("$N_1$", (10.344367840964996,7.66485110311483), NE * labelscalefactor); 
+dot((10.74011513239817,7.751997882321139),dotstyle); 
+label("$O_1$", (10.800862860109348,7.886182021487849), NE * labelscalefactor); 
+dot((7.481280085041289,6.063786942839874),dotstyle); 
+label("$P_1$", (7.536231814107321,6.198533768893584), NE * labelscalefactor); 
+dot((7.002533699218242,5.811815160827745),dotstyle); 
+label("$Q_1$", (7.052070430166342,5.949536485723939), NE * labelscalefactor); 
+dot((6.5,5.5),dotstyle); 
+label("$R_1$", (6.55407586382705,5.645206472961038), NE * labelscalefactor); 
+dot((6.061839046372957,5.173486646397017),dotstyle); 
+label("$S_1$", (6.111414027081013,5.3132100954015105), NE * labelscalefactor); 
+dot((5.280726522135354,4.644345904171547),dotstyle); 
+label("$T_1$", (5.336755812775447,4.7875491642655925), NE * labelscalefactor); 
+dot((4.617200829503412,4.098407043145267),dotstyle); 
+label("$U_1$", (4.672763057656391,4.234221868333046), NE * labelscalefactor); 
+dot((4.222445037684408,3.846435261133138),dotstyle); 
+label("$V_1$", (4.271600768105295,3.985224585163401), NE * labelscalefactor); 
+dot((3.155764493833058,2.9561349646902815),dotstyle); 
+label("$W_1$", (3.2064457234351424,3.0999009116713276), NE * labelscalefactor); 
+dot((11.227260577621621,7.936777189130034),dotstyle); 
+label("$Z_1$", (11.285024244050325,8.07984657506424), NE * labelscalefactor); 
+dot((12.336346106322164,8.398009770225453),dotstyle); 
+label("$A_2$", (12.39167883591542,8.53634159420859), NE * labelscalefactor); 
+dot((13.539832974975454,8.854504789369804),dotstyle); 
+label("$B_2$", (13.595165704568707,8.99283661335294), NE * labelscalefactor); 
+clip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle); 
+ /* end of picture */

@@ -1,0 +1,185 @@
+\documentclass[working, oneside]{inputs/tuftebook}
+\input{inputs/preamble.tex}
+\usepackage{pdfpages}
+
+\usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{titletoc}
+
+\usepackage{cmbright}
+\usepackage{bm}
+\addbibresource{bibliography.bib}
+
+\begin{document}
+\includepdf[pages=-, fitpaper=true]{inputs/frontmatter.pdf}
+\section*{Introduction}
+In this experiment we construct the Mach-Zender interferometer and use this setup to examine two distinct scenarios. In the first part we look at the effects of polarizing one of the beams. In the second part we examine the interference pattern as one of the beams passes is passed through a gas with varying pressure.
+\section*{Theory}
+\subsection*{Waveplate and Polarization}
+We shall use the following notation to describe $\bm{\hat{p}}$ and $\bm{\hat{s}}$-polarized waves, where these vectors describe orthogonal planes of polarization. The waves have frequency $\omega$ and phase $\rho $
+\[
+\bm{E_1} = \|E_1\|\bm{\hat{p}}\cos\left( \omega t - \rho  \right) , \quad \quad \bm{E_2} = \|E_2\|\bm{\hat{s}}\cos\left( \omega t - \rho  \right) 
+.\] a
+and cleary,
+\[
+\bm{\hat{p}}\cdot\bm{\hat{p}}=1, \quad \bm{\hat{s}}\cdot\bm{\hat{s}}=1 ,\quad\bm{\hat{s}}\cdot\bm{\hat{p}}=0
+.\] 
+We can define the angle $\theta $, to describe waves polarized somewhere in between $\bm{p}$ and $\bm{s}$. 
+\[
+\bm{E} = \|E\|\left(\bm{\hat{p}} \cos\theta + \bm{\hat{s}}\sin \theta   \right) 
+.\]
+\begin{marginfigure}[-250pt]
+    \incfig{pol}
+    \caption{The two orthogonal polarizations of light; $\bm{s}$ and $\bm{p}$}
+    \label{fig:pol}
+\end{marginfigure}
+\begin{marginfigure}[]
+    \incfig{pola2}
+    \caption{Light may also be polarized somewhere between $\bm{\hat{s}}$ and $\bm{\hat{p}}$. We can describe these polarizations with an angle $\theta $. }
+    \label{fig:pola2}
+\end{marginfigure}
+We are now interested in measuring the interference pattern two waves, where one wave is held fixed at $\theta = 0$ ($\bm{\hat{p}}$-polarized) and the other wave is allowed to vary in $\theta $. We assume that the waves have equal amplitude $E$. They need not however be in phase. We will denote their phases $\rho_1, \rho_2$. The intensity of this wave is, as always, given by,
+\begin{align*}
+	I &= c\epsilon_0 \left( \bm{E_1} + \bm{E_2} \right)^2 \\
+	&= E^2\left( \hat{\bm{p}}\cdot \hat{\bm{p}} \right)\cos\left( \omega t - \rho_1 \right)^2  + E^2\left( \cos\theta \bm{\hat{p}}+ \sin \theta \bm{\hat{s}} \right) ^2 \cos\left( \omega t -\rho_2 \right) ^2  \\
+	& \quad + 2E^2 \bm{\hat{p}}\cdot \left(   \cos\theta \bm{\hat{p}}+ \sin \theta \bm{\hat{s}} \right)\cos\left( \omega t - \rho_1 \right) \cos\left( \omega t - \rho_2 \right) \\
+	&= E^2 \cos\left( \omega t - \rho_1 \right) ^2 + E^2 \cos\left( \omega t - \rho_2 \right) \\
+	&\quad + 2E^2\cos \theta\cos\left( \omega t - \rho_1 \right)\cos\left( \omega t - \rho_2 \right)  
+.\end{align*}
+We will only be able to measure the time-average of this intensity. The time average of a periodic function is given by the following function,
+\[
+\left< f \right> = \frac{1}{\tau} \int_{0}^{\tau} f d\tau  
+.\]
+Before continuing, we notice that the first 2 terms, both integrate to $pi$ over one cuycle,
+\begin{align*}
+	\left<I \right> &= E^2c\epsilon_0 \frac{1}{2\pi} \left( 2\pi + \cos\theta \int_{0}^{2\pi} \cos\left( \omega t - \rho_1 \right) \cos\left( \omega t - \rho _2 \right)  d\left( \omega t \right) \right) \\
+	&= E^2c\epsilon_0 \left( 1 + \cos\theta \cos\left( \Delta \rho  \right)  \right)  \\
+.\end{align*}
+Which gives us our main result. The amplitude of the intereference should vary sinusoidally in $\theta $.
+\newpage
+\subsubsection{Waveplate}
+\begin{marginfigure}[]
+    \incfig{waveplate}
+    \caption{waveplate}
+    \label{fig:waveplate}
+\end{marginfigure}
+In the experiment we make use of a $\lambda /2$-waveplate. This is a tool that allows us to rotate the polarization. The waveplate can be set to an angle $\theta _W$, as the light  passes through the plate, what happens can be visualized as the light being mirrored in a plane lying at $\theta_W$. Fig $\bm{3}$ illustrates this. In practice, this functions as doubling the polarization angle. So,
+\[
+\theta = 2\theta_W
+.\] 
+Combining this, with our knowledge from the previous section, we expect the amplitude of the interference pattern to vary in the following way,
+\[
+A\left( \theta _W \right) = k \cos\left( 2\theta_W + \rho \right) 
+.\] 
+Where $k, \rho $ are constants.
+
+\subsection*{Pressure dependency}
+When a light beam passes through an object with a refractive index n, the optical path length of that beam is given by:
+\[
+OP=n \cdot L
+.\] 
+Where OP is the optical path length and L is the geometrical path length. If the object is filed with a gas the index of refraction is affected by the pressure of the gas, which then also affects the optical path length. 
+\[
+\Delta OP = \Delta n \cdot L
+.\] 
+When it comes to air the refractive index is very close to one and for low pressures it is proportional to the change in pressure.
+\[
+n_{air} = 1 + k p
+.\] 
+where k is a constant. 
+This can be shown be considering the Lorentz-Lorenz equation\footcite{https://www.oxfordreference.com/view/10.1093/oi/authority.20110803100115114} and the ideal gas equation.
+\begin{align*}
+\frac{n^2-1}{n^2+2} &=\frac{4}{3}\pi \frac{n_{mol}}{V}\alpha_{mol}
+\\
+pV &= nRT
+\end{align*}
+Here $n_{mol}$ is the amount of molecules, $\alpha_{mol}$ is the polarisability of the molecules, P is pressure, V is volume, R is the universal gas-constant and T is the temperature.
+$n^2$ is very close to 1 for many gases, so we can rewrite the equations as:
+\[
+n \approx \sqrt{\frac{\pi p\alpha_{mol}}{RT}+1}
+.\] 
+In this experiment it is only the pressure which varies and the change is very small, so a Taylor expansion of this equation with respect to pressure results in a linear relationship. \\
+We can now justify the change in the refractive index to be:
+\[
+\Delta n =k\Delta p
+.\] 
+The change in pressure is then related to the optical path length by.
+\[
+\Delta OP = k\Delta p\cdot L
+.\] 
+This can then be related to the phase shift.
+\[
+\Delta \rho = \frac{2\pi}{\lambda}k\Delta p\cdot L
+.\] 
+The wavelength in the media is also dependent on the index of refraction but it such a small factor so an approximation is made.
+\[
+\Delta \rho \approx \frac{2\pi}{\lambda_0}k\Delta p\cdot L
+.\] 
+\subsection*{Experimental Setup}
+\begin{marginfigure}[-100pt]
+	\centering
+	\incfig{fig1}
+	\caption{An illustration of the experimental method. The use of two beam-splitters allows us to pass the beams through the pressure chamber or waveplate once. Of course we only vary one thing at a time, so both elements wont be in the set-up simultaneously.}
+	\label{fig:}
+\end{marginfigure}
+For the experiment we built a Michelson-Morley method. We were then only required to make minor adjustments to switch between each part of the experiment. First, the laser is passed through a beamsplitter, each beam then hits a mirrror. On one of the mirrors is mounted a piezo-electric. This allows us to change the path-length in a systematic fashion. The rays are then collected by another beam-splitter and aimed towards a detector. A sketch of this setup can be seen in the figure. \\
+For the first part of the experiment we placed a waveplate in front of one the mirrors. We were then able to change the polarization for one beam of light. We could then take measurements at different angles. 
+\\
+For the second part of the experiment, we had the piezoelectric turned off. We did this, as we were measuring a frequency change rather than intensity. We had a transparent gas-chamber placed in the path of either the transmitted beam or reflected beam as shown in the figure. This gas-chamber was connected to a bicycle pump with which we could change the air-pressure. A measurement would consist of slowly increasing the pressure from atmospheric pressure( $\approx$ 1 bar) to 2 bar in the chamber by the use of the pump. 
+\subsection*{Results}
+\subsubsection*{Waveplate}
+We took measurements for different angles of the waveplate. For each angle we measured the intensity of the light beam striking the detector. We then plot these against one another and fit the data to a sinusoidal function. We expected the data to have a frequency of $2$. Our data is displayed in figure,
+\begin{marginfigure}[-55pt]
+	\centering
+	\includegraphics[width=1.1\textwidth]{inputs/waveplateres}
+	\caption{The data collected from the waveplate. Our datapoints are marked with black. The error on these points is small enough to be contained in the points. The fit is marked with the blue line. The error in the fit is small enough to be contained in the line}
+\end{marginfigure}
+Our data clearly follows a sinusoidal function, however the measured frequency $b = 4$ is twice what we would expect. Furthermore, our estimated error in this measurement is $0.001$, so we can quite certain that our data has a frequency in the vicinity of $4$ times the angle indicated on the waveplate.
+\subsection*{Pressure change} 
+We know from the theory section that changing the pressure results in a change in the path length which then results in a change in the interference pattern in the detector. No signal is equal to destructive interference and max signal is equal to constructive interference. The difference between two local maxima must then correspond to a full phase shift. One can then count the number of local maxima and subtract one to get the total number of phase shifts. Revisiting:
+\[
+\Delta \rho \approx \frac{2\pi}{\lambda_0}k\Delta p\cdot L
+.\] 
+The only unknown parameter is k which can be calculated and used to calculate the refractive index of air:
+\[
+n_{air} = 1 + k p
+.\] 
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1.1\textwidth]{inputs/trykMax}
+	\caption{Small segment of the full pressure graph. As the pressure increases with time the intensity varies which corresponds to change in the phase. The gap between two maxima correspond to one phase shift.}
+\end{marginfigure}
+In principle it is only possible to calculate the gradient from the two known pressure points. So to get better data we made multiple measurement of the total phase shifts. We assumed the total number of phase shift followed a Poisson-distribution because it is a count variable. This was then used to find the mean value and the error. 
+\begin{center}
+$\Delta p = 23.8 \pm 4.88$
+\end{center}
+By also incorporating the error in the pressure this  yielded the k-value:
+\begin{center}
+$k=2.63 \cdot 10^{-9} \pm 0.75 \cdot 10^{-9}$
+\end{center}
+Now relating this to the refractive index of air we get:
+\begin{center}
+$n_{air} = 1.00027 \pm 0.000077$
+\end{center}
+
+\begin{marginfigure}
+	\centering
+	\includegraphics[width=1.1\textwidth]{inputs/pressureHist}
+	\caption{Shows how 15 repetitions of the experiment yielded different numbers of total phase shifts. }
+\end{marginfigure}
+
+\subsection*{Discussion}
+\subsubsection*{Waveplate} Overall, this experiment went very well. We were able to obtain datapoints, that had very little error. The nature of the experiment also allowed us to take many datapoints, thereby giving us a detailed picture of the sinusoidal behavior we were measuring. In spite of this we did end up measuring a frequency twice as large as expected. The small error in this frequency $(0.001)$, suggests a systematic error. We believe this error be one of two possibilities. Either the waveplate is mislabelled or we have misread it. Our datas strong adherence to the sinusoidal function, is however a great indication that the theory is correct. This was in fact a very simple and effective setup, that does not require much improvement.
+\subsubsection*{Pressure change}
+Overall a lot of approximations were made for this experiment e.g that the wavelength does not change in the pressure chamber and that the refractive index of air changes linearly with pressure. However the final result of 
+\begin{center}
+$n_{air} = 1.00027 \pm 0.000077$
+\end{center}
+
+is not that far from the actual refractive index of air 1.000293. \footcite{https://hypertextbook.com/facts/2005/MayaBarsky.shtml} Of course the error on the refractive index is quite large but this is expected because we used a bicycle pump for the experiment that had an error of $\pm$ 0.2 bar. Furthermore we only calculated the constant k from 2  pressure points, the one at atmospheric pressure and the one at 2 bar. So to minimize the error and get a better result one would need a more precise tool to raise the pressure. This would both minimize the error in the actual pressure measurement but also allow one to make measurements at more pressure levels.
+
+\subsection*{Conclusion}
+Overall, this was a successful experiment. The waveplate experiment demonstrated the strength of the setup, as we the errors we were dealing with were small compared to the tendencies we were trying to measure. It was an experiment where our experimental equipment was sufficiently precise, and able to measure over a wide enough range, to yield an exact result. \\
+The pressure experiment yielded a result that was fairly close to the actual refractive index of air but the error was quite large so to get a better result one would have to make the experiment with a better pressure tool.
+ 
+\end{document}

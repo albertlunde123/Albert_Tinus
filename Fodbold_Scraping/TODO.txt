@@ -1,0 +1,8 @@
+- Finde ud af hvilke værktøjer der fungerer godt.
+ -- Python
+ ---- BeautifulSoup
+ ---- Scrapy
+ -- Clojure
+ ---- Enlive
+
+- Hvilke hjemmesider har data som vi kan bruge?

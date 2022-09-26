@@ -1,0 +1,13 @@
+ToDO -- 
+
+Skrive teori
+ -- Optical Path Length
+ 	-- Fasen afhænger både af path-length og refractive index
+	-- How does refractive index vary with pressure?
+ -- Wave plates
+	-- Hvordan påvirker polarisering interferens mønstret?
+	-- Hvordan ændrer en wave-plate polarisering?
+
+sources:
+frog.gatech.edu
+
